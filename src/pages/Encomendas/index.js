@@ -3,5 +3,5 @@ import React from 'react';
 // import { Container } from './styles';
 
 export default function Encomendas() {
-  return <div />;
+  return <div>Hail Encomendas</div>;
 }

@@ -44,6 +44,7 @@ export const Container = styled.div`
       font-size: 14px;
       color: #444444;
       opacity: 1;
+      margin-top: 15px;
     }
 
     input {
@@ -54,15 +55,22 @@ export const Container = styled.div`
       border-radius: 4px;
       opacity: 1;
 
-      margin-bottom: 15px;
+      /* margin-bottom: 15px; */
       align-self: center;
       padding-left: 15px;
 
       &::placeholder {
-        color: #999999
+        color: #999999;
         text-align: left;
         font-size: 16px;
       }
+    }
+
+    span {
+      color: red;
+      align-self: flex-start;
+      margin-left: 30px;
+      margin-top: 3px;
     }
 
     button {
@@ -74,6 +82,7 @@ export const Container = styled.div`
       background: #7d40e7 0% 0% no-repeat padding-box;
       border-radius: 4px;
       opacity: 1;
+      margin-top: 15px;
 
       font-size: 16px;
       align-self: center;
@@ -83,7 +92,7 @@ export const Container = styled.div`
       transition: background 0.2s;
 
       &:hover {
-        background: ${darken(0.04, '#7d40e7')}
+        background: ${darken(0.04, '#7d40e7')};
       }
     }
   }
