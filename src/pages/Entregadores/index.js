@@ -2,11 +2,10 @@ import React from 'react';
 
 import { Container } from './styles';
 
-export default function Encomendas() {
+export default function Entregadores() {
   return (
     <Container>
-      <strong>Hail Encomendas</strong>
-      {/* <button>click me</button> */}
+      <strong>Hail Entregadores</strong>
     </Container>
   );
 }
