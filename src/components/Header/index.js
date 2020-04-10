@@ -1,16 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, Content } from './styles';
+import { Container, Content, PropLink } from './styles';
 
 import logo from '../../assets/fastfeet-logo.png';
 
 export default function Header() {
-  const [selectedPage, setSelectedPage] = useState('encomendas');
+  const [selected, setSelected] = useState('encomendas');
+  const [paintEncomendas, setPaintEncomendas] = useState(true);
+  const [paintEntregadores, setPaintEntregadores] = useState(false);
+  const [paintDestinatarios, setPaintDestinatarios] = useState(false);
+  const [paintProblemas, setPaintProblemas] = useState(false);
+
+  useEffect(() => {
+    function changeHeaderColor() {
+      if (selected === 'encomendas') {
+        setPaintEncomendas(true);
+        setPaintEntregadores(false);
+        setPaintDestinatarios(false);
+        setPaintProblemas(false);
+      }
+
+      if (selected === 'entregadores') {
+        setPaintEntregadores(true);
+        setPaintEncomendas(false);
+        setPaintDestinatarios(false);
+        setPaintProblemas(false);
+      }
+
+      if (selected === 'destinatarios') {
+        setPaintDestinatarios(true);
+        setPaintEncomendas(false);
+        setPaintEntregadores(false);
+        setPaintProblemas(false);
+      }
+
+      if (selected === 'problemas') {
+        setPaintProblemas(true);
+        setPaintEncomendas(false);
+        setPaintEntregadores(false);
+        setPaintDestinatarios(false);
+      }
+    }
+    changeHeaderColor();
+  }, [selected]);
 
   function selectPage(page) {
-    setSelectedPage(page);
-    console.log(selectedPage);
+    setSelected(page);
   }
 
   return (
@@ -18,18 +54,37 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="FastFeet" />
-          <Link to="/encomendas" onClick={() => selectPage('encomendas')}>
+          <PropLink
+            to="/encomendas"
+            onClick={() => {
+              selectPage('encomendas');
+              setPaintEncomendas(false);
+            }}
+            selected={paintEncomendas}
+          >
             ENCOMENDAS
-          </Link>
-          <Link to="/entregadores" onClick={() => selectPage('entregadores')}>
+          </PropLink>
+          <PropLink
+            to="/entregadores"
+            onClick={() => selectPage('entregadores')}
+            selected={paintEntregadores}
+          >
             ENTREGADORES
-          </Link>
-          <Link to="/destinatarios" onClick={() => selectPage('destinatarios')}>
+          </PropLink>
+          <PropLink
+            to="/destinatarios"
+            onClick={() => selectPage('destinatarios')}
+            selected={paintDestinatarios}
+          >
             DESTINATÁRIOS
-          </Link>
-          <Link to="/problemas" onClick={() => selectPage('problemas')}>
+          </PropLink>
+          <PropLink
+            to="/problemas"
+            onClick={() => selectPage('problemas')}
+            selected={paintProblemas}
+          >
             PROBLEMAS
-          </Link>
+          </PropLink>
         </nav>
 
         <aside>
