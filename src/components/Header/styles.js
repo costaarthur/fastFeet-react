@@ -5,6 +5,7 @@ export const Container = styled.div`
   background: #ffffff;
   border: solid 1px #dddddd;
   padding-left: 0 30px;
+  /* width: 100%; */
 `;
 
 export const PropLink = styled(Link)`
