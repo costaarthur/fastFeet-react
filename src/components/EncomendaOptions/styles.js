@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
+  align-items: center;
+  justify-content: center;
 
   /* height: 110px;
   display: flex;
@@ -10,18 +12,20 @@ export const Container = styled.div`
 `;
 
 export const ThreeDots = styled.button`
-  width: 30px;
+  position: absolute;
+  top: 17px;
+  right: 17px;
   height: 30px;
   border: none;
-  padding-top: 7px;
+  background-color: #ffffff;
 `;
 
 export const OptionList = styled.div`
-  background: #21ff53;
+  background: #ffffff;
   position: absolute;
   width: 120px;
   left: calc(50% - 70px);
-  top: calc(100% + 1px);
+  top: 40px;
   padding: 5px;
   box-shadow: 0px 0px 2px #00000026;
   display: ${props => (props.visible ? 'block' : 'none')};
@@ -29,13 +33,13 @@ export const OptionList = styled.div`
   &::before {
     content: '';
     position: absolute;
-    left: calc(50% - 5px);
+    left: calc(50% - 1px);
     top: -5px;
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid #21ff53;
+    border-bottom: 5px solid #ffffff;
   /*position: relative;
   flex-direction: column;
 
@@ -53,8 +57,8 @@ export const Option = styled.div`
     color: #999999;
 
     & + p {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 10px;
     padding-top: 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 `;

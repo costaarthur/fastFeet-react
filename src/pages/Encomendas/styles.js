@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // //
 export const Container = styled.div`
-  background: red;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -31,13 +31,15 @@ export const Content = styled.div`
       font-size: 24px;
       font-weight: bold;
       color: #444444;
+      margin-bottom: 34px;
     }
 
     div.find-cadastro {
       /* background: #4560da; */
-      background: #959d23;
+      background: #f5f5f5;
       display: flex;
       justify-content: space-between;
+      /* margin-bottom: 14px; */
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -45,6 +47,7 @@ export const Content = styled.div`
         height: 36px;
         border-radius: 4px;
         border: 1px solid #dddddd;
+        margin-bottom: 22px;
       }
 
 
@@ -52,15 +55,18 @@ export const Content = styled.div`
   }
 
   div.ul-header {
-    background: pink;
+    background: #f5f5f5;
     display: grid;
     /* display: flex; */
     /* flex-direction: row; */
     text-align: left;
     grid-template-columns: 4% 24% 24% 14.66% 14.66% 13.6% 5.5%;
+    margin-bottom: 14px
+  }
     strong {
       color: #444444;
       font-size: 16px;
+      text-align: left;
     }
   }
 
@@ -75,10 +81,11 @@ export const Content = styled.div`
       text-align: left;
       grid-template-columns: 4% 24% 24% 14.66% 14.66% 14.66% 4%;
       height: 90%;
-      padding: 40 0px;
+      /* padding: 40px 0px; */
       margin-bottom: 20px;
       background: blue;
       background: #ffffff;
+      line-height: 57px;
       h1 {
         color: #666666;
         font-size: 16px;
