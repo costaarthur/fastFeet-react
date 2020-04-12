@@ -1,13 +1,23 @@
 import styled from 'styled-components';
-
+// //
 export const Container = styled.div`
   background: red;
   display: flex;
   flex-direction: column;
   text-align: center;
+  /* max-width: 1200px; */
   width: auto;
+`;
 
-  div {
+export const CadastroButton = styled.button`
+  color: #ffffff;
+  height: 36px;
+  width: 142px;
+  border-radius: 4px;
+  background: #7d40e7 0% 0% no-repeat padding-box;
+`;
+
+export const Content = styled.div`
     max-width: 1140px;
     width: 1200px;
     /* background: green; */
@@ -23,8 +33,9 @@ export const Container = styled.div`
       color: #444444;
     }
 
-    div {
-      background: orange;
+    div.find-cadastro {
+      /* background: #4560da; */
+      background: #959d23;
       display: flex;
       justify-content: space-between;
 
@@ -36,13 +47,7 @@ export const Container = styled.div`
         border: 1px solid #dddddd;
       }
 
-      button {
-        color: #ffffff;
-        height: 36px;
-        width: 142px;
-        border-radius: 4px;
-        background: #7d40e7 0% 0% no-repeat padding-box;
-      }
+
     }
   }
 
@@ -79,6 +84,10 @@ export const Container = styled.div`
         font-size: 16px;
         /* color: #ffffff; */
       }
+
+      /* div.dots {
+        background: #ffffff;
+      } */
     }
 
     hr {
@@ -88,4 +97,4 @@ export const Container = styled.div`
       background: #f5f5f5;
     }
   }
-`;
+  `;

@@ -1,22 +1,23 @@
 import React from 'react';
-import { MdMoreHoriz } from 'react-icons/md';
+// import { MdMoreHoriz } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
-import { Container } from './styles';
+import { Container, Content, CadastroButton } from './styles';
+import EncomendaOptions from '../../components/EncomendaOptions';
 
 export default function Encomendas() {
   return (
     <Container>
-      <div>
+      <Content>
         <header>Gerenciando encomendas</header>
 
-        <div>
+        <div className="find-cadastro">
           <input type="text" placeholder="Buscar por encomendas" id="" />
-          <button type="button">
+          <CadastroButton type="button">
             <FiPlus size={14} />
             {/* <span>Cadastrar</span> */}
             Cadastrar
-          </button>
+          </CadastroButton>
         </div>
 
         <div className="ul-header">
@@ -38,7 +39,7 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
 
@@ -52,7 +53,7 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
 
@@ -64,7 +65,7 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
 
@@ -76,7 +77,7 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
 
@@ -88,7 +89,7 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
 
@@ -100,11 +101,11 @@ export default function Encomendas() {
             <h1>Espírito Santo</h1>
             <h1>Entregue</h1>
             <h1>
-              <MdMoreHoriz size={20} />
+              <EncomendaOptions />
             </h1>
           </li>
         </ul>
-      </div>
+      </Content>
     </Container>
   );
 }
