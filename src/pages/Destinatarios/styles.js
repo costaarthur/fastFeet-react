@@ -86,10 +86,13 @@ export const Content = styled.div`
       background: blue;
       background: #ffffff;
       line-height: 57px;
+
+
       h1 {
         color: #666666;
         font-size: 16px;
         /* color: #ffffff; */
+
       }
 
       /* div.dots {

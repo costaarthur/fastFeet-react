@@ -23,7 +23,8 @@ export const ThreeDots = styled.button`
 export const OptionList = styled.div`
   background: #ffffff;
   position: absolute;
-  width: 120px;
+  height: 120px;
+  width: 150px;
   left: calc(50% - 70px);
   top: 40px;
   padding: 5px;
@@ -50,15 +51,28 @@ export const OptionList = styled.div`
 
 export const Option = styled.div`
   margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
   }
-  p {
-    font-size: 16px;
+  button {
+    font-size: 14px;
     line-height: 18px;
+    border: none;
     color: #999999;
+    background-color: #ffffff;
 
-    & + p {
+    margin: 12px 0px;
+
+    text-align: left;
+
+    svg {
+      margin-right: 5px;
+      align-self: left;
+    }
+
+    /* & + button {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 10px;
     padding-top: 10px;
-  }
+  } */
 `;

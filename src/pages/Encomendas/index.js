@@ -1,8 +1,8 @@
 import React from 'react';
-// import { MdMoreHoriz } from 'react-icons/md';
-import { FiPlus } from 'react-icons/fi';
+import { MdLens } from 'react-icons/md';
+import { FiPlus, FiSearch } from 'react-icons/fi';
 
-import { Container, Content, CadastroButton } from './styles';
+import { Container, Content, CadastroButton, Status } from './styles';
 import EncomendaOptions from '../../components/EncomendaOptions';
 
 export default function Encomendas() {
@@ -13,6 +13,7 @@ export default function Encomendas() {
 
         <div className="find-cadastro">
           <input type="text" placeholder="Buscar por encomendas" id="" />
+          {/* <FiSearch /> */}
           <CadastroButton type="button">
             <FiPlus size={14} />
             {/* <span>Cadastrar</span> */}
@@ -34,10 +35,19 @@ export default function Encomendas() {
           <li>
             <h1>#01</h1>
             <h1>Norman</h1>
-            <h1>Izabera</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>
@@ -46,60 +56,102 @@ export default function Encomendas() {
           {/* <hr /> */}
 
           <li>
-            <h1>#02</h1>
-            <h1>Rie Kugimiya Norman</h1>
-            <h1>Izabera</h1>
+            <h1>#01</h1>
+            <h1>Norman</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>
           </li>
 
           <li>
-            <h1>#03</h1>
-            <h1>Rie Kugimiya Norman</h1>
-            <h1>Izabera</h1>
+            <h1>#01</h1>
+            <h1>Norman</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>
           </li>
-
           <li>
-            <h1>#04</h1>
-            <h1>Rie Kugimiya Norman</h1>
-            <h1>Izabera</h1>
+            <h1>#01</h1>
+            <h1>Norman</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>
           </li>
-
           <li>
-            <h1>#05</h1>
-            <h1>Rie Kugimiya Norman</h1>
-            <h1>Izabera</h1>
+            <h1>#01</h1>
+            <h1>Norman</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>
           </li>
-
           <li>
-            <h1>#06</h1>
-            <h1>Rie Kugimiya Norman</h1>
-            <h1>Izabera</h1>
+            <h1>#01</h1>
+            <h1>Norman</h1>
+            <div className="name-with-pic">
+              <img
+                src="https://api.adorable.io/avatars/40/abott@adorable.png"
+                alt="Izabera"
+              />
+              <h1>Izabera</h1>
+            </div>
             <h1>Vila Velha</h1>
             <h1>Espírito Santo</h1>
-            <h1>Entregue</h1>
+            <Status>
+              <MdLens />
+              <h2>Entregue</h2>
+            </Status>
             <h1>
               <EncomendaOptions />
             </h1>

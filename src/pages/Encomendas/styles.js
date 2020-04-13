@@ -17,6 +17,31 @@ export const CadastroButton = styled.button`
   background: #7d40e7 0% 0% no-repeat padding-box;
 `;
 
+export const Status = styled.div`
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background: #dff0df;
+        height: 25px;
+        width: 99px;
+        align-self: center;
+
+        border-radius: 12px;
+
+        svg {
+          margin: 0 6px;
+          color: #2ca42b;
+        }
+
+        h2 {
+        font-size: 14px;
+        font-weight: bold;
+        color: #2ca42b;
+        text-align: center;
+        }
+      }
+`;
+
 export const Content = styled.div`
     max-width: 1140px;
     width: 1200px;
@@ -35,11 +60,15 @@ export const Content = styled.div`
     }
 
     div.find-cadastro {
-      /* background: #4560da; */
       background: #f5f5f5;
       display: flex;
       justify-content: space-between;
       /* margin-bottom: 14px; */
+
+      svg {
+        /* position:relative;
+        left: 100px; */
+      }
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -48,6 +77,7 @@ export const Content = styled.div`
         border-radius: 4px;
         border: 1px solid #dddddd;
         margin-bottom: 22px;
+        padding-left: 8px;
       }
 
 
@@ -72,6 +102,7 @@ export const Content = styled.div`
 
   ul {
     /* background: #ffffff; */
+
     li {
       /* margin-left: 25px; */
       /* height: 57px; */
@@ -86,6 +117,22 @@ export const Content = styled.div`
       background: blue;
       background: #ffffff;
       line-height: 57px;
+
+      div.name-with-pic {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        img {
+          height: 35px;
+          width: 35px;
+          border-radius: 50%;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          background: #ffffff;
+          margin-right: 5px;
+        }
+      }
+
       h1 {
         color: #666666;
         font-size: 16px;

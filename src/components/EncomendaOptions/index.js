@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-import { MdMoreHoriz } from 'react-icons/md';
+import {
+  MdMoreHoriz,
+  MdVisibility,
+  MdCreate,
+  MdDeleteForever,
+} from 'react-icons/md';
 import { Container, ThreeDots, OptionList, Option } from './styles';
 
 export default function EncomendaOptions() {
@@ -18,9 +23,18 @@ export default function EncomendaOptions() {
 
       <OptionList visible={visible}>
         <Option>
-          <p>Visualizar</p>
-          <p>Editar</p>
-          <p>Excluir</p>
+          <button type="submit">
+            <MdVisibility color="#8E5BE8" />
+            Visualizar
+          </button>
+          <button type="submit">
+            <MdCreate color="#4D85EE" />
+            Editar
+          </button>
+          <button type="submit">
+            <MdDeleteForever color="#DE3B3B" />
+            Excluir
+          </button>
         </Option>
       </OptionList>
     </Container>
