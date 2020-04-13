@@ -14,7 +14,25 @@ export const CadastroButton = styled.button`
   height: 36px;
   width: 142px;
   border-radius: 4px;
-  background: #7d40e7 0% 0% no-repeat padding-box;
+  background: #7d40e7;
+
+  display: flex;
+  align-items: row;
+
+  svg {
+    align-self: center;
+    margin-right: 7px;
+    margin-left: 21px;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    justify-content: center;
+    justify-self: center;
+    margin-top: 4px;
+  }
 `;
 
 export const Status = styled.div`
@@ -64,11 +82,6 @@ export const Content = styled.div`
       display: flex;
       justify-content: space-between;
       /* margin-bottom: 14px; */
-
-      svg {
-        /* position:relative;
-        left: 100px; */
-      }
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;

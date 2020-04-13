@@ -1,23 +1,44 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { toast } from 'react-toastify';
 
 import history from '../../../services/history';
 import api from '../../../services/api';
 
-import { signInSuccess } from './actions';
+import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
-  const { email, password } = payload;
+  try {
+    const { email, password } = payload;
 
-  const response = yield call(api.post, 'ffsessions', {
-    email,
-    password,
-  });
+    const response = yield call(api.post, 'ffsessions', {
+      email,
+      password,
+    });
 
-  const { token, admin } = response.data;
+    const { token, admin } = response.data;
 
-  yield put(signInSuccess(token, admin));
+    api.defaults.headers.Authorization = `Bearer ${token}`;
 
-  history.push('/encomendas');
+    yield put(signInSuccess(token, admin));
+
+    history.push('/encomendas');
+  } catch (err) {
+    toast.error('Falha na autenticação');
+    yield put(signFailure());
+  }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', signIn)]);
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
+export default all([
+  takeLatest('persist/REHYDRATE', setToken),
+  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+]);

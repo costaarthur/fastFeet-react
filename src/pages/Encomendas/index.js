@@ -1,11 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MdLens } from 'react-icons/md';
-import { FiPlus, FiSearch } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 
-import { Container, Content, CadastroButton, Status } from './styles';
 import EncomendaOptions from '../../components/EncomendaOptions';
 
+import api from '../../services/api';
+
+import { Container, Content, CadastroButton, Status } from './styles';
+
+import { store } from '../../store';
+
 export default function Encomendas() {
+  const [encomendas, setEncomendas] = useState([]);
+  const [recipients, setRecipients] = useState([]);
+
+  const { token } = store.getState().auth;
+
+  /*
+  checagem status encomendas
+  canceled at existe === CANCELADA
+  signature_id existe === ENTREGUE
+  start date existe && signature id = null === RETIRADA
+  canceled att = null && signature id = null && start_date = null === PENDENTE
+
+  canceled at
+  signature id
+  start date
+  */
+
+  useEffect(() => {
+    async function loadEncomendas() {
+      const responseEncomendas = await api.get('encomendas');
+      const dataEncomendas = responseEncomendas.data.map(encomenda => ({
+        ...encomenda,
+      }));
+      setEncomendas(dataEncomendas);
+    }
+
+    async function loadRecipients() {
+      const responseRecipients = await api.get('recipients');
+      const dataRecipients = responseRecipients.data.map(recipient => ({
+        ...recipient,
+      }));
+      setRecipients(dataRecipients);
+    }
+    loadEncomendas();
+    loadRecipients();
+  }, []);
+
+  function handleAddEncomenda() {
+    console.log(encomendas);
+    console.log(recipients);
+    console.log(token);
+  }
+
   return (
     <Container>
       <Content>
@@ -14,10 +62,10 @@ export default function Encomendas() {
         <div className="find-cadastro">
           <input type="text" placeholder="Buscar por encomendas" id="" />
           {/* <FiSearch /> */}
-          <CadastroButton type="button">
-            <FiPlus size={14} />
+          <CadastroButton type="button" onClick={handleAddEncomenda}>
+            <FiPlus size={22} />
             {/* <span>Cadastrar</span> */}
-            Cadastrar
+            <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
 

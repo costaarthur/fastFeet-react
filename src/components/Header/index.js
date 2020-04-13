@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import { store } from '../../store';
+
 import { Container, Content, PropLink } from './styles';
 
 import logo from '../../assets/fastfeet-logo.png';
@@ -11,6 +13,8 @@ export default function Header() {
   const [paintEntregadores, setPaintEntregadores] = useState(false);
   const [paintDestinatarios, setPaintDestinatarios] = useState(false);
   const [paintProblemas, setPaintProblemas] = useState(false);
+
+  const { name } = store.getState().admin.profile;
 
   useEffect(() => {
     function changeHeaderColor() {
@@ -89,7 +93,7 @@ export default function Header() {
 
         <aside>
           <div>
-            <strong>Admin FastFeet</strong>
+            <strong>{name}</strong>
             <Link to="/dashboard">sair do sistema</Link>
           </div>
         </aside>
