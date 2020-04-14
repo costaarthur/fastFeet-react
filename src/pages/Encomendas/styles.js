@@ -39,7 +39,7 @@ export const Status = styled.div`
         display: flex;
         flex-direction: row;
         align-items: center;
-        background: #dff0df;
+        background: ${props => props.backgrounds};
         height: 25px;
         width: 99px;
         align-self: center;
@@ -48,13 +48,16 @@ export const Status = styled.div`
 
         svg {
           margin: 0 6px;
-          color: #2ca42b;
+          color: ${props => props.colors};
         }
+
 
         h2 {
         font-size: 14px;
         font-weight: bold;
-        color: #2ca42b;
+        color: ${props => props.colors};
+        /* color: ${props =>
+    props.colors === 'blue' ? '#444444' : '#39348a'}; */
         text-align: center;
         }
       }
@@ -63,11 +66,9 @@ export const Status = styled.div`
 export const Content = styled.div`
     max-width: 1140px;
     width: 1200px;
-    /* background: green; */
     background: #f5f5f5;
     margin: 34px auto;
     font-size: 24;
-    /* padding: 0 120px; */
 
     header {
       text-align: left;
@@ -81,7 +82,6 @@ export const Content = styled.div`
       background: #f5f5f5;
       display: flex;
       justify-content: space-between;
-      /* margin-bottom: 14px; */
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -100,8 +100,6 @@ export const Content = styled.div`
   div.ul-header {
     background: #f5f5f5;
     display: grid;
-    /* display: flex; */
-    /* flex-direction: row; */
     text-align: left;
     grid-template-columns: 4% 24% 24% 14.66% 14.66% 13.6% 5.5%;
     margin-bottom: 14px
@@ -110,58 +108,44 @@ export const Content = styled.div`
       color: #444444;
       font-size: 16px;
       text-align: left;
+      margin-left: 10px;
     }
   }
 
   ul {
     /* background: #ffffff; */
-
-    li {
-      /* margin-left: 25px; */
-      /* height: 57px; */
-      display: grid;
-      /* display: flex; */
-      /* flex-direction: row; */
-      text-align: left;
-      grid-template-columns: 4% 24% 24% 14.66% 14.66% 14.66% 4%;
-      height: 90%;
-      /* padding: 40px 0px; */
-      margin-bottom: 20px;
-      background: blue;
-      background: #ffffff;
-      line-height: 57px;
-
-      div.name-with-pic {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-
-        img {
-          height: 35px;
-          width: 35px;
-          border-radius: 50%;
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          background: #ffffff;
-          margin-right: 5px;
-        }
-      }
-
-      h1 {
-        color: #666666;
-        font-size: 16px;
-        /* color: #ffffff; */
-      }
-
-      /* div.dots {
-        background: #ffffff;
-      } */
-    }
-
-    hr {
-      margin-top: 10px;
-      /* border: solid 1px #444444; */
-      padding-bottom: 10px;
-      background: #f5f5f5;
-    }
   }
   `;
+
+export const Encomenda = styled.li`
+  display: grid;
+  text-align: left;
+  grid-template-columns: 4% 24% 24% 14.66% 14.66% 14.66% 4%;
+  height: 90%;
+  margin-bottom: 20px;
+  background: blue;
+  background: #ffffff;
+  line-height: 57px;
+
+  div.name-with-pic {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img {
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background: #ffffff;
+      margin-right: 5px;
+    }
+  }
+
+  h1 {
+    color: #666666;
+    font-size: 16px;
+    /* color: #ffffff; */
+    margin-left: 10px;
+  }
+`;
