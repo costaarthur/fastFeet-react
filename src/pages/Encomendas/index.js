@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { MdLens } from 'react-icons/md';
+import { MdLens, MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
 import EncomendaOptions from '../../components/EncomendaOptions';
+// import Pagination from '../../components/Pagination';
 
 import api from '../../services/api';
 
@@ -12,28 +13,16 @@ import {
   CadastroButton,
   Status,
   Encomenda,
+  Pagination,
 } from './styles';
 
 import { store } from '../../store';
 
 export default function Encomendas() {
   const [encomendas, setEncomendas] = useState([]);
-  // const [recipients, setRecipients] = useState([]);
-  // const [entregadores, setEntregadores] = useState([]);
+  const [page, setPage] = useState(1);
 
   const { token } = store.getState().auth;
-
-  /*
-  checagem status encomendas
-  canceled_at existe === CANCELADA
-  signature_id existe === ENTREGUE
-  start date existe && signature id = null === RETIRADA
-  canceled att = null && signature id = null && start_date = null === PENDENTE
-
-  canceled at
-  signature id
-  start date
-  */
 
   function getStatus(encomenda) {
     if (encomenda.canceled_at) {
@@ -68,7 +57,9 @@ export default function Encomendas() {
 
   useEffect(() => {
     async function loadEncomendas() {
-      const responseEncomendas = await api.get('encomendas');
+      const responseEncomendas = await api.get('encomendas', {
+        params: { page },
+      });
       const dataEncomendas = responseEncomendas.data.map(encomenda => {
         const status = getStatus(encomenda);
         return {
@@ -79,12 +70,22 @@ export default function Encomendas() {
       setEncomendas(dataEncomendas);
     }
     loadEncomendas();
-  }, []);
+  }, [page]);
 
   function handleAddEncomenda() {
     console.log(encomendas);
     // console.log(recipients);
     console.log(token);
+    setPage(2);
+  }
+
+  function changePage(minusPlus) {
+    if (minusPlus === 'minus' && page > 1) {
+      setPage(page - 1);
+    }
+    if (minusPlus === 'plus' && encomendas.length > 1) {
+      setPage(page + 1);
+    }
   }
 
   return (
@@ -137,6 +138,23 @@ export default function Encomendas() {
             </Encomenda>
           ))}
         </ul>
+        <Pagination>
+          <button
+            type="submit"
+            onClick={() => changePage('minus')}
+            disabled={false}
+          >
+            <MdChevronLeft size={24} color="#fff" />
+          </button>
+          <input type="text" name="page" id="" value={page} readOnly />
+          <button
+            type="submit"
+            onClick={() => changePage('plus')}
+            disabled={false}
+          >
+            <MdChevronRight size={24} color="#fff" />
+          </button>
+        </Pagination>
       </Content>
     </Container>
   );

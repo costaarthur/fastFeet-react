@@ -149,3 +149,28 @@ export const Encomenda = styled.li`
     margin-left: 10px;
   }
 `;
+
+export const Pagination = styled.div`
+  margin-top: 40px;
+
+  button {
+    border-style: none;
+    background-color: #7d40e7;
+    color: #ffffff;
+  }
+
+  input {
+    position: relative;
+    top: -6px;
+    width: 24px;
+    height: 28px;
+    text-align: center;
+    margin: 0 10px;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    color: #666666;
+    font-size: 15px;
+    font-weight: bold;
+  }
+`;
