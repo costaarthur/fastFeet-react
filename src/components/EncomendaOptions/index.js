@@ -6,6 +6,9 @@ import {
   MdCreate,
   MdDeleteForever,
 } from 'react-icons/md';
+
+import history from '../../services/history';
+
 import { Container, ThreeDots, OptionList, Option } from './styles';
 
 export default function EncomendaOptions() {
@@ -13,6 +16,10 @@ export default function EncomendaOptions() {
 
   function handleToggleVisible() {
     setVisible(!visible);
+  }
+
+  function goEditEncomendas() {
+    history.push('/encomendas/edit');
   }
 
   return (
@@ -27,7 +34,7 @@ export default function EncomendaOptions() {
             <MdVisibility color="#8E5BE8" />
             Visualizar
           </button>
-          <button type="submit">
+          <button type="submit" onClick={goEditEncomendas}>
             <MdCreate color="#4D85EE" />
             Editar
           </button>

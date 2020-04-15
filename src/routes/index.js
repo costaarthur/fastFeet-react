@@ -8,14 +8,18 @@ import Entregadores from '../pages/Entregadores';
 import Destinatarios from '../pages/Destinatarios';
 import Problemas from '../pages/Problemas';
 
+import EditEncomendas from '../pages/EditEncomendas';
+
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Login} />
-      <Route path="/encomendas" component={Encomendas} isPrivate />
+      <Route path="/encomendas" exact component={Encomendas} isPrivate />
       <Route path="/entregadores" component={Entregadores} isPrivate />
       <Route path="/destinatarios" component={Destinatarios} isPrivate />
       <Route path="/problemas" component={Problemas} isPrivate />
+
+      <Route path="/encomendas/edit" component={EditEncomendas} isPrivate />
     </Switch>
   );
 }
