@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import Modal from 'react-modal';
+
 export const Container = styled.div`
   position: relative;
   align-items: center;
@@ -79,4 +81,58 @@ export const Option = styled.div`
     /* margin-top: 10px; */
     /* padding-top: 10px; */
   }
+`;
+
+export const EncOptModal = styled(Modal)`
+  position: absolute;
+
+  background: #ffffff;
+  width: 450px;
+  height: 353px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0px 0px 10px #00000033;
+  border-radius: 4px;
+
+  height: 100vh;
+
+  div.modal-square {
+    margin: auto auto;
+    /* margin: auto auto; */
+    background: 'red';
+  }
+
+  .overlay {
+    background-color: 'orange';
+  }
+
+  content {
+    background: 'black';
+  }
+
+  /* width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+
+  div.modal-square {
+    width: 60%;
+    height: 60%;
+    margin: auto auto;
+  }
+
+  margin: 50% auto; */
 `;

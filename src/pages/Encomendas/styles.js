@@ -58,6 +58,17 @@ export const Status = styled.div`
         color: ${props => props.colors};
         /* color: ${props =>
     props.colors === 'blue' ? '#444444' : '#39348a'}; */
+
+    /* width: ${props => {
+    switch (props.size) {
+      case 'lg':
+        return '800';
+      default:
+        return '480';
+    }
+  }}px; */
+
+
         text-align: center;
         }
       }

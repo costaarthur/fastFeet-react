@@ -133,7 +133,7 @@ export default function Encomendas() {
                 <h2>{encomenda.statusName}</h2>
               </Status>
               <h1>
-                <EncomendaOptions />
+                <EncomendaOptions>{encomenda}</EncomendaOptions>
               </h1>
             </Encomenda>
           ))}
@@ -146,7 +146,7 @@ export default function Encomendas() {
           >
             <MdChevronLeft size={24} color="#fff" />
           </button>
-          <input type="text" name="page" id="" value={page} readOnly />
+          <input type="text" value={page} readOnly />
           <button
             type="submit"
             onClick={() => changePage('plus')}
