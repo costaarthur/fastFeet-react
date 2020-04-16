@@ -22,7 +22,8 @@ import {
 
 Modal.setAppElement('#root');
 
-export default function EncomendaOptions({ children }) {
+export default function EncomendaOptions({ selectedEncomenda }) {
+  console.log(selectedEncomenda);
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -44,32 +45,36 @@ export default function EncomendaOptions({ children }) {
       <EncOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        onAfterOpen={() => console.log(children)}
+        onAfterOpen={() => console.log(selectedEncomenda)}
       >
         <div className="modal-square">
           <div className="info-enc">
             <strong>Informações da encomenda</strong>
             <h5>
-              {children.Recipient.rua}, {children.Recipient.numero}
+              {selectedEncomenda.Recipient.rua},{' '}
+              {selectedEncomenda.Recipient.numero}
             </h5>
             <h5>
-              {children.Recipient.cidade}, {children.Recipient.estado}
+              {selectedEncomenda.Recipient.cidade},{' '}
+              {selectedEncomenda.Recipient.estado}
             </h5>
-            <h5>{children.Recipient.cep}</h5>
+            <h5>{selectedEncomenda.Recipient.cep}</h5>
           </div>
 
           <div className="datas">
             <strong>Datas</strong>
-            <h4>retirada:</h4>
-            <h5>{children.start_date}</h5>
-            <h4>entrega:</h4>
-            <h5>{children.end_date}</h5>
+            <h4>retirada: {selectedEncomenda.start_date}</h4>
+            {/* <h5></h5> */}
+            {/* <vr /> */}
+            <h4>entrega: {selectedEncomenda.end_date}</h4>
+            {/* <h5></h5> */}
           </div>
 
           <div className="sign-group">
             <strong>Assinatura do destinatário</strong>
             <img
-              src="https://www.leticiaradaic.com.br/wp-content/uploads/2013/06/assinatura_stevejobs1.jpg"
+              // src="https://www.leticiaradaic.com.br/wp-content/uploads/2013/06/assinatura_stevejobs1.jpg"
+              src={selectedEncomenda.Sign ? selectedEncomenda.Sign.url : ''}
               alt=""
             />
           </div>

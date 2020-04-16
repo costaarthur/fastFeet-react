@@ -133,7 +133,7 @@ export default function Encomendas() {
                 <h2>{encomenda.statusName}</h2>
               </Status>
               <h1>
-                <EncomendaOptions>{encomenda}</EncomendaOptions>
+                <EncomendaOptions selectedEncomenda={encomenda} />
               </h1>
             </Encomenda>
           ))}

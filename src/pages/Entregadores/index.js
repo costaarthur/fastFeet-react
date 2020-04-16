@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { MdMoreHoriz } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
-import { Container, Content, CadastroButton } from './styles';
-import EncomendaOptions from '../../components/EncomendaOptions';
+import api from '../../services/api';
 
-export default function Encomendas() {
+import { Container, Content, CadastroButton, Entregador } from './styles';
+// import EncomendaOptions from '../../components/EncomendaOptions';
+
+export default function Entregadores() {
+  const [entregadores, setEntregadores] = useState([]);
+  const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    async function loadEntregadores() {
+      const responseEntregadores = await api.get('ents', {
+        params: { page },
+      });
+      setEntregadores(responseEntregadores.data);
+    }
+    loadEntregadores();
+  }, []);
+
+  function handleAddEntregador() {
+    console.log(entregadores);
+    // console.log(recipients);
+    // console.log(token);
+    setPage(2);
+  }
+
   return (
     <Container>
       <Content>
@@ -13,10 +35,9 @@ export default function Encomendas() {
 
         <div className="find-cadastro">
           <input type="text" placeholder="Buscar por entregadores" />
-          <CadastroButton type="button">
-            <FiPlus size={14} />
-            {/* <span>Cadastrar</span> */}
-            Cadastrar
+          <CadastroButton type="button" onClick={handleAddEntregador}>
+            <FiPlus size={22} />
+            <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
 
@@ -29,61 +50,22 @@ export default function Encomendas() {
         </div>
         {/* **************lista de destinatários************* */}
         <ul>
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
-
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>JD</h1>
-            <h1>Izabera</h1>
-            <h1>iza@bera.com</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
-          </li>
+          {entregadores.map(entregador => (
+            <Entregador key={entregador.id}>
+              <h1>#{entregador.id}</h1>
+              <img
+                src={
+                  entregador.avatar
+                    ? entregador.avatar.url
+                    : 'https://api.adorable.io/avatars/40/abott@adorable.png'
+                }
+                alt=""
+              />
+              <h1>{entregador.nome}</h1>
+              <h1>{entregador.email}</h1>
+              <h1>. . .</h1>
+            </Entregador>
+          ))}
         </ul>
       </Content>
     </Container>

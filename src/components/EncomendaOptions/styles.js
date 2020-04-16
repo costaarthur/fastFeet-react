@@ -98,6 +98,9 @@ export const EncOptModal = styled(Modal)`
   box-shadow: 0px 0px 10px #00000033;
   border-radius: 4px;
 
+  /* display: inline-block;
+  vertical-align: middle; */
+
   div.modal-square {
     width: 450px;
     height: 353px;
@@ -105,24 +108,34 @@ export const EncOptModal = styled(Modal)`
     padding-right: 25px;
     padding-top: 25px;
 
+    align-self: center;
+
     div.info-enc {
       margin-bottom: 21px;
+      border-bottom: 1px solid #eeeeee;
+      padding-bottom: 12px;
 
       strong {
         color: #444444;
         font-size: 14px;
         font-weight: bold;
-        margin-bottom: 4px;
+        /* margin-bottom: 4px; */
         /* margin-top: 25px; */
       }
       h5 {
         color: #666666;
         font-size: 16px;
+        margin-bottom: 4px;
       }
     }
 
     div.datas {
       margin-bottom: 21px;
+      border-bottom: 1px solid #eeeeee;
+      padding-bottom: 12px;
+
+      display: flex;
+      flex-direction: column;
 
       strong {
         color: #444444;

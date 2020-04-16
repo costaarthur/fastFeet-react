@@ -14,7 +14,25 @@ export const CadastroButton = styled.button`
   height: 36px;
   width: 142px;
   border-radius: 4px;
-  background: #7d40e7 0% 0% no-repeat padding-box;
+  background: #7d40e7;
+
+  display: flex;
+  align-items: row;
+
+  svg {
+    align-self: center;
+    margin-right: 7px;
+    margin-left: 21px;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    justify-content: center;
+    justify-self: center;
+    margin-top: 4px;
+  }
 `;
 
 export const Content = styled.div`
@@ -35,11 +53,9 @@ export const Content = styled.div`
     }
 
     div.find-cadastro {
-      /* background: #4560da; */
       background: #f5f5f5;
       display: flex;
       justify-content: space-between;
-      /* margin-bottom: 14px; */
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
@@ -48,6 +64,7 @@ export const Content = styled.div`
         border-radius: 4px;
         border: 1px solid #dddddd;
         margin-bottom: 22px;
+        padding-left: 8px;
       }
 
 
@@ -61,47 +78,41 @@ export const Content = styled.div`
     /* flex-direction: row; */
     text-align: left;
     grid-template-columns: 20% 22.5% 26% 26% 5.5%;
-    margin-bottom: 14px
+    margin-bottom: 14px;
   }
     strong {
       color: #444444;
       font-size: 16px;
       text-align: left;
-    }
-  }
-
-  ul {
-    /* background: #ffffff; */
-    li {
-      /* margin-left: 25px; */
-      /* height: 57px; */
-      display: grid;
-      /* display: flex; */
-      /* flex-direction: row; */
-      text-align: left;
-      grid-template-columns: 20% 22.5% 26% 26% 5.5%;
-      height: 90%;
-      /* padding: 40px 0px; */
-      margin-bottom: 20px;
-      background: blue;
-      background: #ffffff;
-      line-height: 57px;
-      h1 {
-        color: #666666;
-        font-size: 16px;
-        /* color: #ffffff; */
-      }
-
-      /* div.dots {
-        background: #ffffff;
-      } */
-    }
-
-    hr {
-      margin-top: 10px;
-      /* border: solid 1px #444444; */
-      padding-bottom: 10px;
-      background: #f5f5f5;
+      margin-left: 10px;
     }
   }
   `;
+
+export const Entregador = styled.li`
+  display: grid;
+  text-align: left;
+  grid-template-columns: 20% 22.5% 26% 26% 5.5%;
+  height: 90%;
+  margin-bottom: 20px;
+  background: blue;
+  background: #ffffff;
+  line-height: 57px;
+
+  img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    margin-left: 10px;
+    align-self: center;
+  }
+
+  h1 {
+    color: #666666;
+    font-size: 16px;
+    /* color: #ffffff; */
+    margin-left: 10px;
+  }
+`;
