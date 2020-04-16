@@ -98,41 +98,77 @@ export const EncOptModal = styled(Modal)`
   box-shadow: 0px 0px 10px #00000033;
   border-radius: 4px;
 
-  height: 100vh;
-
   div.modal-square {
-    margin: auto auto;
-    /* margin: auto auto; */
-    background: 'red';
+    width: 450px;
+    height: 353px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+
+    div.info-enc {
+      margin-bottom: 21px;
+
+      strong {
+        color: #444444;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        /* margin-top: 25px; */
+      }
+      h5 {
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+
+    div.datas {
+      margin-bottom: 21px;
+
+      strong {
+        color: #444444;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        /* margin-top: 21px; */
+      }
+      h4 {
+        color: #666666;
+        font-weight: bold;
+        font-size: 16px;
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 4px;
+      }
+
+      h5 {
+        color: #666666;
+        font-size: 16px;
+      }
+    }
+
+    div.sign-group {
+      display: flex;
+      flex-direction: column;
+
+      strong {
+        color: #444444;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 4px;
+        /* margin-top: 21px; */
+      }
+
+      & + strong {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        z-index: 11;
+      }
+
+      img {
+        width: 234px;
+        height: 36px;
+        align-self: center;
+        margin-top: 23px;
+      }
+    }
   }
-
-  .overlay {
-    background-color: 'orange';
-  }
-
-  content {
-    background: 'black';
-  }
-
-  /* width: 100%;
-  height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  height: 100vh;
-
-  div.modal-square {
-    width: 60%;
-    height: 60%;
-    margin: auto auto;
-  }
-
-  margin: 50% auto; */
 `;

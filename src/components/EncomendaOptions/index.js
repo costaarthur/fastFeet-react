@@ -47,24 +47,32 @@ export default function EncomendaOptions({ children }) {
         onAfterOpen={() => console.log(children)}
       >
         <div className="modal-square">
-          <strong>Informações da encomenda</strong>
-          <h5>{children.Recipient.rua}</h5>
-          <h5>{children.Recipient.numero}</h5>
-          <h5>{children.Recipient.cidade}</h5>
-          <h5>{children.Recipient.estado}</h5>
-          <h5>{children.Recipient.cep}</h5>
-          <strong>Datas</strong>
-          <h4>retirada:</h4>
-          <h5>{children.start_date}</h5>
-          <h4>entrega:</h4>
-          <h5>{children.end_date}</h5>
-          <strong>Assinatura do destinatário</strong>
-          <img
-            src="{
-            children.Sign.url
-            }"
-            alt=""
-          />
+          <div className="info-enc">
+            <strong>Informações da encomenda</strong>
+            <h5>
+              {children.Recipient.rua}, {children.Recipient.numero}
+            </h5>
+            <h5>
+              {children.Recipient.cidade}, {children.Recipient.estado}
+            </h5>
+            <h5>{children.Recipient.cep}</h5>
+          </div>
+
+          <div className="datas">
+            <strong>Datas</strong>
+            <h4>retirada:</h4>
+            <h5>{children.start_date}</h5>
+            <h4>entrega:</h4>
+            <h5>{children.end_date}</h5>
+          </div>
+
+          <div className="sign-group">
+            <strong>Assinatura do destinatário</strong>
+            <img
+              src="https://www.leticiaradaic.com.br/wp-content/uploads/2013/06/assinatura_stevejobs1.jpg"
+              alt=""
+            />
+          </div>
         </div>
       </EncOptModal>
 
