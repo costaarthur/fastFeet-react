@@ -8,22 +8,40 @@ import history from '../../services/history';
 
 import { Container, Content, PropForm } from './styles';
 
-// import { store } from '../../store';
-
-export default function EditEncomendas() {
+export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
-  // const [page, setPage] = useState(1);
+  const [entregadores, setEntregadores] = useState([]);
+  const [productName, setProductName] = useState('Carregando...');
 
+  // LOAD ENCOMENDAS from api
   useEffect(() => {
     async function loadEncomendas() {
-      const responseEncomendas = await api.get('encomendas');
+      const responseEncomendas = await api.get('encomendas', {
+        params: { page: match.params.page },
+      });
       setEncomendas(responseEncomendas.data);
+
+      const getProduct = responseEncomendas.data.map(encomenda => {
+        if (encomenda.id == match.params.id) {
+          setProductName(encomenda.product);
+        }
+      });
     }
     loadEncomendas();
+  }, []);
+  // LOAD ENTREGADORES from api
+  useEffect(() => {
+    async function loadEntregadores() {
+      const responseEntregadores = await api.get('ents');
+      setEntregadores(responseEntregadores.data);
+    }
+    loadEntregadores();
   }, []);
 
   function handleEditEncomenda() {
     console.log(encomendas);
+    console.log(match);
+    console.log(productName);
   }
 
   function goBack() {
@@ -50,19 +68,41 @@ export default function EditEncomendas() {
         <Content>
           <div className="dest-ent">
             <div>
-              <strong>Destinatário</strong>
-              <input type="text" placeholder="Ludwig van Beethoven" />
+              <label htmlFor="recipients">Destinatário:</label>
+
+              <select id="cars">
+                {encomendas.map(encomenda => (
+                  <option
+                    value={encomenda.id}
+                    key={encomenda.id}
+                  // selected={match.params.id === encomenda.id ? true : false}
+                  >
+                    {encomenda.Recipient.nome}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
-              <strong>Entregador</strong>
-              <input type="text" placeholder="John Doe" />
+              <label htmlFor="entregadores">Entregador:</label>
+
+              <select id="cars">
+                {entregadores.map(entregador => (
+                  <option
+                    value={entregador.id}
+                    key={entregador.id}
+                  // selected={match.params.id === encomenda.id ? true : false}
+                  >
+                    {entregador.nome}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
 
           <div className="prod">
-            <strong>Nome do produto</strong>
-            <input type="text" placeholder="Yamaha SX7" />
+            <strong>Nome do produto:</strong>
+            <input type="text" placeholder={productName} />
           </div>
 
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}

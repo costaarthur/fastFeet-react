@@ -19,7 +19,11 @@ export default function Routes() {
       <Route path="/destinatarios" component={Destinatarios} isPrivate />
       <Route path="/problemas" component={Problemas} isPrivate />
 
-      <Route path="/encomendas/edit" component={EditEncomendas} isPrivate />
+      <Route
+        path="/encomendas/edit/:id/:page"
+        component={EditEncomendas}
+        isPrivate
+      />
     </Switch>
   );
 }

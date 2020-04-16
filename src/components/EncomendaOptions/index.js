@@ -22,7 +22,7 @@ import {
 
 Modal.setAppElement('#root');
 
-export default function EncomendaOptions({ selectedEncomenda }) {
+export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   console.log(selectedEncomenda);
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -32,7 +32,7 @@ export default function EncomendaOptions({ selectedEncomenda }) {
   }
 
   function goEditEncomendas() {
-    history.push(`/encomendas/edit/${selectedEncomenda.id}`);
+    history.push(`/encomendas/edit/${selectedEncomenda.id}/${selectedPage}`);
   }
 
   function openModal() {

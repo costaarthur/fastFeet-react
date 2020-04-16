@@ -79,13 +79,14 @@ export const Content = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 26px;
-      strong {
+      label {
         text-align: left;
         margin-bottom: 9px;
         color: #444444;
+        font-weight: bold;
       }
 
-      input {
+      select {
         width: 405px;
         height: 45px;
         padding-left: 15px;
