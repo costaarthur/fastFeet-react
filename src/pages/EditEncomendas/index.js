@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Form, Input } from '@rocketseat/unform';
+// import { Form, Input } from '@rocketseat/unform';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-// import api from '../../services/api';
+import api from '../../services/api';
 import history from '../../services/history';
 
 import { Container, Content, PropForm } from './styles';
 
 // import { store } from '../../store';
 
-function handleEditEncomenda() {
-  alert('teste');
-}
+export default function EditEncomendas() {
+  const [encomendas, setEncomendas] = useState([]);
+  // const [page, setPage] = useState(1);
 
-function goBack() {
-  history.push('/encomendas');
-}
+  useEffect(() => {
+    async function loadEncomendas() {
+      const responseEncomendas = await api.get('encomendas');
+      setEncomendas(responseEncomendas.data);
+    }
+    loadEncomendas();
+  }, []);
 
-export default function Encomendas() {
+  function handleEditEncomenda() {
+    console.log(encomendas);
+  }
+
+  function goBack() {
+    history.push('/encomendas');
+  }
+
   return (
     <Container>
       <PropForm onSubmit={handleEditEncomenda}>

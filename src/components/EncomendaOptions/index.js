@@ -32,7 +32,7 @@ export default function EncomendaOptions({ selectedEncomenda }) {
   }
 
   function goEditEncomendas() {
-    history.push('/encomendas/edit');
+    history.push(`/encomendas/edit/${selectedEncomenda.id}`);
   }
 
   function openModal() {
