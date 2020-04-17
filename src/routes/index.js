@@ -19,11 +19,8 @@ export default function Routes() {
       <Route path="/destinatarios" component={Destinatarios} isPrivate />
       <Route path="/problemas" component={Problemas} isPrivate />
 
-      <Route
-        path="/encomendas/edit/:id/:page"
-        component={EditEncomendas}
-        isPrivate
-      />
+      {/* route with: match and query params */}
+      <Route path="/encomendas/edit/:id" component={EditEncomendas} isPrivate />
     </Switch>
   );
 }

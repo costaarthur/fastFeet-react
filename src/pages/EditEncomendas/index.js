@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-// import { Form, Input } from '@rocketseat/unform';
+import { Form, useField, Input } from '@rocketseat/unform';
+
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import api from '../../services/api';
@@ -12,6 +13,22 @@ export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
   const [productName, setProductName] = useState('Carregando...');
+
+  const recipientRef = useRef(null);
+  const entregadorRef = useRef(null);
+  // const { fieldName, registerField, defaultValue, error } = useField();
+
+  // GET EDIT FIELDS
+  // useEffect(() => {
+  //   console.log(inputRef.current.value);
+  // }, [inputRef]);
+
+  //   registerField({
+  //     name: fieldName,
+  //     ref: inputRef.current,
+  //     path: 'value',
+  //   });
+  // }, []);
 
   // LOAD ENCOMENDAS from api
   useEffect(() => {
@@ -38,13 +55,16 @@ export default function EditEncomendas({ match }) {
     loadEntregadores();
   }, []);
 
-  function handleEditEncomenda() {
-    // console.log(encomendas);
-    // console.log(match);
-    // console.log(productName);
+  async function handleEditEncomenda({ product }) {
+    const allInputs = {
+      id: match.params.id,
+      recipient_id: recipientRef.current.value,
+      deliveryman_id: entregadorRef.current.value,
+      product,
+    };
+    // console.log(allInputs);
 
-    console.log(match.params.id);
-    // console.log(encomenda.id)
+    await api.put(`encomendas`, allInputs);
   }
 
   function goBack() {
@@ -71,29 +91,41 @@ export default function EditEncomendas({ match }) {
         <Content>
           <div className="dest-ent">
             <div>
-              <label htmlFor="recipients">Destinatário:</label>
+              {/* SELECT DESTINATÁRIOS */}
+              <label htmlFor="recipient_id">Destinatário:</label>
 
-              <select id="cars">
-                {encomendas.map(encomenda => (
-                  <option
-                    value={encomenda.id}
-                    key={encomenda.id}
-                    selected={Number(match.params.id) === encomenda.id}
-                  >
-                    {encomenda.Recipient.nome}
-                  </option>
-                ))}
+              <select name="recipient_id" id="encomenda.id" ref={recipientRef}>
+                {encomendas
+                  .slice()
+                  .reverse()
+                  .filter(
+                    (v, i, a) =>
+                      a.findIndex(
+                        t => t.Recipient.nome === v.Recipient.nome
+                      ) === i
+                  )
+                  .reverse()
+                  .map(encomenda => (
+                    <option
+                      key={encomenda.id}
+                      value={encomenda.Recipient.id}
+                      selected={Number(match.params.id) === encomenda.id}
+                    >
+                      {encomenda.Recipient.nome}
+                    </option>
+                  ))}
               </select>
             </div>
 
             <div>
-              <label htmlFor="entregadores">Entregador:</label>
+              {/* SELECT ENTREGADORES */}
+              <label htmlFor="deliveryman_id">Entregador:</label>
 
-              <select id="cars">
+              <select name="teste2" id="deliveryman_id" ref={entregadorRef}>
                 {entregadores.map(entregador => (
                   <option
-                    value={entregador.id}
                     key={entregador.id}
+                    value={entregador.id}
                   // selected={}
                   // selected={match.params.id === encomenda.id ? true : false}
                   >
@@ -106,9 +138,8 @@ export default function EditEncomendas({ match }) {
 
           <div className="prod">
             <strong>Nome do produto:</strong>
-            <input type="text" placeholder={productName} />
+            <Input name="product" type="text" placeholder={productName} />
           </div>
-
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
         </Content>
       </PropForm>
