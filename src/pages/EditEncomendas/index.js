@@ -22,7 +22,7 @@ export default function EditEncomendas({ match }) {
       setEncomendas(responseEncomendas.data);
 
       const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id == match.params.id) {
+        if (encomenda.id === Number(match.params.id)) {
           setProductName(encomenda.product);
         }
       });
@@ -39,9 +39,12 @@ export default function EditEncomendas({ match }) {
   }, []);
 
   function handleEditEncomenda() {
-    console.log(encomendas);
-    console.log(match);
-    console.log(productName);
+    // console.log(encomendas);
+    // console.log(match);
+    // console.log(productName);
+
+    console.log(match.params.id);
+    // console.log(encomenda.id)
   }
 
   function goBack() {
@@ -75,7 +78,7 @@ export default function EditEncomendas({ match }) {
                   <option
                     value={encomenda.id}
                     key={encomenda.id}
-                  // selected={match.params.id === encomenda.id ? true : false}
+                    selected={Number(match.params.id) === encomenda.id}
                   >
                     {encomenda.Recipient.nome}
                   </option>
@@ -91,6 +94,7 @@ export default function EditEncomendas({ match }) {
                   <option
                     value={entregador.id}
                     key={entregador.id}
+                  // selected={}
                   // selected={match.params.id === encomenda.id ? true : false}
                   >
                     {entregador.nome}
