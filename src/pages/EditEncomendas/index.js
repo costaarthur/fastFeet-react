@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Form, useField, Input } from '@rocketseat/unform';
+// import Select, { Props as AsyncProps } from 'react-select/async';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
+import Select from 'react-select';
 import api from '../../services/api';
 import history from '../../services/history';
+
+// import Select from '../../components/Form/select';
 
 import { Container, Content, PropForm } from './styles';
 
@@ -16,19 +20,25 @@ export default function EditEncomendas({ match }) {
 
   const recipientRef = useRef(null);
   const entregadorRef = useRef(null);
-  // const { fieldName, registerField, defaultValue, error } = useField();
 
-  // GET EDIT FIELDS
-  // useEffect(() => {
-  //   console.log(inputRef.current.value);
-  // }, [inputRef]);
+  // REACT SELECT TESTE
+  const selectRef = useRef(null);
 
-  //   registerField({
-  //     name: fieldName,
-  //     ref: inputRef.current,
-  //     path: 'value',
-  //   });
-  // }, []);
+  const options = [
+    { value: 'blues', label: 'Blues' },
+    { value: 'rock', label: 'Rock' },
+    { value: 'jazz', label: 'Jazz' },
+    { value: 'orchestra', label: 'Orchestra' },
+  ];
+
+  // const options = [
+  //   { value: 'blues', label: 'Blues' },
+  //   { value: 'rock', label: 'Rock' },
+  //   { value: 'jazz', label: 'Jazz' },
+  //   { value: 'orchestra', label: 'Orchestra' },
+  // ];
+
+  // const { fieldName, defaultValue, registerField, error } = useField(name);
 
   // LOAD ENCOMENDAS from api
   useEffect(() => {
@@ -141,8 +151,24 @@ export default function EditEncomendas({ match }) {
             <Input name="product" type="text" placeholder={productName} />
           </div>
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
+
+          <Select
+            options={options}
+            // value="123"
+            ref={selectRef}
+            onChange={() => console.log(selectRef.current)}
+          />
         </Content>
       </PropForm>
     </Container>
   );
 }
+
+// const options = [
+//   { value: 'blues', label: 'Blues' },
+//   { value: 'rock', label: 'Rock' },
+//   { value: 'jazz', label: 'Jazz' },
+//   { value: 'orchestra', label: 'Orchestra' },
+// ];
+
+// return <select options={options} />;
