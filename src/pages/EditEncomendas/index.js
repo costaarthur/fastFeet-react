@@ -9,20 +9,17 @@ import Select from 'react-select';
 import api from '../../services/api';
 import history from '../../services/history';
 
-// import Select from '../../components/Form/select';
+// import AsyncSelect from '../../components/Form/select';
 
-import { Container, Content, PropForm } from './styles';
+import { Container, Content, PropForm, SelectForm } from './styles';
 
 export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
   const [productName, setProductName] = useState('Carregando...');
 
-  const recipientRef = useRef(null);
+  const destinatarioRef = useRef(null);
   const entregadorRef = useRef(null);
-
-  // REACT SELECT TESTE
-  const selectRef = useRef(null);
 
   const options = [
     { value: 'blues', label: 'Blues' },
@@ -65,16 +62,86 @@ export default function EditEncomendas({ match }) {
     loadEntregadores();
   }, []);
 
-  async function handleEditEncomenda({ product }) {
-    const allInputs = {
-      id: match.params.id,
-      recipient_id: recipientRef.current.value,
-      deliveryman_id: entregadorRef.current.value,
-      product,
-    };
-    // console.log(allInputs);
+  // CREATE SELECT DESTINATÁRIO ARRAY
+  const destArray = encomendas
+    .slice()
+    .reverse()
+    .filter(
+      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
+    )
+    .reverse()
+    .map(encomenda => ({
+      value: encomenda.Recipient.id,
+      label: encomenda.Recipient.nome,
+    }));
 
-    await api.put(`encomendas`, allInputs);
+  // CREATE SELECT ENTREGADORES ARRAY
+  const entArray = encomendas
+    .slice()
+    .reverse()
+    .filter(
+      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
+    )
+    .reverse()
+    .map(encomenda => ({
+      value: encomenda.Ent.id,
+      label: encomenda.Ent.nome,
+    }));
+
+  // FIND DESTINATÁRIO PLACEHOLDER
+  const destPlaceholder = encomendas
+    .filter(dest => {
+      if (dest.id === Number(match.params.id)) return true;
+    })
+    .map(dest => dest.Recipient.nome)
+    .join();
+
+  // FIND ENTREGADOR PLACEHOLDER
+  const entPlaceholder = encomendas
+    .filter(ent => {
+      if (ent.id === Number(match.params.id)) return true;
+    })
+    .map(ent => ent.Ent.nome)
+    .join();
+
+  // GET DESTINATÁRIO VALUE
+  const getDestValue = encomendas
+    .slice()
+    .reverse()
+    .filter(
+      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
+    )
+    .reverse()
+    .map(encomenda => encomenda.Recipient.id)
+    .join();
+  // GET ENTREGADOR VALUE
+  const getEntValue = encomendas
+    .slice()
+    .reverse()
+    .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
+    .reverse()
+    .map(encomenda => encomenda.Ent.id)
+    .join();
+
+  // UPDATE ENCOMENDA NA API
+  async function handleEditEncomenda(data) {
+    // const allInputs = {
+    //   id: match.params.id,
+    //   recipient_id: recipientRef.current.value,
+    //   deliveryman_id: entregadorRef.current.value,
+    // product,
+    // };
+    // console.log(destArray);
+    // console.log(entArray);
+    // console.log(encomendas);
+    // console.log(match);
+    // console.log(data);
+    console.log(destinatarioRef.current.state.value.value);
+    console.log(entregadorRef.current.state.value.value);
+    console.log(data);
+
+    // await api.put(`encomendas`, allInputs);
+    // { value: 'blues', label: 'Blues' },
   }
 
   function goBack() {
@@ -104,7 +171,19 @@ export default function EditEncomendas({ match }) {
               {/* SELECT DESTINATÁRIOS */}
               <label htmlFor="recipient_id">Destinatário:</label>
 
-              <select name="recipient_id" id="encomenda.id" ref={recipientRef}>
+              <SelectForm
+                name="recipient_id"
+                options={destArray}
+                value={getDestValue}
+                ref={destinatarioRef}
+                onChange={() =>
+                  console.log(destinatarioRef.current.state.value)
+                }
+                isSearchable
+                placeholder={destPlaceholder}
+              />
+
+              {/* <select name="recipient_id" id="encomenda.id" ref={recipientRef}>
                 {encomendas
                   .slice()
                   .reverse()
@@ -124,25 +203,22 @@ export default function EditEncomendas({ match }) {
                       {encomenda.Recipient.nome}
                     </option>
                   ))}
-              </select>
+              </select> */}
             </div>
 
             <div>
               {/* SELECT ENTREGADORES */}
               <label htmlFor="deliveryman_id">Entregador:</label>
 
-              <select name="teste2" id="deliveryman_id" ref={entregadorRef}>
-                {entregadores.map(entregador => (
-                  <option
-                    key={entregador.id}
-                    value={entregador.id}
-                  // selected={}
-                  // selected={match.params.id === encomenda.id ? true : false}
-                  >
-                    {entregador.nome}
-                  </option>
-                ))}
-              </select>
+              <SelectForm
+                name="deliveryman_id"
+                options={entArray}
+                value={getEntValue}
+                ref={entregadorRef}
+                onChange={() => console.log(entregadorRef.current)}
+                isSearchable
+                placeholder={entPlaceholder}
+              />
             </div>
           </div>
 
@@ -151,19 +227,13 @@ export default function EditEncomendas({ match }) {
             <Input name="product" type="text" placeholder={productName} />
           </div>
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
-
-          <Select
-            options={options}
-            // value="123"
-            ref={selectRef}
-            onChange={() => console.log(selectRef.current)}
-          />
         </Content>
       </PropForm>
     </Container>
   );
 }
 
+// .filter((v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
 // const options = [
 //   { value: 'blues', label: 'Blues' },
 //   { value: 'rock', label: 'Rock' },
