@@ -5,7 +5,7 @@ import { Form, useField, Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-import Select from 'react-select';
+// import Select from '../../components/Select';
 import api from '../../services/api';
 import history from '../../services/history';
 
@@ -106,25 +106,31 @@ export default function EditEncomendas({ match }) {
 
   // GET DESTINATÁRIO VALUE
   const getDestValue = encomendas
-    .slice()
-    .reverse()
     .filter(
       (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
     )
-    .reverse()
     .map(encomenda => encomenda.Recipient.id)
     .join();
   // GET ENTREGADOR VALUE
   const getEntValue = encomendas
-    .slice()
-    .reverse()
     .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
-    .reverse()
     .map(encomenda => encomenda.Ent.id)
     .join();
 
   // UPDATE ENCOMENDA NA API
   async function handleEditEncomenda(data) {
+    console.log(data);
+
+    console.log(
+      encomendas
+        .slice()
+        .reverse()
+        .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
+        .reverse()
+        .map(encomenda => encomenda.Ent.id)
+        .join()
+    );
+
     // const allInputs = {
     //   id: match.params.id,
     //   recipient_id: recipientRef.current.value,
@@ -135,10 +141,10 @@ export default function EditEncomendas({ match }) {
     // console.log(entArray);
     // console.log(encomendas);
     // console.log(match);
-    // console.log(data);
-    console.log(destinatarioRef.current.state.value.value);
-    console.log(entregadorRef.current.state.value.value);
-    console.log(data);
+    // console.log(destinatarioRef.current.state.value.value);
+    // console.log(entregadorRef.current.state.value.value);
+    // console.log(encomendas);
+    // console.log(productName);
 
     // await api.put(`encomendas`, allInputs);
     // { value: 'blues', label: 'Blues' },
@@ -169,19 +175,19 @@ export default function EditEncomendas({ match }) {
           <div className="dest-ent">
             <div>
               {/* SELECT DESTINATÁRIOS */}
-              <label htmlFor="recipient_id">Destinatário:</label>
+              {/* <label htmlFor="recipient_id">Destinatário:</label> */}
 
-              <SelectForm
+              {/* <Select
                 name="recipient_id"
                 options={destArray}
                 value={getDestValue}
-                ref={destinatarioRef}
+                // ref={destinatarioRef}
                 onChange={() =>
                   console.log(destinatarioRef.current.state.value)
                 }
                 isSearchable
                 placeholder={destPlaceholder}
-              />
+              /> */}
 
               {/* <select name="recipient_id" id="encomenda.id" ref={recipientRef}>
                 {encomendas

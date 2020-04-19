@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { store } from '../../store';
+import { signOut } from '../../store/modules/auth/actions';
 
 import { Container, Content, PropLink } from './styles';
 
@@ -15,6 +17,7 @@ export default function Header() {
   const [paintProblemas, setPaintProblemas] = useState(false);
 
   const { name } = store.getState().admin.profile;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     function changeHeaderColor() {
@@ -51,6 +54,10 @@ export default function Header() {
 
   function selectPage(page) {
     setSelected(page);
+  }
+
+  function handleSignOut() {
+    dispatchEvent(signOut());
   }
 
   return (
@@ -94,7 +101,7 @@ export default function Header() {
         <aside>
           <div>
             <strong>{name}</strong>
-            <Link to="/dashboard">sair do sistema</Link>
+            <Link onClick={handleSignOut}>sair do sistema</Link>
           </div>
         </aside>
       </Content>

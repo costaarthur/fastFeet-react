@@ -128,6 +128,8 @@ export const Content = styled.div`
       background: #ffffff 0% 0% no-repeat padding-box;
       border: 1px solid #dddddd;
       border-radius: 4px;
+
+      z-index: 10;
     }
   }
 `;
