@@ -65,7 +65,7 @@ export default function Entregadores() {
               <h1>{entregador.email}</h1>
               <h1>
                 <EntregadorOptions
-                  selectedEntregador={entregadores}
+                  selectedEntregador={entregador}
                   selectedPage={page}
                 />
               </h1>
