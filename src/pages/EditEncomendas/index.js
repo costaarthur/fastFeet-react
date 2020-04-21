@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
 import { Form, useField, Input } from '@rocketseat/unform';
-// import Select, { Props as AsyncProps } from 'react-select/async';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 // import Select from '../../components/Select';
 import Select from 'react-select';
 
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
 
@@ -135,44 +135,26 @@ export default function EditEncomendas({ match }) {
     .join();
 
   // UPDATE ENCOMENDA NA API
-  async function handleEditEncomenda(data) {
-    console.log(destArray);
+  async function handleEditEncomenda({ product }) {
+    try {
+      const allInputs = {
+        id: Number(match.params.id),
+        recipient_id: destSelected.value,
+        deliveryman_id: entSelected.value,
+        product,
+      };
+      console.log(allInputs);
 
-    console.log(
-      encomendas
-        .slice()
-        .reverse()
-        .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
-        .reverse()
-        .map(encomenda => encomenda.Ent.id)
-        .join()
-    );
+      await api.put(`encomendas`, allInputs);
 
-    console.log(destSelected.value);
-
-    // const allInputs = {
-    //   id: match.params.id,
-    //   recipient_id: recipientRef.current.value,
-    //   deliveryman_id: entregadorRef.current.value,
-    // product,
-    // };
-    // console.log(destArray);
-    // console.log(entArray);
-    // console.log(encomendas);
-    // console.log(match);
-    // console.log(destinatarioRef.current.state.value.value);
-    // console.log(entregadorRef.current.state.value.value);
-    // console.log(encomendas);
-    // console.log(productName);
-
-    // await api.put(`encomendas`, allInputs);
-    // { value: 'blues', label: 'Blues' },
+      toast.success('Encomenda atualizada com sucesso');
+    } catch (err) {
+      toast.error('Erro ao atualizar a encomenda');
+    }
   }
-
   function goBack() {
     history.push('/encomendas');
   }
-
   return (
     <Container>
       <PropForm onSubmit={handleEditEncomenda}>
@@ -198,7 +180,7 @@ export default function EditEncomendas({ match }) {
 
               <Select
                 theme={customTheme}
-                // name="recipient_id"
+                name="recipient_id"
                 options={destArray}
                 // selectedOption="poi"
                 // value="{getDestValue}"
@@ -236,13 +218,3 @@ export default function EditEncomendas({ match }) {
     </Container>
   );
 }
-
-// .filter((v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-// const options = [
-//   { value: 'blues', label: 'Blues' },
-//   { value: 'rock', label: 'Rock' },
-//   { value: 'jazz', label: 'Jazz' },
-//   { value: 'orchestra', label: 'Orchestra' },
-// ];
-
-// return <select options={options} />;

@@ -25,12 +25,13 @@ const Select = ({ name, ...rest }) => {
       },
     });
   }, [fieldName, registerField, rest.isMulti]);
-  return console.log(name, fieldName, defaultValue, registerField);
-  <ReactSelect
-    defaultValue={defaultValue}
-    ref={selectRef}
-    classNamePrefix="react-select"
-    {...rest}
-  />;
+  return (
+    <ReactSelect
+      defaultValue={defaultValue}
+      ref={selectRef}
+      classNamePrefix="react-select"
+      {...rest}
+    />
+  );
 };
 export default Select;
