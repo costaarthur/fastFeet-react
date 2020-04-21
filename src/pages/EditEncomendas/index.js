@@ -33,17 +33,80 @@ export default function EditEncomendas({ match }) {
     { value: 'orchestra', label: 'Orchestra' },
   ];
 
-  function customTheme(theme) {
-    return {
-      ...theme,
+  const customStyles = {
+    container: () => ({
+      // background: 'green',
+      height: '45px',
+      border: '1px solid #dddddd',
+      margin: '9px 0 0 0',
+      // margin: '34px auto',
+    }),
+    input: () => ({
+      // background: 'green',
+      textAlign: 'left',
+      marginTop: '12px',
+      marginLeft: '6px',
+    }),
+    menu: () => ({
+      background: '#ffffff',
+      // background: '#7d40e7',
+      // position: 'relative',
+      // top: '-260px',
+      border: '1px solid #dddddd',
+      position: 'fixed !important',
       width: '405px',
-      colors: {
-        ...theme.colors,
-        primary25: 'purple',
-        primary: 'green',
-      },
-    };
-  }
+      zIndex: 1001,
+      marginTop: '-12px',
+    }),
+    menuList: () => ({
+      // zIndex: 3,
+      // background: 'blue',
+    }),
+    menuPortal: () => ({
+      background: 'pink',
+    }),
+    dropdownIndicator: () => ({
+      // color: 'pink',
+      // background: 'pink',
+      position: 'relative',
+      top: '-15px',
+      left: '380px',
+      color: '#dddddd',
+    }),
+    placeholder: () => ({
+      // background: 'black',
+      marginTop: '12px',
+      color: '#dddddd',
+      // marginLeft: '6px',
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      borderBottom: '1px dotted purple',
+      // color: state.isSelected ? 'red' : 'blue',
+      color: '#7d40e7',
+      padding: '20px',
+      // fontColor: 'white',
+      // zIndex: '5',
+    }),
+    singleValue: () => ({
+      marginTop: '12px',
+      marginLeft: '6px',
+      // background: 'grey',
+    }),
+    clearIndicator: () => ({
+      background: 'purple',
+    }),
+    control: () => ({
+      width: '405px',
+      // zIndex: '7',
+    }),
+    // singleValue: (provided, state) => {
+    //   const opacity = state.isDisabled ? 0.5 : 1;
+    //   const transition = 'opacity 300ms';
+
+    //   return { ...provided, opacity, transition };
+    // },
+  };
 
   // const options = [
   //   { value: 'blues', label: 'Blues' },
@@ -179,15 +242,11 @@ export default function EditEncomendas({ match }) {
               <label htmlFor="recipient_id">Destinatário:</label>
 
               <Select
-                theme={customTheme}
+                // theme={customTheme}
+                styles={customStyles}
                 name="recipient_id"
                 options={destArray}
-                // selectedOption="poi"
-                // value="{getDestValue}"
-                // value={destValue.label}
-                // ref={destinatarioRef}
                 onChange={setDestSelected}
-                // onChange={() => console.log(destinatarioRef.current.value)}
                 isSearchable
                 placeholder={destPlaceholder}
                 autoFocus
@@ -199,7 +258,7 @@ export default function EditEncomendas({ match }) {
               <label htmlFor="deliveryman_id">Entregador:</label>
 
               <Select
-                theme={customTheme}
+                styles={customStyles}
                 options={entArray}
                 onChange={setEntSelected}
                 isSearchable

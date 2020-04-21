@@ -85,25 +85,31 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 0px 30px 16px;
+    /* background: red; */
+    padding-top: 26px;
 
     div {
-      display: flex;
+      /* display: flex;
       flex-direction: column;
-      margin-top: 26px;
+      margin-top: 26px; */
+
       /* div {
         width: 405px;
         height: 45px;
       } */
       label {
+        position: relative;
+        left: -160px;
         text-align: left;
-        margin-bottom: 9px;
+        margin-bottom: 90px;
         color: #444444;
         font-weight: bold;
+        /* background: red; */
 
         /* width: 405px; */
       }
 
-      select {
+      /* select {
         width: 405px;
         height: 45px;
         padding-left: 15px;
@@ -111,7 +117,7 @@ export const Content = styled.div`
         background: #ffffff 0% 0% no-repeat padding-box;
         border: 1px solid #dddddd;
         border-radius: 4px;
-      }
+      } */
     }
   }
 
@@ -120,10 +126,13 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 30px;
+
     strong {
       text-align: left;
       margin-bottom: 9px;
       color: #444444;
+      z-index: 0;
+      font-weight: none;
     }
 
     input {
@@ -135,7 +144,11 @@ export const Content = styled.div`
       border: 1px solid #dddddd;
       border-radius: 4px;
 
-      z-index: 10;
+      &::placeholder {
+        color: #dddddd;
+        /* text-align: left; */
+        /* font-size: 16px; */
+      }
     }
   }
 `;
