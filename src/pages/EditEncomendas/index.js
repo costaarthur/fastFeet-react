@@ -208,7 +208,7 @@ export default function EditEncomendas({ match }) {
       };
       console.log(allInputs);
 
-      await api.put(`encomendas`, allInputs);
+      await api.delete(`encomendas`, allInputs);
 
       toast.success('Encomenda atualizada com sucesso');
     } catch (err) {

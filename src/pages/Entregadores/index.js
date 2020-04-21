@@ -5,7 +5,7 @@ import { FiPlus } from 'react-icons/fi';
 import api from '../../services/api';
 
 import { Container, Content, CadastroButton, Entregador } from './styles';
-// import EncomendaOptions from '../../components/EncomendaOptions';
+import EntregadorOptions from '../../components/EntregadorOptions';
 
 export default function Entregadores() {
   const [entregadores, setEntregadores] = useState([]);
@@ -63,7 +63,12 @@ export default function Entregadores() {
               />
               <h1>{entregador.nome}</h1>
               <h1>{entregador.email}</h1>
-              <h1>. . .</h1>
+              <h1>
+                <EntregadorOptions
+                  selectedEntregador={entregadores}
+                  selectedPage={page}
+                />
+              </h1>
             </Entregador>
           ))}
         </ul>

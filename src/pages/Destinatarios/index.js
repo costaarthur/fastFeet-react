@@ -32,50 +32,38 @@ export default function Encomendas() {
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
 
           <li>
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
           <li>
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
           <li>
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
           <li>
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
           <li>
             <h1>#01</h1>
             <h1>Seu Jorge</h1>
             <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>
-              <EncomendaOptions />
-            </h1>
+            <h1>. . .</h1>
           </li>
         </ul>
       </Content>

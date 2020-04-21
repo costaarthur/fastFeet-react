@@ -10,6 +10,8 @@ import {
 
 // import Encomendas from '../../pages/Encomendas';
 
+import { toast } from 'react-toastify';
+import api from '../../services/api';
 import history from '../../services/history';
 
 import {
@@ -40,6 +42,24 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   function openModal() {
     setModalIsOpen(true);
     handleToggleVisible();
+  }
+
+  async function handleDeleteEncomenda() {
+    try {
+      console.log(selectedEncomenda);
+      const toBeDeleted = { id: selectedEncomenda.id };
+      console.log(toBeDeleted);
+      await api.delete(`encomendas`, toBeDeleted);
+      console.log('entrei');
+
+      console.log(selectedEncomenda);
+      console.log(toBeDeleted);
+      handleToggleVisible();
+
+      toast.success('Encomenda cancelada com sucesso');
+    } catch (err) {
+      toast.error('A encomenda não foi cancelada');
+    }
   }
 
   return (
@@ -97,7 +117,7 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
             <MdCreate color="#4D85EE" />
             Editar
           </button>
-          <button type="submit">
+          <button type="submit" onClick={handleDeleteEncomenda}>
             <MdDeleteForever color="#DE3B3B" />
             Excluir
           </button>
