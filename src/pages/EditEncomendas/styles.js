@@ -90,14 +90,20 @@ export const Content = styled.div`
       display: flex;
       flex-direction: column;
       margin-top: 26px;
+      /* div {
+        width: 405px;
+        height: 45px;
+      } */
       label {
         text-align: left;
         margin-bottom: 9px;
         color: #444444;
         font-weight: bold;
+
+        /* width: 405px; */
       }
 
-      /* select {
+      select {
         width: 405px;
         height: 45px;
         padding-left: 15px;
@@ -105,7 +111,7 @@ export const Content = styled.div`
         background: #ffffff 0% 0% no-repeat padding-box;
         border: 1px solid #dddddd;
         border-radius: 4px;
-      } */
+      }
     }
   }
 

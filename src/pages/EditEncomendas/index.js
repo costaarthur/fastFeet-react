@@ -6,6 +6,8 @@ import { Form, useField, Input } from '@rocketseat/unform';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 // import Select from '../../components/Select';
+import Select from 'react-select';
+
 import api from '../../services/api';
 import history from '../../services/history';
 
@@ -18,6 +20,9 @@ export default function EditEncomendas({ match }) {
   const [entregadores, setEntregadores] = useState([]);
   const [productName, setProductName] = useState('Carregando...');
 
+  const [destSelected, setDestSelected] = useState(null);
+  const [entSelected, setEntSelected] = useState(null);
+
   const destinatarioRef = useRef(null);
   const entregadorRef = useRef(null);
 
@@ -27,6 +32,18 @@ export default function EditEncomendas({ match }) {
     { value: 'jazz', label: 'Jazz' },
     { value: 'orchestra', label: 'Orchestra' },
   ];
+
+  function customTheme(theme) {
+    return {
+      ...theme,
+      width: '405px',
+      colors: {
+        ...theme.colors,
+        primary25: 'purple',
+        primary: 'green',
+      },
+    };
+  }
 
   // const options = [
   //   { value: 'blues', label: 'Blues' },
@@ -119,7 +136,7 @@ export default function EditEncomendas({ match }) {
 
   // UPDATE ENCOMENDA NA API
   async function handleEditEncomenda(data) {
-    console.log(data);
+    console.log(destArray);
 
     console.log(
       encomendas
@@ -130,6 +147,8 @@ export default function EditEncomendas({ match }) {
         .map(encomenda => encomenda.Ent.id)
         .join()
     );
+
+    console.log(destSelected.value);
 
     // const allInputs = {
     //   id: match.params.id,
@@ -175,53 +194,32 @@ export default function EditEncomendas({ match }) {
           <div className="dest-ent">
             <div>
               {/* SELECT DESTINATÁRIOS */}
-              {/* <label htmlFor="recipient_id">Destinatário:</label> */}
+              <label htmlFor="recipient_id">Destinatário:</label>
 
-              {/* <Select
-                name="recipient_id"
+              <Select
+                theme={customTheme}
+                // name="recipient_id"
                 options={destArray}
-                value={getDestValue}
+                // selectedOption="poi"
+                // value="{getDestValue}"
+                // value={destValue.label}
                 // ref={destinatarioRef}
-                onChange={() =>
-                  console.log(destinatarioRef.current.state.value)
-                }
+                onChange={setDestSelected}
+                // onChange={() => console.log(destinatarioRef.current.value)}
                 isSearchable
                 placeholder={destPlaceholder}
-              /> */}
-
-              {/* <select name="recipient_id" id="encomenda.id" ref={recipientRef}>
-                {encomendas
-                  .slice()
-                  .reverse()
-                  .filter(
-                    (v, i, a) =>
-                      a.findIndex(
-                        t => t.Recipient.nome === v.Recipient.nome
-                      ) === i
-                  )
-                  .reverse()
-                  .map(encomenda => (
-                    <option
-                      key={encomenda.id}
-                      value={encomenda.Recipient.id}
-                      selected={Number(match.params.id) === encomenda.id}
-                    >
-                      {encomenda.Recipient.nome}
-                    </option>
-                  ))}
-              </select> */}
+                autoFocus
+              />
             </div>
 
             <div>
               {/* SELECT ENTREGADORES */}
               <label htmlFor="deliveryman_id">Entregador:</label>
 
-              <SelectForm
-                name="deliveryman_id"
+              <Select
+                theme={customTheme}
                 options={entArray}
-                value={getEntValue}
-                ref={entregadorRef}
-                onChange={() => console.log(entregadorRef.current)}
+                onChange={setEntSelected}
                 isSearchable
                 placeholder={entPlaceholder}
               />
