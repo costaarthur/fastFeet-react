@@ -9,18 +9,24 @@ import Destinatarios from '../pages/Destinatarios';
 import Problemas from '../pages/Problemas';
 
 import EditEncomendas from '../pages/EditEncomendas';
+import EditEntregadores from '../pages/EditEntregadores';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Login} />
       <Route path="/encomendas" exact component={Encomendas} isPrivate />
-      <Route path="/entregadores" component={Entregadores} isPrivate />
+      <Route path="/entregadores" exact component={Entregadores} isPrivate />
       <Route path="/destinatarios" component={Destinatarios} isPrivate />
       <Route path="/problemas" component={Problemas} isPrivate />
 
       {/* route with: match and query params */}
       <Route path="/encomendas/edit/:id" component={EditEncomendas} isPrivate />
+      <Route
+        path="/entregadores/edit/:id"
+        component={EditEntregadores}
+        isPrivate
+      />
     </Switch>
   );
 }

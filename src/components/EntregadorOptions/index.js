@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 
 import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
-// import Encomendas from '../../pages/Encomendas';
-
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
@@ -17,17 +15,14 @@ import {
   EncOptModal,
 } from './styles';
 
-export default function EntregadorOptions({
-  selectedEntregador,
-  selectedPage,
-}) {
+export default function EntregadorOptions({ selectedEntregador }) {
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function goEditEntregadores() {
-    // history.push(
-    // `/entregador/edit/${selectedEncomenda.id}/?id=${selectedEncomenda.id}/?page=${selectedPage}`
-    // );
+    history.push(
+      `/entregadores/edit/${selectedEntregador.id}/?id=${selectedEntregador.id}`
+    );
   }
 
   function handleToggleVisible() {

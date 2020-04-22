@@ -13,9 +13,7 @@ export default function Entregadores() {
 
   useEffect(() => {
     async function loadEntregadores() {
-      const responseEntregadores = await api.get('ents', {
-        params: { page },
-      });
+      const responseEntregadores = await api.get('ents');
       setEntregadores(responseEntregadores.data);
     }
     loadEntregadores();
@@ -64,10 +62,7 @@ export default function Entregadores() {
               <h1>{entregador.nome}</h1>
               <h1>{entregador.email}</h1>
               <h1>
-                <EntregadorOptions
-                  selectedEntregador={entregador}
-                  selectedPage={page}
-                />
+                <EntregadorOptions selectedEntregador={entregador} />
               </h1>
             </Entregador>
           ))}
