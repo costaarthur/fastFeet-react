@@ -9,7 +9,7 @@ export default function AvatarInput({ avatar }) {
   const { defaultValue, registerField } = useField('avatar_id');
 
   const [file, setFile] = useState();
-  const [preview, setPreview] = useState({ avatar });
+  const [preview, setPreview] = useState();
 
   const ref = useRef();
 
@@ -24,9 +24,7 @@ export default function AvatarInput({ avatar }) {
   }, [ref, registerField]);
 
   async function handleChange(e) {
-    console.log(preview);
-    console.log(avatar);
-    console.log(file);
+    // console.log(avatar);
 
     const data = new FormData();
 
@@ -38,6 +36,8 @@ export default function AvatarInput({ avatar }) {
 
     setFile(id);
     setPreview(url);
+    console.log(preview);
+    console.log(file);
   }
 
   return (
@@ -45,7 +45,9 @@ export default function AvatarInput({ avatar }) {
       <label htmlFor="avatar_id">
         <img
           src={
-            avatar || 'https://api.adorable.io/avatars/51/abott@adorable.png'
+            preview ||
+            avatar ||
+            'https://api.adorable.io/avatars/51/abott@adorable.png'
           }
           alt="avatar"
         />

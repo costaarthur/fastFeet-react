@@ -4,25 +4,18 @@ import { Form, useField, Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-// import Select from '../../components/Select';
-import Select from 'react-select';
-
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
 
-// import AsyncSelect from '../../components/Form/select';
 import AvatarInput from './AvatarInput';
 
-import { Container, Content, PropForm, SelectForm } from './styles';
+import { Container, Content, PropForm } from './styles';
 
 export default function EditEntregadores({ match }) {
   const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
   const [productName, setProductName] = useState('Carregando...');
-
-  const destinatarioRef = useRef(null);
-  const entregadorRef = useRef(null);
 
   // LOAD ENCOMENDAS from api
   useEffect(() => {
@@ -46,19 +39,6 @@ export default function EditEntregadores({ match }) {
     }
     loadEntregadores();
   }, []);
-
-  // CREATE SELECT ENTREGADORES ARRAY
-  const entArray = encomendas
-    .slice()
-    .reverse()
-    .filter(
-      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-    )
-    .reverse()
-    .map(encomenda => ({
-      value: encomenda.Ent.id,
-      label: encomenda.Ent.nome,
-    }));
 
   // FIND ENTREGADOR PLACEHOLDER
   const entPlaceholder = entregadores
@@ -84,38 +64,19 @@ export default function EditEntregadores({ match }) {
     .map(ent => ent.avatar.url)
     .join();
 
-  // GET DESTINATÁRIO VALUE
-  const getDestValue = encomendas
-    .filter(
-      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-    )
-    .map(encomenda => encomenda.Recipient.id)
-    .join();
-  // GET ENTREGADOR VALUE
-  const getEntValue = encomendas
-    .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
-    .map(encomenda => encomenda.Ent.id)
-    .join();
-
-  // UPDATE ENCOMENDA NA API
+  // UPDATE ENTREGADOR NA API
   async function handleEditEntregador(data) {
     console.log(profilePreview);
-    console.log(data);
-    //   try {
-    //     const allInputs = {
-    //       id: Number(match.params.id),
-    //       recipient_id: destSelected.value,
-    //       deliveryman_id: entSelected.value,
-    //       product,
-    //     };
-    //     console.log(allInputs);
 
-    //     await api.delete(`encomendas`, allInputs);
+    try {
+      if (!data.nome) return toast.error('Você precisa informar um nome');
+      console.log(data);
+      await api.put(`ents`, data);
 
-    //     toast.success('Encomenda atualizada com sucesso');
-    //   } catch (err) {
-    //     toast.error('Erro ao atualizar a encomenda');
-    //   }
+      toast.success('Entregador atualizado com sucesso');
+    } catch (err) {
+      toast.error('Erro ao atualizar o entregador');
+    }
   }
 
   function goBack() {
@@ -157,7 +118,12 @@ export default function EditEntregadores({ match }) {
 
             <div className="email">
               <strong>Email:</strong>
-              <Input name="email" type="text" placeholder={emailPlaceholder} />
+              <Input
+                name="email"
+                type="text"
+                value={emailPlaceholder}
+                disabled
+              />
             </div>
             {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
           </div>

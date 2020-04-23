@@ -38,7 +38,7 @@ export default function EntregadorOptions({ selectedEntregador }) {
       };
 
       console.log(toBeDeleted);
-      await api.delete('ents', toBeDeleted);
+      await api.del('ents', toBeDeleted);
       console.log(toBeDeleted);
       console.log('entreeei13');
 
