@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { MdMoreHoriz } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
-import { Container, Content, CadastroButton } from './styles';
-import EncomendaOptions from '../../components/EncomendaOptions';
+import { Container, Content, CadastroButton, Destinatario } from './styles';
+import DestinatarioOptions from '../../components/DestinatarioOptions';
 
-export default function Encomendas() {
+import api from '../../services/api';
+
+export default function Destinatarios() {
+  const [destinatarios, setDestinatarios] = useState([]);
+
+  // LOAD DESTINATÁRIOS FROM API
+  useEffect(() => {
+    async function loadDestinatarios() {
+      const responseDestinatarios = await api.get('recipients');
+      setDestinatarios(responseDestinatarios.data);
+    }
+    loadDestinatarios();
+  }, []);
+
+  function handleAddDestinatario() {
+    console.log(destinatarios);
+  }
+
   return (
     <Container>
       <Content>
         <header>Gerenciando destinatários</header>
 
         <div className="find-cadastro">
-          <input type="text" placeholder="Buscar por entregadores" />
-          <CadastroButton type="button">
-            <FiPlus size={14} />
-            {/* <span>Cadastrar</span> */}
-            Cadastrar
+          <input type="text" placeholder="Buscar por destinatários" />
+          <CadastroButton type="button" onClick={handleAddDestinatario}>
+            <FiPlus size={22} />
+            <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
 
@@ -28,43 +44,19 @@ export default function Encomendas() {
         </div>
         {/* **************lista de destinatários************* */}
         <ul>
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
-
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
-          <li>
-            <h1>#01</h1>
-            <h1>Seu Jorge</h1>
-            <h1>Rua da praia, 1954, Santos - São Paulo</h1>
-            <h1>. . .</h1>
-          </li>
+          {destinatarios.map(destinatario => (
+            <Destinatario key={destinatario.id}>
+              <h1>#{destinatario.id}</h1>
+              <h1>{destinatario.nome}</h1>
+              <h1>
+                Rua {destinatario.rua}, {destinatario.numero},{' '}
+                {destinatario.cidade} - {destinatario.estado}
+              </h1>
+              <h1>
+                <DestinatarioOptions selectedDestinatario={destinatario} />
+              </h1>
+            </Destinatario>
+          ))}
         </ul>
       </Content>
     </Container>

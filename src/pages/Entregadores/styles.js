@@ -74,11 +74,9 @@ export const Content = styled.div`
   div.ul-header {
     background: #f5f5f5;
     display: grid;
-    /* display: flex; */
-    /* flex-direction: row; */
     text-align: left;
-    grid-template-columns: 20% 22.5% 26% 26% 5.5%;
     margin-bottom: 14px;
+    grid-template-columns: 20% 22.5% 26% 26% 5.5%;
   }
     strong {
       color: #444444;
@@ -92,12 +90,12 @@ export const Content = styled.div`
 export const Entregador = styled.li`
   display: grid;
   text-align: left;
-  grid-template-columns: 20% 22.5% 26% 26% 5.5%;
   height: 90%;
   margin-bottom: 20px;
   background: blue;
   background: #ffffff;
   line-height: 57px;
+  grid-template-columns: 20% 22.5% 26% 26% 5.5%;
 
   img {
     height: 35px;

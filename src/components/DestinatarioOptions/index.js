@@ -9,13 +9,12 @@ import history from '../../services/history';
 
 import { Container, ThreeDots, OptionList, Option } from './styles';
 
-export default function EntregadorOptions({ selectedEntregador }) {
+export default function DestinatarioOptions({ selectedDestinatario }) {
   const [visible, setVisible] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  function goEditEntregadores() {
+  function goEditDestinatarios() {
     history.push(
-      `/entregadores/edit/${selectedEntregador.id}/?id=${selectedEntregador.id}`
+      `/destinatarios/edit/${selectedDestinatario.id}/?id=${selectedDestinatario.id}`
     );
   }
 
@@ -23,23 +22,24 @@ export default function EntregadorOptions({ selectedEntregador }) {
     setVisible(!visible);
   }
 
-  async function handleDeleteEntregador() {
-    try {
-      console.log('entreeei1');
-      const toBeDeleted = {
-        email: selectedEntregador.email,
-        nome: selectedEntregador.nome,
-      };
+  async function handleDeleteDestinatario() {
+    console.log('entrei');
+    // try {
+    //   console.log('entreeei1');
+    //   const toBeDeleted = {
+    //     email: selectedDestinatario.email,
+    //     nome: selectedDestinatario.nome,
+    //   };
 
-      console.log(toBeDeleted);
-      await api.del('ents', toBeDeleted);
-      console.log(toBeDeleted);
-      console.log('entreeei13');
+    //   console.log(toBeDeleted);
+    //   await api.del('ents', toBeDeleted);
+    //   console.log(toBeDeleted);
+    //   console.log('entreeei13');
 
-      toast.success('Entregador deletado com sucesso');
-    } catch (err) {
-      toast.error('O entregador não foi deletado');
-    }
+    //   toast.success('Destinatário deletado com sucesso');
+    // } catch (err) {
+    //   toast.error('O destinatário não foi deletado');
+    // }
   }
 
   return (
@@ -50,11 +50,11 @@ export default function EntregadorOptions({ selectedEntregador }) {
 
       <OptionList visible={visible}>
         <Option>
-          <button type="submit" onClick={goEditEntregadores}>
+          <button type="submit" onClick={goEditDestinatarios}>
             <MdCreate color="#4D85EE" />
             Editar
           </button>
-          <button type="submit" onClick={handleDeleteEntregador}>
+          <button type="submit" onClick={handleDeleteDestinatario}>
             <MdDeleteForever color="#DE3B3B" />
             Excluir
           </button>
