@@ -59,23 +59,22 @@ export default function EditDestinatarios({ match }) {
 
   // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
-    console.log(data);
-    console.log(selectedDestinatario[0].nome);
-    // try {
-    //   const allInputs = {
-    //     id: Number(match.params.id),
-    //     recipient_id: destSelected.value,
-    //     deliveryman_id: entSelected.value,
-    //     product,
-    //   };
-    //   console.log(allInputs);
+    console.log(match);
+    try {
+      // const allInputs = {
+      //   id: Number(match.params.id),
+      //   recipient_id: destSelected.value,
+      //   deliveryman_id: entSelected.value,
+      //   product,
+      // };
+      // console.log(allInputs);
 
-    //   await api.delete(`encomendas`, allInputs);
+      await api.put(`recipients`, data);
 
-    //   toast.success('Encomenda atualizada com sucesso');
-    // } catch (err) {
-    //   toast.error('Erro ao atualizar a encomenda');
-    // }
+      toast.success('Destinatário atualizado com sucesso');
+    } catch (err) {
+      toast.error('Erro ao atualizar o destinatário');
+    }
   }
 
   function goBack() {
@@ -105,7 +104,7 @@ export default function EditDestinatarios({ match }) {
             <Input
               name="email"
               type="email"
-              placeholder={selectedDestinatario.map(dest => dest.email)}
+              value={selectedDestinatario.map(dest => dest.email)}
             // placeholder={selectedDestinatario[0].nome)}
             // placeholder={selectedDestinatario.nome}
             />

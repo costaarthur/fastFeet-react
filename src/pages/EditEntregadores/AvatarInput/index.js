@@ -24,10 +24,11 @@ export default function AvatarInput({ avatar }) {
   }, [ref, registerField]);
 
   async function handleChange(e) {
-    // console.log(avatar);
-
     const data = new FormData();
 
+    if (data == null) {
+      console.log('entrei');
+    }
     data.append('file', e.target.files[0]);
 
     const response = await api.post('files', data);
@@ -44,10 +45,18 @@ export default function AvatarInput({ avatar }) {
     <Container>
       <label htmlFor="avatar_id">
         <img
+          // selectedDestinatario.map(dest => dest.email)
           src={
             preview ||
-            avatar ||
-            'https://api.adorable.io/avatars/51/abott@adorable.png'
+            avatar.map(a => {
+              if (a) {
+                return a.url;
+              }
+              return 'https://api.adorable.io/avatars/51/abott@adorable.png';
+            })
+            // preview ||
+            // avatar ||
+            // 'https://api.adorable.io/avatars/51/abott@adorable.png'
           }
           alt="avatar"
         />

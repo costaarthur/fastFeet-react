@@ -61,15 +61,17 @@ export default function EditEntregadores({ match }) {
     .filter(ent => {
       if (ent.id === Number(match.params.id)) return true;
     })
-    .map(ent => ent.avatar.url)
-    .join();
+    .map(ent => ent.avatar);
+  // .join();
 
   // UPDATE ENTREGADOR NA API
   async function handleEditEntregador(data) {
-    console.log(profilePreview);
+    console.log(data);
 
     try {
       if (!data.nome) return toast.error('Você precisa informar um nome');
+      if (!data.avatar_id)
+        return toast.error('Você precisa selecionar um avatar');
       console.log(data);
       await api.put(`ents`, data);
 
