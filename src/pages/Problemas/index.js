@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { MdMoreHoriz } from 'react-icons/md';
 
 import { Container, Content, Problema } from './styles';
-import EncomendaOptions from '../../components/EncomendaOptions';
+import ProblemaOptions from '../../components/ProblemaOptions';
 
 import api from '../../services/api';
 
@@ -38,7 +38,9 @@ export default function Problemas() {
             <Problema key={problema.id}>
               <h1>#{problema.Encomenda.id}</h1>
               <h1>{problema.description}</h1>
-              <h1>. . .</h1>
+              <h1>
+                <ProblemaOptions selectedProblema={problema} />
+              </h1>
             </Problema>
           ))}
 
