@@ -110,7 +110,7 @@ export const Entregador = styled.li`
   h1 {
     color: #666666;
     font-size: 16px;
-    /* color: #ffffff; */
     margin-left: 10px;
+    /* color: #ffffff; */
   }
 `;

@@ -9,14 +9,6 @@ export const Container = styled.div`
   width: auto;
 `;
 
-export const CadastroButton = styled.button`
-  color: #ffffff;
-  height: 36px;
-  width: 142px;
-  border-radius: 4px;
-  background: #7d40e7 0% 0% no-repeat padding-box;
-`;
-
 export const Content = styled.div`
     max-width: 1140px;
     width: 1200px;
@@ -33,56 +25,63 @@ export const Content = styled.div`
       color: #444444;
       margin-bottom: 34px;
     }
+
+    button {
+      width: 40px;
+      height: 40px;
+    }
+
   }
 
   div.ul-header {
     background: #f5f5f5;
     display: grid;
-    /* display: flex; */
-    /* flex-direction: row; */
     text-align: left;
+    margin-bottom: 14px;
     grid-template-columns: 10% 84.5% 5.5%;
-    margin-bottom: 14px
   }
     strong {
       color: #444444;
       font-size: 16px;
       text-align: left;
+      margin-left: 10px;
     }
   }
 
   ul {
     /* background: #ffffff; */
     li {
-      /* margin-left: 25px; */
-      /* height: 57px; */
       display: grid;
-      /* display: flex; */
-      /* flex-direction: row; */
       text-align: left;
-      grid-template-columns: 10% 84.5% 5.5%;
       height: 90%;
-      /* padding: 40px 0px; */
       margin-bottom: 20px;
       background: blue;
       background: #ffffff;
       line-height: 57px;
+      grid-template-columns: 10% 84.5% 5.5%;
       h1 {
         color: #666666;
-        font-size: 16px;
-        /* color: #ffffff; */
+      font-size: 16px;
+      margin-left: 10px;
       }
-
-      /* div.dots {
-        background: #ffffff;
-      } */
-    }
-
-    hr {
-      margin-top: 10px;
-      /* border: solid 1px #444444; */
-      padding-bottom: 10px;
-      background: #f5f5f5;
     }
   }
   `;
+
+export const Problema = styled.li`
+  display: grid;
+  text-align: left;
+  height: 90%;
+  margin-bottom: 20px;
+  background: blue;
+  background: #ffffff;
+  line-height: 57px;
+  grid-template-columns: 10% 84.5% 5.5%;
+
+  h1 {
+    color: #666666;
+    font-size: 16px;
+    /* color: #ffffff; */
+    margin-left: 10px;
+  }
+`;
