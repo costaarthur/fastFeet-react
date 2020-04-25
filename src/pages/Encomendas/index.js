@@ -6,6 +6,7 @@ import EncomendaOptions from '../../components/EncomendaOptions';
 // import Pagination from '../../components/Pagination';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 import {
   Container,
@@ -67,22 +68,31 @@ export default function Encomendas() {
           ...status,
         };
       });
-      setEncomendas(dataEncomendas);
+      if (dataEncomendas.length === 0) {
+        setPage(page - 1);
+      }
+
+      if (dataEncomendas.length > 0) {
+        setEncomendas(dataEncomendas);
+      }
     }
     loadEncomendas();
   }, [page]);
 
+  // GO ADD ENCOMENDA
   function handleAddEncomenda() {
-    console.log(encomendas);
-    // console.log(recipients);
-    console.log(token);
-    setPage(2);
+    history.push(`/encomendas/add`);
   }
 
   function changePage(minusPlus) {
     if (minusPlus === 'minus' && page > 1) {
       setPage(page - 1);
     }
+
+    // if (encomendas.length < 1) {
+    //   return;
+    // }
+
     if (minusPlus === 'plus' && encomendas.length > 1) {
       setPage(page + 1);
     }
@@ -119,7 +129,14 @@ export default function Encomendas() {
               <h1>#{encomenda.id}</h1>
               <h1>{encomenda.Recipient.nome}</h1>
               <div className="name-with-pic">
-                <img src={encomenda.Ent.avatar.url} alt="Profile Pic" />
+                <img
+                  src={
+                    encomenda.Ent.avatar
+                      ? encomenda.Ent.avatar.url
+                      : 'https://api.adorable.io/avatars/50/abott@adorable.png'
+                  }
+                  alt="Profile Pic"
+                />
                 <h1>{encomenda.Ent.nome}</h1>
               </div>
               <h1>{encomenda.Recipient.cidade}</h1>

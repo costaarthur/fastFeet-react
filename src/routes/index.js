@@ -12,6 +12,8 @@ import EditEncomendas from '../pages/EditEncomendas';
 import EditEntregadores from '../pages/EditEntregadores';
 import EditDestinatarios from '../pages/EditDestinatarios';
 
+import AddEncomendas from '../pages/AddEncomendas';
+
 export default function Routes() {
   return (
     <Switch>
@@ -33,6 +35,9 @@ export default function Routes() {
         component={EditDestinatarios}
         isPrivate
       />
+
+      {/* adds */}
+      <Route path="/encomendas/add" exact component={AddEncomendas} isPrivate />
     </Switch>
   );
 }

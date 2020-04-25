@@ -15,10 +15,10 @@ import history from '../../services/history';
 
 import { Container, Content, PropForm, SelectForm } from './styles';
 
-export default function EditEncomendas(props) {
+export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
-  const [entregadores, setEntregadores] = useState([]);
   const [destinatarios, setDestinatarios] = useState([]);
+  const [entregadores, setEntregadores] = useState([]);
   const [productName, setProductName] = useState('Carregando...');
 
   const [destSelected, setDestSelected] = useState(null);
@@ -77,7 +77,7 @@ export default function EditEncomendas(props) {
     placeholder: () => ({
       // background: 'black',
       marginTop: '12px',
-      color: '#dddddd',
+      color: '#999999',
       // marginLeft: '6px',
     }),
     option: (provided, state) => ({
@@ -99,54 +99,18 @@ export default function EditEncomendas(props) {
     }),
     control: () => ({
       width: '405px',
-      // zIndex: '7',
     }),
-    // singleValue: (provided, state) => {
-    //   const opacity = state.isDisabled ? 0.5 : 1;
-    //   const transition = 'opacity 300ms';
-
-    //   return { ...provided, opacity, transition };
-    // },
   };
-
-  // const options = [
-  //   { value: 'blues', label: 'Blues' },
-  //   { value: 'rock', label: 'Rock' },
-  //   { value: 'jazz', label: 'Jazz' },
-  //   { value: 'orchestra', label: 'Orchestra' },
-  // ];
-
-  // const { fieldName, defaultValue, registerField, error } = useField(name);
 
   // LOAD ENCOMENDAS from api
   useEffect(() => {
     async function loadEncomendas() {
-      const findPage = props.location.search
-        .split('?')
-        .join('=')
-        .split('=');
-      const finalPage = findPage[4];
-
       const responseEncomendas = await api.get('encomendas', {
-        params: { page: finalPage },
+        params: { page: match.params.page },
       });
       setEncomendas(responseEncomendas.data);
-
-      const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id === Number(props.match.params.id)) {
-          setProductName(encomenda.product);
-        }
-      });
     }
     loadEncomendas();
-  }, []);
-  // LOAD ENTREGADORES from api
-  useEffect(() => {
-    async function loadEntregadores() {
-      const responseEntregadores = await api.get('ents');
-      setEntregadores(responseEntregadores.data);
-    }
-    loadEntregadores();
   }, []);
 
   // LOAD DESTINATÁRIOS from api
@@ -156,6 +120,15 @@ export default function EditEncomendas(props) {
       setDestinatarios(responseDestinatarios.data);
     }
     loadDestinatarios();
+  }, []);
+
+  // LOAD ENTREGADORES from api
+  useEffect(() => {
+    async function loadEntregadores() {
+      const responseEntregadores = await api.get('ents');
+      setEntregadores(responseEntregadores.data);
+    }
+    loadEntregadores();
   }, []);
 
   // CREATE SELECT DESTINATÁRIO ARRAY
@@ -170,74 +143,40 @@ export default function EditEncomendas(props) {
     label: entregador.nome,
   }));
 
-  // FIND DESTINATÁRIO PLACEHOLDER
-  const destPlaceholder = encomendas
-    .filter(dest => {
-      if (dest.id === Number(props.match.params.id)) return true;
-    })
-    .map(dest => dest.Recipient.nome)
-    .join();
+  // POST ENCOMENDA NA API
+  async function handleAddEncomenda({ product }) {
+    // const allInputs = {
+    //   recipient_id: destSelected.value,
+    //   deliveryman_id: entSelected.value,
+    //   product,
+    // };
+    // console.log(allInputs);
 
-  // FIND ENTREGADOR PLACEHOLDER
-  const entPlaceholder = encomendas
-    .filter(ent => {
-      if (ent.id === Number(props.match.params.id)) return true;
-    })
-    .map(ent => ent.Ent.nome)
-    .join();
-
-  // GET DESTINATÁRIO VALUE
-  const getDestValue = encomendas
-    .filter(
-      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-    )
-    .map(encomenda => encomenda.Recipient.id)
-    .join();
-  // GET ENTREGADOR VALUE
-  const getEntValue = encomendas
-    .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
-    .map(encomenda => encomenda.Ent.id)
-    .join();
-
-  // UPDATE ENCOMENDA NA API
-  async function handleEditEncomenda({ product }) {
     try {
       const allInputs = {
-        id: Number(props.match.params.id),
         recipient_id: destSelected.value,
         deliveryman_id: entSelected.value,
         product,
       };
+
       console.log(allInputs);
 
-      await api.put(`encomendas`, allInputs);
+      await api.post(`encomendas`, allInputs);
 
-      toast.success('Encomenda atualizada com sucesso');
+      toast.success('Encomenda adicionada com sucesso');
     } catch (err) {
-      toast.error('Erro ao atualizar a encomenda');
+      toast.error('Erro não foi possível adicionada a encomenda');
     }
   }
 
   function goBack() {
     history.push('/encomendas');
   }
-
-  function teste() {
-    const findPage = props.location.search
-      .split('?')
-      .join('=')
-      .split('=');
-
-    const finalPage = findPage[4];
-
-    console.log(finalPage);
-  }
-
   return (
     <Container>
-      <PropForm onSubmit={handleEditEncomenda}>
+      <PropForm onSubmit={handleAddEncomenda}>
         <div className="edit-back-save">
-          <h1>Edição encomendas</h1>
+          <h1>Cadastro de encomendas</h1>
 
           <div className="buttonss">
             <button type="button" onClick={goBack}>
@@ -263,7 +202,8 @@ export default function EditEncomendas(props) {
                 options={destArray}
                 onChange={setDestSelected}
                 isSearchable
-                placeholder={destPlaceholder}
+                placeholder="Jorge"
+                // placeholder={destPlaceholder}
                 autoFocus
               />
             </div>
@@ -277,20 +217,16 @@ export default function EditEncomendas(props) {
                 options={entArray}
                 onChange={setEntSelected}
                 isSearchable
-                placeholder={entPlaceholder}
+                placeholder="Fernandão"
               />
             </div>
           </div>
 
           <div className="prod">
             <strong>Nome do produto:</strong>
-            <Input name="product" type="text" placeholder={productName} />
+            <Input name="product" type="text" placeholder="Taco de golf" />
           </div>
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
-
-          <button type="button" onClick={teste}>
-            teste
-          </button>
         </Content>
       </PropForm>
     </Container>
