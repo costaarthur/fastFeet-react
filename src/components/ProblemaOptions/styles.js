@@ -20,15 +20,16 @@ export const ThreeDots = styled.button`
   height: 30px;
   border: none;
   background-color: #ffffff;
+  /* z-index: 1; */
 `;
 
 export const OptionList = styled.div`
   background: #ffffff;
   position: absolute;
-  z-index: 1;
+  z-index: 11;
   height: 95px;
   width: 200px;
-  left: calc(50% - 70px);
+  left: calc(50% - 116px);
   top: 47px;
   /* padding: 5px; */
   box-shadow: 0px 0px 2px #00000026;
@@ -37,7 +38,7 @@ export const OptionList = styled.div`
   &::before {
     content: '';
     position: absolute;
-    z-index: 2;
+    z-index: 13;
     left: calc(50% - 1px);
     top: -5px;
     width: 0;
@@ -45,6 +46,7 @@ export const OptionList = styled.div`
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-bottom: 5px solid #ffffff;
+    box-shadow: 0px 0px 2px #00000026;
   }
   /*position: relative;
   flex-direction: column;
@@ -67,7 +69,7 @@ export const Option = styled.div`
     color: #999999;
     background-color: #ffffff;
 
-    width: 200px;
+    width: 180px;
     height: 19px;
 
     margin: 11px 0px;
@@ -81,7 +83,7 @@ export const Option = styled.div`
 
     & + button {
     border-top: 1px solid rgba(255, 255, 255, 0.4);
-    z-index: 2;
+    z-index: 12;
     /* margin-top: 10px; */
     /* padding-top: 10px; */
   }

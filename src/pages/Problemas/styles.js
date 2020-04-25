@@ -47,25 +47,6 @@ export const Content = styled.div`
       margin-left: 10px;
     }
   }
-
-  ul {
-    /* background: #ffffff; */
-    li {
-      display: grid;
-      text-align: left;
-      height: 90%;
-      margin-bottom: 20px;
-      background: blue;
-      background: #ffffff;
-      line-height: 57px;
-      grid-template-columns: 10% 84.5% 5.5%;
-      h1 {
-        color: #666666;
-      font-size: 16px;
-      margin-left: 10px;
-      }
-    }
-  }
   `;
 
 export const Problema = styled.li`
@@ -77,6 +58,18 @@ export const Problema = styled.li`
   background: #ffffff;
   line-height: 57px;
   grid-template-columns: 10% 84.5% 5.5%;
+
+  h2 {
+    color: #666666;
+    font-size: 16px;
+    /* color: #ffffff; */
+    margin-left: 10px;
+
+    white-space: nowrap;
+    max-width: 825px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
   h1 {
     color: #666666;

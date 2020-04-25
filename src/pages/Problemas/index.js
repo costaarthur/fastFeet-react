@@ -37,7 +37,7 @@ export default function Problemas() {
           {problemas.map(problema => (
             <Problema key={problema.id}>
               <h1>#{problema.Encomenda.id}</h1>
-              <h1>{problema.description}</h1>
+              <h2>{problema.description}</h2>
               <h1>
                 <ProblemaOptions selectedProblema={problema} />
               </h1>
