@@ -22,6 +22,7 @@ import { store } from '../../store';
 export default function Encomendas() {
   const [encomendas, setEncomendas] = useState([]);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
 
   const { token } = store.getState().auth;
 
@@ -57,9 +58,11 @@ export default function Encomendas() {
   }
 
   useEffect(() => {
+    const q = search;
+
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
-        params: { page },
+        params: { page, q },
       });
       const dataEncomendas = responseEncomendas.data.map(encomenda => {
         const status = getStatus(encomenda);
@@ -77,7 +80,7 @@ export default function Encomendas() {
       }
     }
     loadEncomendas();
-  }, [page]);
+  }, [page, search]);
 
   // GO ADD ENCOMENDA
   function handleAddEncomenda() {
@@ -89,13 +92,15 @@ export default function Encomendas() {
       setPage(page - 1);
     }
 
-    // if (encomendas.length < 1) {
-    //   return;
-    // }
-
     if (minusPlus === 'plus' && encomendas.length > 1) {
       setPage(page + 1);
     }
+  }
+
+  // SEARCH INPUT
+  function handleInputChange(e) {
+    setSearch(e.target.value);
+    console.log(search);
   }
 
   return (
@@ -104,7 +109,12 @@ export default function Encomendas() {
         <header>Gerenciando encomendas</header>
 
         <div className="find-cadastro">
-          <input type="text" placeholder="Buscar por encomendas" id="" />
+          <input
+            type="text"
+            placeholder="Buscar por encomendas"
+            id=""
+            onChange={handleInputChange}
+          />
           {/* <FiSearch /> */}
           <CadastroButton type="button" onClick={handleAddEncomenda}>
             <FiPlus size={22} />

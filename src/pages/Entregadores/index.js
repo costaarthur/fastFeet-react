@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FiPlus } from 'react-icons/fi';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 import { Container, Content, CadastroButton, Entregador } from './styles';
 import EntregadorOptions from '../../components/EntregadorOptions';
@@ -20,10 +21,7 @@ export default function Entregadores() {
   }, []);
 
   function handleAddEntregador() {
-    console.log(entregadores);
-    // console.log(recipients);
-    // console.log(token);
-    setPage(2);
+    history.push(`/entregadores/add`);
   }
 
   return (

@@ -48,12 +48,12 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
     try {
       console.log(selectedEncomenda);
       const toBeDeleted = { id: selectedEncomenda.id };
-      console.log(toBeDeleted);
+      // console.log(toBeDeleted);
       await api.delete(`encomendas`, toBeDeleted);
       console.log('entrei');
 
-      console.log(selectedEncomenda);
-      console.log(toBeDeleted);
+      // console.log(selectedEncomenda);
+      // console.log(toBeDeleted);
       handleToggleVisible();
 
       toast.success('Encomenda cancelada com sucesso');

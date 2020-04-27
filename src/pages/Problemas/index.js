@@ -18,9 +18,9 @@ export default function Problemas() {
     loadProblemas();
   }, []);
 
-  function handleConsole() {
-    console.log(problemas);
-  }
+  // function handleConsole() {
+  //   console.log(problemas);
+  // }
 
   return (
     <Container>
@@ -54,7 +54,7 @@ export default function Problemas() {
           </li> */}
         </ul>
 
-        <button type="button" onClick={handleConsole} />
+        {/* <button type="button" onClick={handleConsole} /> */}
       </Content>
     </Container>
   );

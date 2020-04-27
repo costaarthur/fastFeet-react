@@ -60,7 +60,7 @@ export default function ProblemasOptions({ selectedProblema }) {
         <div className="modal-square">
           <div className="info-prob">
             <strong>VISUALIZAR PROBLEMA</strong>
-            <h5>{selectedProblema.description}, </h5>
+            <h5>{selectedProblema.description}</h5>
           </div>
         </div>
       </ProbOptModal>

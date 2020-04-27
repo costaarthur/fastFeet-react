@@ -13,6 +13,8 @@ import EditEntregadores from '../pages/EditEntregadores';
 import EditDestinatarios from '../pages/EditDestinatarios';
 
 import AddEncomendas from '../pages/AddEncomendas';
+import AddEntregadores from '../pages/AddEntregadores';
+import AddDestinatarios from '../pages/AddDestinatarios';
 
 export default function Routes() {
   return (
@@ -38,6 +40,18 @@ export default function Routes() {
 
       {/* adds */}
       <Route path="/encomendas/add" exact component={AddEncomendas} isPrivate />
+      <Route
+        path="/entregadores/add"
+        exact
+        component={AddEntregadores}
+        isPrivate
+      />
+      <Route
+        path="/destinatarios/add"
+        exact
+        component={AddDestinatarios}
+        isPrivate
+      />
     </Switch>
   );
 }

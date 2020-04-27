@@ -222,16 +222,16 @@ export default function EditEncomendas(props) {
     history.push('/encomendas');
   }
 
-  function teste() {
-    const findPage = props.location.search
-      .split('?')
-      .join('=')
-      .split('=');
+  // function teste() {
+  //   const findPage = props.location.search
+  //     .split('?')
+  //     .join('=')
+  //     .split('=');
 
-    const finalPage = findPage[4];
+  //   const finalPage = findPage[4];
 
-    console.log(finalPage);
-  }
+  //   console.log(finalPage);
+  // }
 
   return (
     <Container>
@@ -286,11 +286,6 @@ export default function EditEncomendas(props) {
             <strong>Nome do produto:</strong>
             <Input name="product" type="text" placeholder={productName} />
           </div>
-          {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
-
-          <button type="button" onClick={teste}>
-            teste
-          </button>
         </Content>
       </PropForm>
     </Container>

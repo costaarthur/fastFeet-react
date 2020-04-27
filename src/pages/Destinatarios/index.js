@@ -6,6 +6,7 @@ import { Container, Content, CadastroButton, Destinatario } from './styles';
 import DestinatarioOptions from '../../components/DestinatarioOptions';
 
 import api from '../../services/api';
+import history from '../../services/history';
 
 export default function Destinatarios() {
   const [destinatarios, setDestinatarios] = useState([]);
@@ -20,7 +21,7 @@ export default function Destinatarios() {
   }, []);
 
   function handleAddDestinatario() {
-    console.log(destinatarios);
+    history.push(`/destinatarios/add`);
   }
 
   return (
