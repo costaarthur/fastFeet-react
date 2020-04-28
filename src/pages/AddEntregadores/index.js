@@ -40,22 +40,6 @@ export default function AddEntregadores({ match }) {
     loadEntregadores();
   }, []);
 
-  // FIND ENTREGADOR PLACEHOLDER
-  const entPlaceholder = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.nome)
-    .join();
-
-  // FIND EMAIL PLACEHOLDER
-  const emailPlaceholder = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.email)
-    .join();
-
   // FIND PROFILE PIC PREVIEW
   const profilePreview = entregadores
     .filter(ent => {
@@ -64,20 +48,15 @@ export default function AddEntregadores({ match }) {
     .map(ent => ent.avatar);
   // .join();
 
-  // UPDATE ENTREGADOR NA API
-  async function handleEditEntregador(data) {
-    console.log(data);
-
+  // ADD ENTREGADOR NA API
+  async function handleAddEntregador(data) {
     try {
       if (!data.nome) return toast.error('Você precisa informar um nome');
-      if (!data.avatar_id)
-        return toast.error('Você precisa selecionar um avatar');
-      console.log(data);
-      await api.put(`ents`, data);
-
-      toast.success('Entregador atualizado com sucesso');
+      if (!data.email) return toast.error('Você precisa informar o email');
+      await api.post(`ents`, data);
+      toast.success('Entregador cadastrado com sucesso');
     } catch (err) {
-      toast.error('Erro ao atualizar o entregador');
+      toast.error('Erro ao cadastrar o entregador');
     }
   }
 
@@ -87,9 +66,9 @@ export default function AddEntregadores({ match }) {
 
   return (
     <Container>
-      <PropForm onSubmit={handleEditEntregador}>
+      <PropForm onSubmit={handleAddEntregador}>
         <div className="edit-back-save">
-          <h1>Edição entregadores</h1>
+          <h1>Cadastrar entregadores</h1>
 
           <div className="buttonss">
             <button type="button" onClick={goBack}>
@@ -115,19 +94,13 @@ export default function AddEntregadores({ match }) {
           <div className="nome-email">
             <div className="nome">
               <strong>Nome:</strong>
-              <Input name="nome" type="text" placeholder={entPlaceholder} />
+              <Input name="nome" type="text" placeholder="Mario" />
             </div>
 
             <div className="email">
               <strong>Email:</strong>
-              <Input
-                name="email"
-                type="text"
-                value={emailPlaceholder}
-                disabled
-              />
+              <Input name="email" type="text" placeholder="email@hotmail.com" />
             </div>
-            {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
           </div>
         </Content>
       </PropForm>

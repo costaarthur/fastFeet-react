@@ -27,32 +27,19 @@ export default function EditEncomendas(props) {
   const destinatarioRef = useRef(null);
   const entregadorRef = useRef(null);
 
-  const options = [
-    { value: 'blues', label: 'Blues' },
-    { value: 'rock', label: 'Rock' },
-    { value: 'jazz', label: 'Jazz' },
-    { value: 'orchestra', label: 'Orchestra' },
-  ];
-
   const customStyles = {
     container: () => ({
-      // background: 'green',
       height: '45px',
       border: '1px solid #dddddd',
       margin: '9px 0 0 0',
-      // margin: '34px auto',
     }),
     input: () => ({
-      // background: 'green',
       textAlign: 'left',
       marginTop: '12px',
       marginLeft: '6px',
     }),
     menu: () => ({
       background: '#ffffff',
-      // background: '#7d40e7',
-      // position: 'relative',
-      // top: '-260px',
       border: '1px solid #dddddd',
       position: 'fixed !important',
       width: '405px',
@@ -67,13 +54,12 @@ export default function EditEncomendas(props) {
       background: 'pink',
     }),
     dropdownIndicator: () => ({
-      // color: 'pink',
-      // background: 'pink',
       position: 'relative',
-      top: '-15px',
+      top: '-18px',
       left: '380px',
       color: '#dddddd',
     }),
+    indicatorSeparator: () => ({}),
     placeholder: () => ({
       // background: 'black',
       marginTop: '12px',
@@ -83,11 +69,8 @@ export default function EditEncomendas(props) {
     option: (provided, state) => ({
       ...provided,
       borderBottom: '1px dotted purple',
-      // color: state.isSelected ? 'red' : 'blue',
       color: '#7d40e7',
       padding: '20px',
-      // fontColor: 'white',
-      // zIndex: '5',
     }),
     singleValue: () => ({
       marginTop: '12px',
@@ -97,16 +80,12 @@ export default function EditEncomendas(props) {
     clearIndicator: () => ({
       background: 'purple',
     }),
+    // indicatorsContainer: () => ({
+    //   overflow: 'hidden',
+    // }),
     control: () => ({
       width: '405px',
-      // zIndex: '7',
     }),
-    // singleValue: (provided, state) => {
-    //   const opacity = state.isDisabled ? 0.5 : 1;
-    //   const transition = 'opacity 300ms';
-
-    //   return { ...provided, opacity, transition };
-    // },
   };
 
   // const options = [

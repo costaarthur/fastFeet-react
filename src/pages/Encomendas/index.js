@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { MdLens, MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import {
+  MdLens,
+  MdChevronLeft,
+  MdChevronRight,
+  MdSearch,
+} from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
 import EncomendaOptions from '../../components/EncomendaOptions';
@@ -107,8 +112,8 @@ export default function Encomendas() {
     <Container>
       <Content>
         <header>Gerenciando encomendas</header>
-
         <div className="find-cadastro">
+          {/* <MdSearch /> */}
           <input
             type="text"
             placeholder="Buscar por encomendas"

@@ -59,7 +59,7 @@ export default function EditDestinatarios({ match }) {
 
   // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
-    console.log(match);
+    console.log(selectedDestinatario);
     try {
       // const allInputs = {
       //   id: Number(match.params.id),
