@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Form, useField, Input } from '@rocketseat/unform';
+import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
@@ -13,7 +13,7 @@ import history from '../../services/history';
 
 // import AsyncSelect from '../../components/Form/select';
 
-import { Container, Content, PropForm, SelectForm } from './styles';
+import { Container, Content, PropForm } from './styles';
 
 export default function EditEncomendas(props) {
   const [encomendas, setEncomendas] = useState([]);
@@ -23,9 +23,6 @@ export default function EditEncomendas(props) {
 
   const [destSelected, setDestSelected] = useState(null);
   const [entSelected, setEntSelected] = useState(null);
-
-  const destinatarioRef = useRef(null);
-  const entregadorRef = useRef(null);
 
   const customStyles = {
     container: () => ({
@@ -66,7 +63,7 @@ export default function EditEncomendas(props) {
       color: '#dddddd',
       // marginLeft: '6px',
     }),
-    option: (provided, state) => ({
+    option: provided => ({
       ...provided,
       borderBottom: '1px dotted purple',
       color: '#7d40e7',
@@ -187,8 +184,6 @@ export default function EditEncomendas(props) {
         deliveryman_id: entSelected.value,
         product,
       };
-      console.log(allInputs);
-
       await api.put(`encomendas`, allInputs);
 
       toast.success('Encomenda atualizada com sucesso');
@@ -200,17 +195,6 @@ export default function EditEncomendas(props) {
   function goBack() {
     history.push('/encomendas');
   }
-
-  // function teste() {
-  //   const findPage = props.location.search
-  //     .split('?')
-  //     .join('=')
-  //     .split('=');
-
-  //   const finalPage = findPage[4];
-
-  //   console.log(finalPage);
-  // }
 
   return (
     <Container>

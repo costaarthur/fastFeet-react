@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { MdMoreHoriz } from 'react-icons/md';
+import { MdSearch } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
 import { Container, Content, CadastroButton, Destinatario } from './styles';
@@ -24,13 +24,27 @@ export default function Destinatarios() {
     history.push(`/destinatarios/add`);
   }
 
+  function handleInputChange(e) {
+    console.log(e.target.value);
+  }
+
   return (
     <Container>
       <Content>
         <header>Gerenciando destinatários</header>
 
         <div className="find-cadastro">
-          <input type="text" placeholder="Buscar por destinatários" />
+          <div className="search-input">
+            <div>
+              <MdSearch />
+            </div>
+            <input
+              type="text"
+              placeholder="Buscar por encomendas"
+              id=""
+              onChange={handleInputChange}
+            />
+          </div>
           <CadastroButton type="button" onClick={handleAddDestinatario}>
             <FiPlus size={22} />
             <h3>Cadastrar</h3>

@@ -22,14 +22,10 @@ import {
   Pagination,
 } from './styles';
 
-import { store } from '../../store';
-
-export default function Encomendas(props) {
+export default function Encomendas() {
   const [encomendas, setEncomendas] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-
-  const { token } = store.getState().auth;
 
   function getStatus(encomenda) {
     if (encomenda.canceled_at) {
@@ -67,9 +63,7 @@ export default function Encomendas(props) {
   }
 
   useEffect(() => {
-    console.log(props);
     const q = search;
-    console.log('q de cima: ', q);
 
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
@@ -111,7 +105,6 @@ export default function Encomendas(props) {
   // SEARCH INPUT
   function handleInputChange(e) {
     setSearch(e.target.value);
-    // console.log(search);
   }
 
   return (
@@ -119,17 +112,19 @@ export default function Encomendas(props) {
       <Content>
         <header>Gerenciando encomendas</header>
         <div className="find-cadastro">
-          {/* <MdSearch /> */}
-          <input
-            type="text"
-            placeholder="Buscar por encomendas"
-            id=""
-            onChange={handleInputChange}
-          />
-          {/* <FiSearch /> */}
+          <div className="search-input">
+            <div>
+              <MdSearch />
+            </div>
+            <input
+              type="text"
+              placeholder="Buscar por encomendas"
+              id=""
+              onChange={handleInputChange}
+            />
+          </div>
           <CadastroButton type="button" onClick={handleAddEncomenda}>
             <FiPlus size={22} />
-            {/* <span>Cadastrar</span> */}
             <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
@@ -201,19 +196,3 @@ export default function Encomendas(props) {
     </Container>
   );
 }
-
-// GREEN
-// background: #dff0df;
-// color: #2ca42b;
-
-// YELLOW
-// background: #f0f0df;
-// color: #c1bc35;
-
-// BLUE
-// background: #bad2ff;
-// color: #4d85ee;
-
-// RED
-// background: #fab0b0;
-// color: #de3b3b;

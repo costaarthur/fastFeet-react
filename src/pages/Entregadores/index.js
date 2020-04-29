@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import { MdMoreHoriz } from 'react-icons/md';
+import { MdSearch } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
 import api from '../../services/api';
@@ -24,13 +24,26 @@ export default function Entregadores() {
     history.push(`/entregadores/add`);
   }
 
+  function handleInputChange(e) {
+    console.log(e.target.value);
+  }
+
   return (
     <Container>
       <Content>
         <header>Gerenciando entregadores</header>
-
         <div className="find-cadastro">
-          <input type="text" placeholder="Buscar por entregadores" />
+          <div className="search-input">
+            <div>
+              <MdSearch />
+            </div>
+            <input
+              type="text"
+              placeholder="Buscar por encomendas"
+              id=""
+              onChange={handleInputChange}
+            />
+          </div>
           <CadastroButton type="button" onClick={handleAddEntregador}>
             <FiPlus size={22} />
             <h3>Cadastrar</h3>

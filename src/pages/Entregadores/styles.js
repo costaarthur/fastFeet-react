@@ -57,17 +57,33 @@ export const Content = styled.div`
       display: flex;
       justify-content: space-between;
 
-      input {
-        background: #ffffff 0% 0% no-repeat padding-box;
+      div.search-input {
         width: 237px;
         height: 36px;
+
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 22px;
         border-radius: 4px;
         border: 1px solid #dddddd;
-        margin-bottom: 22px;
-        padding-left: 8px;
+
+        div {
+          background: #ffffff;
+          width: 40px;
+
+          svg {
+            width: 16px;
+            height: 16px;
+            margin: 10px 0;
+            color: #999999;
+          }
+        }
+        input {
+          background: #ffffff 0% 0% no-repeat padding-box;
+          border: none;
+          width: 197px;
+        }
       }
-
-
     }
   }
 

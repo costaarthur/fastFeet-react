@@ -53,21 +53,37 @@ export const Content = styled.div`
     }
 
     div.find-cadastro {
-      background: #f5f5f5;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: space-between;
+
+    div.search-input {
+      width: 237px;
+      height: 36px;
+
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
+      margin-bottom: 22px;
+      border-radius: 4px;
+      border: 1px solid #dddddd;
+
+      div {
+        background: #ffffff;
+        width: 40px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          margin: 10px 0;
+          color: #999999;
+        }
+      }
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
-        width: 237px;
-        height: 36px;
-        border-radius: 4px;
-        border: 1px solid #dddddd;
-        margin-bottom: 22px;
-        padding-left: 8px;
+        border: none;
+        width: 197px;
       }
-
-
     }
   }
 

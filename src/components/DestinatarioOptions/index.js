@@ -23,23 +23,14 @@ export default function DestinatarioOptions({ selectedDestinatario }) {
   }
 
   async function handleDeleteDestinatario() {
-    console.log('entrei');
-    // try {
-    //   console.log('entreeei1');
-    //   const toBeDeleted = {
-    //     email: selectedDestinatario.email,
-    //     nome: selectedDestinatario.nome,
-    //   };
-
-    //   console.log(toBeDeleted);
-    //   await api.del('ents', toBeDeleted);
-    //   console.log(toBeDeleted);
-    //   console.log('entreeei13');
-
-    //   toast.success('Destinatário deletado com sucesso');
-    // } catch (err) {
-    //   toast.error('O destinatário não foi deletado');
-    // }
+    try {
+      const toBeDeleted = { id: selectedDestinatario.id };
+      await api.delete(`recipients`, { data: toBeDeleted });
+      handleToggleVisible();
+      toast.success('Destinatário deletado com sucesso');
+    } catch (err) {
+      toast.error('O destinatário não foi deletado');
+    }
   }
 
   return (

@@ -25,7 +25,6 @@ import {
 Modal.setAppElement('#root');
 
 export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
-  console.log(selectedEncomenda);
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -47,15 +46,8 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   async function handleDeleteEncomenda() {
     try {
       const toBeDeleted = { id: selectedEncomenda.id };
-      console.log(toBeDeleted);
-      // console.log(toBeDeleted);
       await api.delete(`encomendas`, { data: toBeDeleted });
-      console.log('entrei');
-
-      // console.log(selectedEncomenda);
-      // console.log(toBeDeleted);
       handleToggleVisible();
-
       toast.success('Encomenda cancelada com sucesso');
     } catch (err) {
       toast.error('A encomenda não foi cancelada');
@@ -67,7 +59,7 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
       <EncOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        onAfterOpen={() => console.log(selectedEncomenda)}
+      // onAfterOpen={() => console.log(selectedEncomenda)}
       >
         <div className="modal-square">
           <div className="info-enc">

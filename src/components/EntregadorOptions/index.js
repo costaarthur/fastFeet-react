@@ -25,17 +25,11 @@ export default function EntregadorOptions({ selectedEntregador }) {
 
   async function handleDeleteEntregador() {
     try {
-      console.log('entreeei1');
       const toBeDeleted = {
         email: selectedEntregador.email,
         nome: selectedEntregador.nome,
       };
-
-      console.log(toBeDeleted);
-      await api.del('ents', toBeDeleted);
-      console.log(toBeDeleted);
-      console.log('entreeei13');
-
+      await api.delete('ents', { data: toBeDeleted });
       toast.success('Entregador deletado com sucesso');
     } catch (err) {
       toast.error('O entregador não foi deletado');

@@ -36,75 +36,75 @@ export const CadastroButton = styled.button`
 `;
 
 export const Status = styled.div`
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        background: ${props => props.backgrounds};
-        height: 25px;
-        width: ${props => props.width};
-        align-self: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: ${props => props.backgrounds};
+  height: 25px;
+  width: ${props => props.width};
+  align-self: center;
+  border-radius: 12px;
 
-        border-radius: 12px;
+  svg {
+    margin: 0 6px;
+    color: ${props => props.colors};
+  }
 
-        svg {
-          margin: 0 6px;
-          color: ${props => props.colors};
-        }
-
-
-        h2 {
-        font-size: 14px;
-        font-weight: bold;
-        color: ${props => props.colors};
-        /* color: ${props =>
-    props.colors === 'blue' ? '#444444' : '#39348a'}; */
-
-    /* width: ${props => {
-    switch (props.size) {
-      case 'lg':
-        return '800';
-      default:
-        return '480';
-    }
-  }}px; */
-
-
-        text-align: center;
-        }
-      }
+  h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: ${props => props.colors};
+    text-align: center;
+  }
 `;
 
 export const Content = styled.div`
-    max-width: 1140px;
-    width: 1200px;
+  max-width: 1140px;
+  width: 1200px;
+  background: #f5f5f5;
+  margin: 34px auto;
+  font-size: 24;
+
+  header {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+    margin-bottom: 34px;
+  }
+
+  div.find-cadastro {
     background: #f5f5f5;
-    margin: 34px auto;
-    font-size: 24;
+    display: flex;
+    justify-content: space-between;
 
-    header {
-      text-align: left;
-      font-size: 24px;
-      font-weight: bold;
-      color: #444444;
-      margin-bottom: 34px;
-    }
+    div.search-input {
+      width: 237px;
+      height: 36px;
 
-    div.find-cadastro {
-      background: #f5f5f5;
       display: flex;
-      justify-content: space-between;
+      flex-direction: row;
+      margin-bottom: 22px;
+      border-radius: 4px;
+      border: 1px solid #dddddd;
+
+      div {
+        background: #ffffff;
+        width: 40px;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          margin: 10px 0;
+          color: #999999;
+        }
+      }
 
       input {
         background: #ffffff 0% 0% no-repeat padding-box;
-        width: 237px;
-        height: 36px;
-        border-radius: 4px;
-        border: 1px solid #dddddd;
-        margin-bottom: 22px;
-        padding-left: 8px;
+        border: none;
+        width: 197px;
       }
-
-
     }
   }
 
@@ -113,20 +113,15 @@ export const Content = styled.div`
     display: grid;
     text-align: left;
     grid-template-columns: 4% 24% 24% 14.66% 14.66% 13.6% 5.5%;
-    margin-bottom: 14px
+    margin-bottom: 14px;
   }
-    strong {
-      color: #444444;
-      font-size: 16px;
-      text-align: left;
-      margin-left: 10px;
-    }
+  strong {
+    color: #444444;
+    font-size: 16px;
+    text-align: left;
+    margin-left: 10px;
   }
-
-  ul {
-    /* background: #ffffff; */
-  }
-  `;
+`;
 
 export const Encomenda = styled.li`
   display: grid;
