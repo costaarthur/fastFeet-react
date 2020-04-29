@@ -41,7 +41,7 @@ export const Status = styled.div`
         align-items: center;
         background: ${props => props.backgrounds};
         height: 25px;
-        width: 99px;
+        width: ${props => props.width};
         align-self: center;
 
         border-radius: 12px;

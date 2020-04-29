@@ -24,7 +24,7 @@ import {
 
 import { store } from '../../store';
 
-export default function Encomendas() {
+export default function Encomendas(props) {
   const [encomendas, setEncomendas] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
@@ -37,6 +37,7 @@ export default function Encomendas() {
         statusName: 'Cancelada',
         statusColor: '#de3b3b',
         statusBackground: '#fab0b0',
+        statusWidth: '110px',
       };
     }
     if (encomenda.signature_id) {
@@ -44,6 +45,7 @@ export default function Encomendas() {
         statusName: 'Entregue',
         statusColor: '#2ca42b',
         statusBackground: '#dff0df',
+        statusWidth: '99px',
       };
     }
     if (encomenda.start_date) {
@@ -51,6 +53,7 @@ export default function Encomendas() {
         statusName: 'Retirada',
         statusColor: '#4d85ee',
         statusBackground: '#bad2ff',
+        statusWidth: '97px',
       };
     }
     if (encomenda.start_date === null) {
@@ -58,12 +61,15 @@ export default function Encomendas() {
         statusName: 'Pendente',
         statusColor: '#c1bc35',
         statusBackground: '#f0f0df',
+        statusWidth: '102px',
       };
     }
   }
 
   useEffect(() => {
+    console.log(props);
     const q = search;
+    console.log('q de cima: ', q);
 
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
@@ -77,7 +83,7 @@ export default function Encomendas() {
         };
       });
       if (dataEncomendas.length === 0) {
-        setPage(page - 1);
+        setPage(page > 1 ? page - 1 : 2);
       }
 
       if (dataEncomendas.length > 0) {
@@ -105,7 +111,7 @@ export default function Encomendas() {
   // SEARCH INPUT
   function handleInputChange(e) {
     setSearch(e.target.value);
-    console.log(search);
+    // console.log(search);
   }
 
   return (
@@ -160,6 +166,7 @@ export default function Encomendas() {
                 colors={encomenda.statusColor}
                 backgrounds={encomenda.statusBackground}
                 statuss={encomenda.statusName}
+                width={encomenda.statusWidth}
               >
                 <MdLens />
                 <h2>{encomenda.statusName}</h2>

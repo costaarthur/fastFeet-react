@@ -46,10 +46,10 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
 
   async function handleDeleteEncomenda() {
     try {
-      console.log(selectedEncomenda);
       const toBeDeleted = { id: selectedEncomenda.id };
+      console.log(toBeDeleted);
       // console.log(toBeDeleted);
-      await api.delete(`encomendas`, toBeDeleted);
+      await api.delete(`encomendas`, { data: toBeDeleted });
       console.log('entrei');
 
       // console.log(selectedEncomenda);

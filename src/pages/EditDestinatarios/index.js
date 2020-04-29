@@ -34,11 +34,13 @@ export default function EditDestinatarios({ match }) {
   }, []);
 
   // FIND SELECTED DESTINATÁRIO
-  const selectedDestinatario = destinatarios
-    .filter(dest => {
-      if (dest.id === Number(match.params.id)) return true;
-    })
-    .map(dest => dest);
+  const selectedDestinatario = destinatarios.find(
+    dest => dest.id === Number(match.params.id)
+  );
+  console.log(selectedDestinatario);
+  console.log(destinatarios);
+
+  // .map(dest => dest);
   // .join();
 
   // FIND DESTINATÁRIO PLACEHOLDER
@@ -104,7 +106,7 @@ export default function EditDestinatarios({ match }) {
             <Input
               name="email"
               type="email"
-              value={selectedDestinatario.map(dest => dest.email)}
+              value={selectedDestinatario?.email}
             // placeholder={selectedDestinatario[0].nome)}
             // placeholder={selectedDestinatario.nome}
             />
@@ -116,7 +118,7 @@ export default function EditDestinatarios({ match }) {
             <Input
               name="nome"
               type="text"
-              placeholder={selectedDestinatario.map(dest => dest.nome)}
+              placeholder={selectedDestinatario?.nome}
             // placeholder={selectedDestinatario[0].nome)}
             // placeholder={selectedDestinatario.nome}
             />
@@ -129,7 +131,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="rua"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.rua)}
+                placeholder={selectedDestinatario?.rua}
               />
             </div>
 
@@ -138,7 +140,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="numero"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.numero)}
+                placeholder={selectedDestinatario?.numero}
               />
             </div>
 
@@ -147,7 +149,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="complemento"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.complemento)}
+                placeholder={selectedDestinatario?.complemento}
               />
             </div>
           </div>
@@ -158,7 +160,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="cidade"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.cidade)}
+                placeholder={selectedDestinatario?.cidade}
               />
             </div>
 
@@ -167,7 +169,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="estado"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.estado)}
+                placeholder={selectedDestinatario?.estado}
               />
             </div>
 
@@ -176,7 +178,7 @@ export default function EditDestinatarios({ match }) {
               <Input
                 name="cep"
                 type="text"
-                placeholder={selectedDestinatario.map(dest => dest.cep)}
+                placeholder={selectedDestinatario?.cep}
               />
             </div>
           </div>
