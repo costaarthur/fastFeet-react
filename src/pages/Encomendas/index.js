@@ -8,9 +8,7 @@ import {
 } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
-import { toast } from 'react-toastify';
 import EncomendaOptions from '../../components/EncomendaOptions';
-// import Pagination from '../../components/Pagination';
 
 import api from '../../services/api';
 import history from '../../services/history';
@@ -29,6 +27,7 @@ export default function Encomendas() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [filter, setFilter] = useState('');
+  const [filterHasError, setFilterHasError] = useState(false);
 
   function getStatus(encomenda) {
     if (encomenda.canceled_at) {
@@ -79,30 +78,25 @@ export default function Encomendas() {
           ...status,
         };
       });
-
+      // console.log(responseEncomendas);
       if (dataEncomendas.length === 0) {
         setPage(page <= 0 ? 1 : page - 1);
-        // setPage(page > 1 ? page - 1 : 2);
-        // setPage(page === 0 ? page + 1 : page - 1);
       }
-
-      // if (page <= 0) {
-      //   setPage(page + 1);
-      // }
 
       if (dataEncomendas.length > 0) {
         setEncomendas(dataEncomendas);
+        setFilterHasError(false);
       }
     }
     loadEncomendas();
   }, [page, filter]);
+  // }, [page, filter, encomendas]);
 
-  // MEMO NEVER 0 PAGE
+  // MEMO PAGE NEVER 0
   const pageNeverZero = useMemo(() => {
-    // if (encomendas.length === 0) {
     if (page === 0) {
       setPage(1);
-      toast.error('Tente filtrar novamente');
+      setFilterHasError(true);
       setEncomendas([]);
     }
   }, [page]);
@@ -157,7 +151,16 @@ export default function Encomendas() {
             <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
-        {/* <span>Tente filtrar novamente</span> */}
+
+        {filterHasError === true ? (
+          <div className="filter-error">
+            <span>Produto não existe</span>
+          </div>
+        ) : (
+            <div className="filter-error">
+              <span> </span>
+            </div>
+          )}
 
         <div className="ul-header">
           <strong>ID</strong>

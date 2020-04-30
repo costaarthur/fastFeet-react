@@ -44,13 +44,19 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   }
 
   async function handleDeleteEncomenda() {
-    try {
-      const toBeDeleted = { id: selectedEncomenda.id };
-      await api.delete(`encomendas`, { data: toBeDeleted });
-      handleToggleVisible();
-      toast.success('Encomenda cancelada com sucesso');
-    } catch (err) {
-      toast.error('A encomenda não foi cancelada');
+    const confirmCancel = window.confirm(
+      'Você deseja cancelar essa encomenda?'
+    );
+
+    if (confirmCancel === true) {
+      try {
+        const toBeDeleted = { id: selectedEncomenda.id };
+        await api.delete(`encomendas`, { data: toBeDeleted });
+        handleToggleVisible();
+        toast.success('Encomenda cancelada com sucesso');
+      } catch (err) {
+        toast.error('A encomenda não foi cancelada');
+      }
     }
   }
 
@@ -78,18 +84,14 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
           <div className="datas">
             <strong>Datas</strong>
             <h4>retirada: {selectedEncomenda.start_date}</h4>
-            {/* <h5></h5> */}
-            {/* <vr /> */}
             <h4>entrega: {selectedEncomenda.end_date}</h4>
-            {/* <h5></h5> */}
           </div>
 
           <div className="sign-group">
             <strong>Assinatura do destinatário</strong>
             <img
-              // src="https://www.leticiaradaic.com.br/wp-content/uploads/2013/06/assinatura_stevejobs1.jpg"
               src={selectedEncomenda.Sign ? selectedEncomenda.Sign.url : ''}
-              alt=""
+              alt="sign"
             />
           </div>
         </div>

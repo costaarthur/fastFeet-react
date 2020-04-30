@@ -84,7 +84,7 @@ export const Content = styled.div`
 
       display: flex;
       flex-direction: row;
-      margin-bottom: 22px;
+      /* margin-bottom: 22px; */
       border-radius: 4px;
       border: 1px solid #dddddd;
 
@@ -135,6 +135,18 @@ export const Content = styled.div`
         justify-self: center;
         margin-top: 4px;
       }
+    }
+  }
+
+  div.filter-error {
+    align-content: left;
+    text-align: left;
+    margin-top: 4px;
+    margin-bottom: 22px;
+    span {
+      color: #de3b3b;
+      font-size: 14px;
+      margin-left: 10px;
     }
   }
 
