@@ -66,21 +66,25 @@ export const Option = styled.div`
     border: none;
     color: #999999;
     background-color: #ffffff;
+    padding-top: 1px;
 
-    margin: 11px 0px;
+
+    margin: 6px 0px;
 
     text-align: left;
 
     svg {
       margin-right: 5px;
       align-self: left;
+      position: relative;
+      top: 2px;
     }
 
     & + button {
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    z-index: 2;
-    /* margin-top: 10px; */
-    /* padding-top: 10px; */
+      border-top: 1px solid #eeeeee;
+      padding-bottom: 5px;
+      height: 45px;
+      margin-right: 10px;
   }
 `;
 

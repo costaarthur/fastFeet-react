@@ -157,6 +157,7 @@ export default function Encomendas() {
             <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
+        {/* <span>Tente filtrar novamente</span> */}
 
         <div className="ul-header">
           <strong>ID</strong>

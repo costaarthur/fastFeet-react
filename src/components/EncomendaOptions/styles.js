@@ -6,11 +6,6 @@ export const Container = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-
-  /* height: 110px;
-  display: flex;
-  flex-direction: column; */
-  /* background: #fffb10; */
 `;
 
 export const ThreeDots = styled.button`
@@ -33,28 +28,10 @@ export const OptionList = styled.div`
   /* padding: 5px; */
   box-shadow: 0px 0px 2px #00000026;
   display: ${props => (props.visible ? 'block' : 'none')};
-
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: 2;
-    left: calc(50% - 1px);
-    top: -5px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #ffffff;
-  }
-  /*position: relative;
-  flex-direction: column;
-
-  display: block;
-  height: 100px;
-  display: ${props => (props.visible ? 'block' : 'none')}; */
 `;
 
 export const Option = styled.div`
+  margin-top: 2px;
   margin-left: 10px;
   display: flex;
   flex-direction: column;
@@ -66,25 +43,31 @@ export const Option = styled.div`
     color: #999999;
     background-color: #ffffff;
 
-    margin: 11px 0px;
-
+    margin: 6px 0px;
+    padding-top: 4px;
     text-align: left;
 
     svg {
       margin-right: 5px;
       align-self: left;
+      position: relative;
+      top: 2px;
     }
 
     & + button {
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    z-index: 2;
-    /* margin-top: 10px; */
-    /* padding-top: 10px; */
+    border-top: 1px solid #eeeeee;
+    height: 13px;
+    padding: 10px 0px;
+    margin-right: 10px;
+    margin-bottom: 11px;
   }
 `;
 
 export const EncOptModal = styled(Modal)`
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   background: #ffffff;
   width: 450px;
@@ -98,6 +81,7 @@ export const EncOptModal = styled(Modal)`
   box-shadow: 0px 0px 10px #00000033;
   border-radius: 4px;
 
+  margin: auto auto;
   /* display: inline-block;
   vertical-align: middle; */
 
