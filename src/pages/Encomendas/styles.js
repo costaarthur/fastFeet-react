@@ -106,6 +106,36 @@ export const Content = styled.div`
         width: 197px;
       }
     }
+
+    button.filter {
+      color: #ffffff;
+      height: 36px;
+      width: 142px;
+      border-radius: 4px;
+      background: #7d40e7;
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+
+      position: relative;
+      right: 300px;
+
+      svg {
+        align-self: center;
+        margin-right: 7px;
+        margin-left: 32px;
+        /* height: 40px; */
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        justify-content: center;
+        justify-self: center;
+        margin-top: 4px;
+      }
+    }
   }
 
   div.ul-header {

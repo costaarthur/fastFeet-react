@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   MdLens,
   MdChevronLeft,
   MdChevronRight,
   MdSearch,
+  MdFilterList,
 } from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
+import { toast } from 'react-toastify';
 import EncomendaOptions from '../../components/EncomendaOptions';
 // import Pagination from '../../components/Pagination';
 
@@ -26,6 +28,7 @@ export default function Encomendas() {
   const [encomendas, setEncomendas] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('');
 
   function getStatus(encomenda) {
     if (encomenda.canceled_at) {
@@ -63,7 +66,7 @@ export default function Encomendas() {
   }
 
   useEffect(() => {
-    const q = search;
+    const q = filter;
 
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
@@ -76,16 +79,33 @@ export default function Encomendas() {
           ...status,
         };
       });
+
       if (dataEncomendas.length === 0) {
-        setPage(page > 1 ? page - 1 : 2);
+        setPage(page <= 0 ? 1 : page - 1);
+        // setPage(page > 1 ? page - 1 : 2);
+        // setPage(page === 0 ? page + 1 : page - 1);
       }
+
+      // if (page <= 0) {
+      //   setPage(page + 1);
+      // }
 
       if (dataEncomendas.length > 0) {
         setEncomendas(dataEncomendas);
       }
     }
     loadEncomendas();
-  }, [page, search]);
+  }, [page, filter]);
+
+  // MEMO NEVER 0 PAGE
+  const pageNeverZero = useMemo(() => {
+    // if (encomendas.length === 0) {
+    if (page === 0) {
+      setPage(1);
+      toast.error('Tente filtrar novamente');
+      setEncomendas([]);
+    }
+  }, [page]);
 
   // GO ADD ENCOMENDA
   function handleAddEncomenda() {
@@ -97,7 +117,7 @@ export default function Encomendas() {
       setPage(page - 1);
     }
 
-    if (minusPlus === 'plus' && encomendas.length > 1) {
+    if (minusPlus === 'plus' && encomendas.length >= 1) {
       setPage(page + 1);
     }
   }
@@ -105,6 +125,11 @@ export default function Encomendas() {
   // SEARCH INPUT
   function handleInputChange(e) {
     setSearch(e.target.value);
+    console.log(page);
+  }
+
+  function handleFilter() {
+    setFilter(search);
   }
 
   return (
@@ -123,6 +148,10 @@ export default function Encomendas() {
               onChange={handleInputChange}
             />
           </div>
+          <button className="filter" type="submit" onClick={handleFilter}>
+            <MdFilterList size={18} />
+            <h3>Filtrar</h3>
+          </button>
           <CadastroButton type="button" onClick={handleAddEncomenda}>
             <FiPlus size={22} />
             <h3>Cadastrar</h3>
