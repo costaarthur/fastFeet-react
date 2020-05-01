@@ -23,13 +23,19 @@ export default function DestinatarioOptions({ selectedDestinatario }) {
   }
 
   async function handleDeleteDestinatario() {
-    try {
-      const toBeDeleted = { id: selectedDestinatario.id };
-      await api.delete(`recipients`, { data: toBeDeleted });
-      handleToggleVisible();
-      toast.success('Destinatário deletado com sucesso');
-    } catch (err) {
-      toast.error('O destinatário não foi deletado');
+    const confirmCancel = window.confirm(
+      'Você deseja excluir esse destinatário?'
+    );
+
+    if (confirmCancel === true) {
+      try {
+        const toBeDeleted = { id: selectedDestinatario.id };
+        await api.delete(`recipients`, { data: toBeDeleted });
+        handleToggleVisible();
+        toast.success('Destinatário deletado com sucesso');
+      } catch (err) {
+        toast.error('O destinatário não foi deletado');
+      }
     }
   }
 

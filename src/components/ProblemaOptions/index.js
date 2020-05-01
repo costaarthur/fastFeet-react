@@ -31,7 +31,12 @@ export default function ProblemasOptions({ selectedProblema }) {
   }
 
   async function handleDeleteProblema() {
-    console.log(modalIsOpen);
+    const confirmCancel = window.confirm(
+      'Você deseja excluir esse destinatário?'
+    );
+
+    if (confirmCancel === true) {
+    }
     // try {
     //   console.log('entreeei1');
     //   const toBeDeleted = {

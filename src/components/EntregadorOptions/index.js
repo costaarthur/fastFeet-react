@@ -24,15 +24,21 @@ export default function EntregadorOptions({ selectedEntregador }) {
   }
 
   async function handleDeleteEntregador() {
-    try {
-      const toBeDeleted = {
-        email: selectedEntregador.email,
-        nome: selectedEntregador.nome,
-      };
-      await api.delete('ents', { data: toBeDeleted });
-      toast.success('Entregador deletado com sucesso');
-    } catch (err) {
-      toast.error('O entregador não foi deletado');
+    const confirmCancel = window.confirm(
+      'Você deseja excluir esse entregador?'
+    );
+
+    if (confirmCancel === true) {
+      try {
+        const toBeDeleted = {
+          email: selectedEntregador.email,
+          nome: selectedEntregador.nome,
+        };
+        await api.delete('ents', { data: toBeDeleted });
+        toast.success('Entregador deletado com sucesso');
+      } catch (err) {
+        toast.error('O entregador não foi deletado');
+      }
     }
   }
 

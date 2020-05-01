@@ -1,8 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { MdSearch } from 'react-icons/md';
+import React, { useState, useEffect, useMemo } from 'react';
+import {
+  MdSearch,
+  MdFilterList,
+  MdChevronLeft,
+  MdChevronRight,
+} from 'react-icons/md';
 import { FiPlus } from 'react-icons/fi';
 
-import { Container, Content, CadastroButton, Destinatario } from './styles';
+import {
+  Container,
+  Content,
+  CadastroButton,
+  Destinatario,
+  Pagination,
+} from './styles';
 import DestinatarioOptions from '../../components/DestinatarioOptions';
 
 import api from '../../services/api';
@@ -10,24 +21,63 @@ import history from '../../services/history';
 
 export default function Destinatarios() {
   const [destinatarios, setDestinatarios] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
+  const [filter, setFilter] = useState('');
+  const [filterHasError, setFilterHasError] = useState(false);
 
   // LOAD DESTINATÁRIOS FROM API
   useEffect(() => {
+    const q = filter;
+
     async function loadDestinatarios() {
-      const responseDestinatarios = await api.get('recipients');
-      setDestinatarios(responseDestinatarios.data);
+      const responseDestinatarios = await api.get('recipients', {
+        params: { page, q },
+      });
+
+      if (responseDestinatarios.data.length === 0) {
+        setPage(page <= 0 ? 1 : page - 1);
+      }
+
+      if (responseDestinatarios.data.length > 0) {
+        setDestinatarios(responseDestinatarios.data);
+        setFilterHasError(false);
+      }
     }
     loadDestinatarios();
-  }, []);
+  }, [page, filter]);
+
+  // MEMO PAGE NEVER 0
+  const pageNeverZero = useMemo(() => {
+    if (page === 0) {
+      setPage(1);
+      setFilterHasError(true);
+      setDestinatarios([]);
+    }
+  }, [page]);
 
   function handleAddDestinatario() {
     history.push(`/destinatarios/add`);
   }
 
-  function handleInputChange(e) {
-    console.log(e.target.value);
+  function changePage(minusPlus) {
+    if (minusPlus === 'minus' && page > 1) {
+      setPage(page - 1);
+    }
+
+    if (minusPlus === 'plus' && destinatarios.length >= 1) {
+      setPage(page + 1);
+    }
   }
 
+  function handleInputChange(e) {
+    setSearch(e.target.value);
+    console.log(page);
+  }
+
+  function handleFilter() {
+    setFilter(search);
+  }
   return (
     <Container>
       <Content>
@@ -45,11 +95,25 @@ export default function Destinatarios() {
               onChange={handleInputChange}
             />
           </div>
+          <button className="filter" type="submit" onClick={handleFilter}>
+            <MdFilterList size={18} />
+            <h3>Filtrar</h3>
+          </button>
           <CadastroButton type="button" onClick={handleAddDestinatario}>
             <FiPlus size={22} />
             <h3>Cadastrar</h3>
           </CadastroButton>
         </div>
+
+        {filterHasError === true ? (
+          <div className="filter-error">
+            <span>Produto não existe</span>
+          </div>
+        ) : (
+            <div className="filter-error">
+              <span> </span>
+            </div>
+          )}
 
         <div className="ul-header">
           <strong>ID</strong>
@@ -73,6 +137,23 @@ export default function Destinatarios() {
             </Destinatario>
           ))}
         </ul>
+        <Pagination>
+          <button
+            type="submit"
+            onClick={() => changePage('minus')}
+            disabled={false}
+          >
+            <MdChevronLeft size={24} color="#fff" />
+          </button>
+          <input type="text" value={page} readOnly />
+          <button
+            type="submit"
+            onClick={() => changePage('plus')}
+            disabled={false}
+          >
+            <MdChevronRight size={24} color="#fff" />
+          </button>
+        </Pagination>
       </Content>
     </Container>
   );

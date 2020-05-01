@@ -39,7 +39,6 @@ export default function Entregadores() {
       }
 
       if (responseEntregadores.data.length > 0) {
-        // setEntregadores(dataEntregadores);
         setEntregadores(responseEntregadores.data);
         setFilterHasError(false);
       }

@@ -119,7 +119,6 @@ export default function Encomendas() {
   // SEARCH INPUT
   function handleInputChange(e) {
     setSearch(e.target.value);
-    console.log(page);
   }
 
   function handleFilter() {

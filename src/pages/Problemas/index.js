@@ -1,26 +1,55 @@
-import React, { useState, useEffect } from 'react';
-// import { MdMoreHoriz } from 'react-icons/md';
+import React, { useState, useEffect, useMemo } from 'react';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
-import { Container, Content, Problema } from './styles';
+import { Container, Content, Problema, Pagination } from './styles';
 import ProblemaOptions from '../../components/ProblemaOptions';
 
 import api from '../../services/api';
 
 export default function Problemas() {
   const [problemas, setProblemas] = useState([]);
+  const [page, setPage] = useState(1);
+  // const [search, setSearch] = useState('');
+  // const [filter, setFilter] = useState('');
+  // const [filterHasError, setFilterHasError] = useState(false);
 
   // LOAD PROBLEMAS FROM API
   useEffect(() => {
     async function loadProblemas() {
-      const responseProblemas = await api.get('encomendas/problems');
-      setProblemas(responseProblemas.data);
+      const responseProblemas = await api.get('encomendas/problems', {
+        params: { page },
+      });
+
+      if (responseProblemas.data.length === 0) {
+        setPage(page <= 0 ? 1 : page - 1);
+      }
+
+      if (responseProblemas.data.length > 0) {
+        setProblemas(responseProblemas.data);
+        // setFilterHasError(false);
+      }
     }
     loadProblemas();
-  }, []);
+  }, [page]);
 
-  // function handleConsole() {
-  //   console.log(problemas);
-  // }
+  // MEMO PAGE NEVER 0
+  const pageNeverZero = useMemo(() => {
+    if (page === 0) {
+      setPage(1);
+      // setFilterHasError(true);
+      setProblemas([]);
+    }
+  }, [page]);
+
+  function changePage(minusPlus) {
+    if (minusPlus === 'minus' && page > 1) {
+      setPage(page - 1);
+    }
+
+    if (minusPlus === 'plus' && problemas.length >= 1) {
+      setPage(page + 1);
+    }
+  }
 
   return (
     <Container>
@@ -43,18 +72,26 @@ export default function Problemas() {
               </h1>
             </Problema>
           ))}
-
-          {/* <li>
-            <h1>#01</h1>
-            <h1>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              Reprehenderit nisi
-            </h1>
-            <h1>...</h1>
-          </li> */}
         </ul>
-
-        {/* <button type="button" onClick={handleConsole} /> */}
+        <Pagination>
+          <button
+            className="pag"
+            type="submit"
+            onClick={() => changePage('minus')}
+            disabled={false}
+          >
+            <MdChevronLeft size={24} color="#fff" />
+          </button>
+          <input type="text" value={page} readOnly />
+          <button
+            className="pag"
+            type="submit"
+            onClick={() => changePage('plus')}
+            disabled={false}
+          >
+            <MdChevronRight size={24} color="#fff" />
+          </button>
+        </Pagination>
       </Content>
     </Container>
   );
