@@ -78,7 +78,6 @@ export default function Encomendas() {
           ...status,
         };
       });
-      // console.log(responseEncomendas);
       if (dataEncomendas.length === 0) {
         setPage(page <= 0 ? 1 : page - 1);
       }
@@ -90,7 +89,6 @@ export default function Encomendas() {
     }
     loadEncomendas();
   }, [page, filter]);
-  // }, [page, filter, encomendas]);
 
   // MEMO PAGE NEVER 0
   const pageNeverZero = useMemo(() => {

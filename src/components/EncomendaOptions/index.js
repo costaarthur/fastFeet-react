@@ -8,8 +8,6 @@ import {
   MdDeleteForever,
 } from 'react-icons/md';
 
-// import Encomendas from '../../pages/Encomendas';
-
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
@@ -65,7 +63,6 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
       <EncOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-      // onAfterOpen={() => console.log(selectedEncomenda)}
       >
         <div className="modal-square">
           <div className="info-enc">
@@ -113,7 +110,7 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
           </button>
           <button type="submit" onClick={handleDeleteEncomenda}>
             <MdDeleteForever color="#DE3B3B" />
-            Excluir
+            Cancelar
           </button>
         </Option>
       </OptionList>

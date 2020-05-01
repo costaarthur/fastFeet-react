@@ -36,23 +36,16 @@ export default function ProblemasOptions({ selectedProblema }) {
     );
 
     if (confirmCancel === true) {
+      console.log(selectedProblema);
+      try {
+        const toBeDeleted = { id: selectedProblema.Encomenda.id };
+        await api.delete(`encomendas`, { data: toBeDeleted });
+        handleToggleVisible();
+        toast.success('Encomenda cancelada com sucesso');
+      } catch (err) {
+        toast.error('A encomenda não foi cancelada');
+      }
     }
-    // try {
-    //   console.log('entreeei1');
-    //   const toBeDeleted = {
-    //     email: selectedDestinatario.email,
-    //     nome: selectedDestinatario.nome,
-    //   };
-
-    //   console.log(toBeDeleted);
-    //   await api.del('ents', toBeDeleted);
-    //   console.log(toBeDeleted);
-    //   console.log('entreeei13');
-
-    //   toast.success('Destinatário deletado com sucesso');
-    // } catch (err) {
-    //   toast.error('O destinatário não foi deletado');
-    // }
   }
 
   return (

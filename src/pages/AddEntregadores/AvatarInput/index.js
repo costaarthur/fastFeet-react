@@ -2,13 +2,14 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
 import { MdInsertPhoto } from 'react-icons/md';
 
-import { Container } from './styles';
+import { Container, InputFileButton } from './styles';
 
 import api from '../../../services/api';
 
-export default function AvatarInput({ avatar }) {
+export default function AvatarInput() {
   const { defaultValue, registerField } = useField('avatar_id');
 
+  const [inputFileIsHidden, setInputFileIsHidden] = useState(false);
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
 
@@ -32,6 +33,8 @@ export default function AvatarInput({ avatar }) {
     }
     data.append('file', e.target.files[0]);
 
+    setInputFileIsHidden(true);
+
     const response = await api.post('files', data);
 
     const { id, url } = response.data;
@@ -42,37 +45,35 @@ export default function AvatarInput({ avatar }) {
     console.log(file);
   }
 
+  function clickInputFile() {
+    // console.log(avatar);
+    document.getElementById('avatar_id').click();
+  }
+
   return (
     <Container>
       <label htmlFor="avatar_id">
-        <img
-          // selectedDestinatario.map(dest => dest.email)
-          src={
-            preview ||
-            avatar.map(a => {
-              if (a) {
-                return a.url;
-              }
-              return 'https://api.adorable.io/avatars/51/abott@adorable.png';
-            })
-          }
-          alt="avatar"
-        />
-
-        <input
-          type="file"
-          id="avatar_id"
-          accept="image/*"
-          data-file={file}
-          onChange={handleChange}
-          ref={ref}
-        />
+        {preview ? <img src={preview} alt="avatar" /> : <h6> </h6>}
       </label>
 
-      <button type="button" className="circle" onClick={handleChange}>
+      <input
+        type="file"
+        id="avatar_id"
+        accept="image/*"
+        data-file={file}
+        onChange={handleChange}
+        ref={ref}
+      />
+
+      <InputFileButton
+        type="button"
+        className="circle"
+        onClick={clickInputFile}
+        hidden={inputFileIsHidden}
+      >
         <MdInsertPhoto />
         <h6>Adicionar foto</h6>
-      </button>
+      </InputFileButton>
     </Container>
   );
 }
