@@ -72,7 +72,6 @@ export default function Destinatarios() {
 
   function handleInputChange(e) {
     setSearch(e.target.value);
-    console.log(page);
   }
 
   function handleFilter() {
@@ -132,7 +131,10 @@ export default function Destinatarios() {
                 {destinatario.cidade} - {destinatario.estado}
               </h1>
               <h1>
-                <DestinatarioOptions selectedDestinatario={destinatario} />
+                <DestinatarioOptions
+                  selectedDestinatario={destinatario}
+                  selectedPage={page}
+                />
               </h1>
             </Destinatario>
           ))}

@@ -71,7 +71,6 @@ export default function Entregadores() {
 
   function handleInputChange(e) {
     setSearch(e.target.value);
-    console.log(page);
   }
 
   function handleFilter() {
@@ -137,7 +136,10 @@ export default function Entregadores() {
               <h1>{entregador.nome}</h1>
               <h1>{entregador.email}</h1>
               <h1>
-                <EntregadorOptions selectedEntregador={entregador} />
+                <EntregadorOptions
+                  selectedEntregador={entregador}
+                  selectedPage={page}
+                />
               </h1>
             </Entregador>
           ))}

@@ -9,13 +9,16 @@ import history from '../../services/history';
 
 import { Container, ThreeDots, OptionList, Option } from './styles';
 
-export default function EntregadorOptions({ selectedEntregador }) {
+export default function EntregadorOptions({
+  selectedEntregador,
+  selectedPage,
+}) {
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function goEditEntregadores() {
     history.push(
-      `/entregadores/edit/${selectedEntregador.id}/?id=${selectedEntregador.id}`
+      `/entregadores/edit/${selectedEntregador.id}/${selectedPage}/?id=${selectedEntregador.id}&page=${selectedPage}`
     );
   }
 

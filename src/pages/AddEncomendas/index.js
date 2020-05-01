@@ -1,38 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Form, useField, Input } from '@rocketseat/unform';
+import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-// import Select from '../../components/Select';
 import Select from 'react-select';
 
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
 
-// import AsyncSelect from '../../components/Form/select';
+import { Container, Content, PropForm } from './styles';
 
-import { Container, Content, PropForm, SelectForm } from './styles';
-
-export default function EditEncomendas({ match }) {
-  const [encomendas, setEncomendas] = useState([]);
+export default function EditEncomendas() {
   const [destinatarios, setDestinatarios] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
-  const [productName, setProductName] = useState('Carregando...');
 
   const [destSelected, setDestSelected] = useState(null);
   const [entSelected, setEntSelected] = useState(null);
-
-  const destinatarioRef = useRef(null);
-  const entregadorRef = useRef(null);
-
-  const options = [
-    { value: 'blues', label: 'Blues' },
-    { value: 'rock', label: 'Rock' },
-    { value: 'jazz', label: 'Jazz' },
-    { value: 'orchestra', label: 'Orchestra' },
-  ];
 
   const customStyles = {
     container: () => ({
@@ -90,17 +75,6 @@ export default function EditEncomendas({ match }) {
     }),
   };
 
-  // LOAD ENCOMENDAS from api
-  useEffect(() => {
-    async function loadEncomendas() {
-      const responseEncomendas = await api.get('encomendas', {
-        params: { page: match.params.page },
-      });
-      setEncomendas(responseEncomendas.data);
-    }
-    loadEncomendas();
-  }, []);
-
   // LOAD DESTINATÁRIOS from api
   useEffect(() => {
     async function loadDestinatarios() {
@@ -133,22 +107,12 @@ export default function EditEncomendas({ match }) {
 
   // POST ENCOMENDA NA API
   async function handleAddEncomenda({ product }) {
-    // const allInputs = {
-    //   recipient_id: destSelected.value,
-    //   deliveryman_id: entSelected.value,
-    //   product,
-    // };
-    // console.log(allInputs);
-
     try {
       const allInputs = {
         recipient_id: destSelected.value,
         deliveryman_id: entSelected.value,
         product,
       };
-
-      console.log(allInputs);
-
       await api.post(`encomendas`, allInputs);
 
       toast.success('Encomenda adicionada com sucesso');
@@ -214,7 +178,6 @@ export default function EditEncomendas({ match }) {
             <strong>Nome do produto:</strong>
             <Input name="product" type="text" placeholder="Taco de golf" />
           </div>
-          {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
         </Content>
       </PropForm>
     </Container>

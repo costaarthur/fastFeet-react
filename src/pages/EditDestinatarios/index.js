@@ -4,14 +4,9 @@ import { Form, useField, Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-// import Select from '../../components/Select';
-import Select from 'react-select';
-
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
-
-// import AsyncSelect from '../../components/Form/select';
 
 import { Container, Content, PropForm, SelectForm } from './styles';
 
@@ -27,7 +22,9 @@ export default function EditDestinatarios({ match }) {
   // LOAD DESTINATARIOS from api
   useEffect(() => {
     async function loadDestinatarios() {
-      const responseDestinatarios = await api.get('recipients');
+      const responseDestinatarios = await api.get('recipients', {
+        params: { page: match.params.page },
+      });
       setDestinatarios(responseDestinatarios.data);
     }
     loadDestinatarios();
@@ -37,40 +34,10 @@ export default function EditDestinatarios({ match }) {
   const selectedDestinatario = destinatarios.find(
     dest => dest.id === Number(match.params.id)
   );
-  console.log(selectedDestinatario);
-  console.log(destinatarios);
-
-  // .map(dest => dest);
-  // .join();
-
-  // FIND DESTINATÁRIO PLACEHOLDER
-  // const destPlaceholder = encomendas
-  //   .filter(dest => {
-  //     if (dest.id === Number(match.params.id)) return true;
-  //   })
-  //   .map(dest => dest.Recipient.nome)
-  //   .join();
-
-  // GET DESTINATÁRIO VALUE
-  // const getDestValue = encomendas
-  //   .filter(
-  //     (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-  //   )
-  //   .map(encomenda => encomenda.Recipient.id)
-  //   .join();
 
   // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
-    console.log(selectedDestinatario);
     try {
-      // const allInputs = {
-      //   id: Number(match.params.id),
-      //   recipient_id: destSelected.value,
-      //   deliveryman_id: entSelected.value,
-      //   product,
-      // };
-      // console.log(allInputs);
-
       await api.put(`recipients`, data);
 
       toast.success('Destinatário atualizado com sucesso');
@@ -107,8 +74,6 @@ export default function EditDestinatarios({ match }) {
               name="email"
               type="email"
               value={selectedDestinatario?.email}
-            // placeholder={selectedDestinatario[0].nome)}
-            // placeholder={selectedDestinatario.nome}
             />
           </div>
 
@@ -119,8 +84,6 @@ export default function EditDestinatarios({ match }) {
               name="nome"
               type="text"
               placeholder={selectedDestinatario?.nome}
-            // placeholder={selectedDestinatario[0].nome)}
-            // placeholder={selectedDestinatario.nome}
             />
           </div>
 
@@ -182,7 +145,6 @@ export default function EditDestinatarios({ match }) {
               />
             </div>
           </div>
-          {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
         </Content>
       </PropForm>
     </Container>

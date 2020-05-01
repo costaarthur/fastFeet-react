@@ -5,7 +5,6 @@ import { MdMoreHoriz, MdVisibility, MdDeleteForever } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
 import api from '../../services/api';
-import history from '../../services/history';
 
 import {
   Container,
@@ -36,7 +35,6 @@ export default function ProblemasOptions({ selectedProblema }) {
     );
 
     if (confirmCancel === true) {
-      console.log(selectedProblema);
       try {
         const toBeDeleted = { id: selectedProblema.Encomenda.id };
         await api.delete(`encomendas`, { data: toBeDeleted });
@@ -53,7 +51,6 @@ export default function ProblemasOptions({ selectedProblema }) {
       <ProbOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        onAfterOpen={() => console.log(selectedProblema)}
       >
         <div className="modal-square">
           <div className="info-prob">

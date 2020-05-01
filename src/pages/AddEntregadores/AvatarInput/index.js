@@ -7,7 +7,7 @@ import { Container, InputFileButton } from './styles';
 import api from '../../../services/api';
 
 export default function AvatarInput() {
-  const { defaultValue, registerField } = useField('avatar_id');
+  const { registerField } = useField('avatar_id');
 
   const [inputFileIsHidden, setInputFileIsHidden] = useState(false);
   const [file, setFile] = useState();
@@ -28,9 +28,6 @@ export default function AvatarInput() {
   async function handleChange(e) {
     const data = new FormData();
 
-    if (data == null) {
-      console.log('entrei');
-    }
     data.append('file', e.target.files[0]);
 
     setInputFileIsHidden(true);
@@ -41,12 +38,9 @@ export default function AvatarInput() {
 
     setFile(id);
     setPreview(url);
-    console.log(preview);
-    console.log(file);
   }
 
   function clickInputFile() {
-    // console.log(avatar);
     document.getElementById('avatar_id').click();
   }
 

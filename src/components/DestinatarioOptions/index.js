@@ -9,12 +9,15 @@ import history from '../../services/history';
 
 import { Container, ThreeDots, OptionList, Option } from './styles';
 
-export default function DestinatarioOptions({ selectedDestinatario }) {
+export default function DestinatarioOptions({
+  selectedDestinatario,
+  selectedPage,
+}) {
   const [visible, setVisible] = useState(false);
 
   function goEditDestinatarios() {
     history.push(
-      `/destinatarios/edit/${selectedDestinatario.id}/?id=${selectedDestinatario.id}`
+      `/destinatarios/edit/${selectedDestinatario.id}/${selectedPage}/?id=${selectedDestinatario.id}`
     );
   }
 

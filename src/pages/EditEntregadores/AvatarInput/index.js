@@ -26,9 +26,6 @@ export default function AvatarInput({ avatar }) {
   async function handleChange(e) {
     const data = new FormData();
 
-    if (data == null) {
-      console.log('entrei');
-    }
     data.append('file', e.target.files[0]);
 
     const response = await api.post('files', data);
@@ -37,8 +34,6 @@ export default function AvatarInput({ avatar }) {
 
     setFile(id);
     setPreview(url);
-    console.log(preview);
-    console.log(file);
   }
 
   return (

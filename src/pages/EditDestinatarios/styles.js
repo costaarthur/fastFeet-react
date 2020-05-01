@@ -146,9 +146,7 @@ export const Content = styled.div`
       border-radius: 4px;
 
       &::placeholder {
-        color: #dddddd;
-        /* text-align: left; */
-        /* font-size: 16px; */
+        color: #999999;
       }
     }
   }
@@ -158,15 +156,11 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0px 30px 9px;
-    /* background: red; */
-    /* padding-top: 26px; */
-    /* margin: 0 30px; */
 
     div.rua {
       display: flex;
       flex-direction: column;
       margin-right: 13.67px;
-      /* margin-bottom: 9px; */
 
       strong {
         text-align: left;
@@ -186,9 +180,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
@@ -215,9 +207,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
@@ -243,9 +233,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
@@ -256,9 +244,6 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0px 30px 9px;
-    /* background: red; */
-    /* padding-top: 5px; */
-    /* margin: 0 30px; */
 
     div.cidade {
       display: flex;
@@ -282,9 +267,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
@@ -311,9 +294,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
@@ -339,15 +320,9 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }
   }
 `;
-
-// export const Form = styled.div``;
-
-// export const Input = styled.input``;

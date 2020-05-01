@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Form, useField, Input } from '@rocketseat/unform';
+import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
@@ -13,28 +13,14 @@ import AvatarInput from './AvatarInput';
 import { Container, Content, PropForm } from './styles';
 
 export default function EditEntregadores({ match }) {
-  const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
-  const [productName, setProductName] = useState('Carregando...');
 
-  // LOAD ENCOMENDAS from api
-  useEffect(() => {
-    async function loadEncomendas() {
-      const responseEncomendas = await api.get('encomendas');
-      setEncomendas(responseEncomendas.data);
-
-      const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id === Number(match.params.id)) {
-          setProductName(encomenda.product);
-        }
-      });
-    }
-    loadEncomendas();
-  }, []);
   // LOAD ENTREGADORES from api
   useEffect(() => {
     async function loadEntregadores() {
-      const responseEntregadores = await api.get('ents');
+      const responseEntregadores = await api.get('ents', {
+        params: { page: Number(match.params.page) },
+      });
       setEntregadores(responseEntregadores.data);
     }
     loadEntregadores();
@@ -62,17 +48,13 @@ export default function EditEntregadores({ match }) {
       if (ent.id === Number(match.params.id)) return true;
     })
     .map(ent => ent.avatar);
-  // .join();
 
   // UPDATE ENTREGADOR NA API
   async function handleEditEntregador(data) {
-    console.log(data);
-
     try {
       if (!data.nome) return toast.error('Você precisa informar um nome');
       if (!data.avatar_id)
         return toast.error('Você precisa selecionar um avatar');
-      console.log(data);
       await api.put(`ents`, data);
 
       toast.success('Entregador atualizado com sucesso');
@@ -106,7 +88,6 @@ export default function EditEntregadores({ match }) {
         <Content>
           <AvatarInput
             name="avatar_id"
-            selectedEntregador={match}
             avatar={
               profilePreview ||
               'https://api.adorable.io/avatars/51/abott@adorable.png'

@@ -15,7 +15,7 @@ import history from '../../services/history';
 
 import { Container, Content, PropForm } from './styles';
 
-export default function EditEncomendas(props) {
+export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
   const [destinatarios, setDestinatarios] = useState([]);
@@ -86,19 +86,13 @@ export default function EditEncomendas(props) {
   // LOAD ENCOMENDAS from api
   useEffect(() => {
     async function loadEncomendas() {
-      const findPage = props.location.search
-        .split('?')
-        .join('=')
-        .split('=');
-      const finalPage = findPage[4];
-
       const responseEncomendas = await api.get('encomendas', {
-        params: { page: finalPage },
+        params: { page: match.params.page },
       });
       setEncomendas(responseEncomendas.data);
 
       const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id === Number(props.match.params.id)) {
+        if (encomenda.id === Number(match.params.id)) {
           setProductName(encomenda.product);
         }
       });
@@ -138,7 +132,7 @@ export default function EditEncomendas(props) {
   // FIND DESTINATÁRIO PLACEHOLDER
   const destPlaceholder = encomendas
     .filter(dest => {
-      if (dest.id === Number(props.match.params.id)) return true;
+      if (dest.id === Number(match.params.id)) return true;
     })
     .map(dest => dest.Recipient.nome)
     .join();
@@ -146,7 +140,7 @@ export default function EditEncomendas(props) {
   // FIND ENTREGADOR PLACEHOLDER
   const entPlaceholder = encomendas
     .filter(ent => {
-      if (ent.id === Number(props.match.params.id)) return true;
+      if (ent.id === Number(match.params.id)) return true;
     })
     .map(ent => ent.Ent.nome)
     .join();
@@ -168,7 +162,7 @@ export default function EditEncomendas(props) {
   async function handleEditEncomenda({ product }) {
     try {
       const allInputs = {
-        id: Number(props.match.params.id),
+        id: Number(match.params.id),
         recipient_id: destSelected.value,
         deliveryman_id: entSelected.value,
         product,

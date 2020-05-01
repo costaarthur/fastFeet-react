@@ -110,9 +110,7 @@ export const Content = styled.div`
         border-radius: 4px;
 
         &::placeholder {
-          color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
+          color: #999999;
         }
       }
     }

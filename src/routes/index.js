@@ -26,14 +26,18 @@ export default function Routes() {
       <Route path="/problemas" component={Problemas} isPrivate />
 
       {/* route with: match and query params */}
-      <Route path="/encomendas/edit/:id" component={EditEncomendas} isPrivate />
       <Route
-        path="/entregadores/edit/:id"
+        path="/encomendas/edit/:id/:page"
+        component={EditEncomendas}
+        isPrivate
+      />
+      <Route
+        path="/entregadores/edit/:id/:page"
         component={EditEntregadores}
         isPrivate
       />
       <Route
-        path="/destinatarios/edit/:id"
+        path="/destinatarios/edit/:id/:page"
         component={EditDestinatarios}
         isPrivate
       />

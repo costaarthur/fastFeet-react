@@ -21,7 +21,6 @@ export default function Pagination(props) {
     }
     if (minusPlus === 'plus' && encomendasz.length > 1) {
       setPage(pagez + 1);
-      console.log(page);
     }
   }
 
