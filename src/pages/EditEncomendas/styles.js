@@ -145,7 +145,7 @@ export const Content = styled.div`
       border-radius: 4px;
 
       &::placeholder {
-        color: #dddddd;
+        color: #999999;
         /* text-align: left; */
         /* font-size: 16px; */
       }

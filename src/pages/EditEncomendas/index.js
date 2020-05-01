@@ -39,7 +39,7 @@ export default function EditEncomendas(props) {
       background: '#ffffff',
       border: '1px solid #dddddd',
       position: 'fixed !important',
-      width: '405px',
+      width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
     }),
@@ -54,45 +54,34 @@ export default function EditEncomendas(props) {
       position: 'relative',
       top: '-18px',
       left: '380px',
-      color: '#dddddd',
+      color: '#999999',
     }),
     indicatorSeparator: () => ({}),
-    placeholder: () => ({
-      // background: 'black',
-      marginTop: '12px',
-      color: '#dddddd',
-      // marginLeft: '6px',
+    placeholder: base => ({
+      ...base,
+      fontSize: '1em',
+      fontWeight: 400,
+      marginTop: '7px',
+      marginLeft: '8px',
+      color: '#999999',
     }),
     option: provided => ({
       ...provided,
-      borderBottom: '1px dotted purple',
+      borderBottom: '1px solid #dddddd',
       color: '#7d40e7',
-      padding: '20px',
+      padding: '13px',
     }),
     singleValue: () => ({
       marginTop: '12px',
       marginLeft: '6px',
-      // background: 'grey',
     }),
     clearIndicator: () => ({
       background: 'purple',
     }),
-    // indicatorsContainer: () => ({
-    //   overflow: 'hidden',
-    // }),
     control: () => ({
       width: '405px',
     }),
   };
-
-  // const options = [
-  //   { value: 'blues', label: 'Blues' },
-  //   { value: 'rock', label: 'Rock' },
-  //   { value: 'jazz', label: 'Jazz' },
-  //   { value: 'orchestra', label: 'Orchestra' },
-  // ];
-
-  // const { fieldName, defaultValue, registerField, error } = useField(name);
 
   // LOAD ENCOMENDAS from api
   useEffect(() => {

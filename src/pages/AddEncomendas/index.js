@@ -36,63 +36,51 @@ export default function EditEncomendas({ match }) {
 
   const customStyles = {
     container: () => ({
-      // background: 'green',
       height: '45px',
       border: '1px solid #dddddd',
       margin: '9px 0 0 0',
-      // margin: '34px auto',
     }),
     input: () => ({
-      // background: 'green',
       textAlign: 'left',
       marginTop: '12px',
       marginLeft: '6px',
     }),
     menu: () => ({
       background: '#ffffff',
-      // background: '#7d40e7',
-      // position: 'relative',
-      // top: '-260px',
       border: '1px solid #dddddd',
       position: 'fixed !important',
-      width: '405px',
+      width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
     }),
-    menuList: () => ({
-      // zIndex: 3,
-      // background: 'blue',
-    }),
+    menuList: () => ({}),
     menuPortal: () => ({
       background: 'pink',
     }),
     dropdownIndicator: () => ({
-      // color: 'pink',
-      // background: 'pink',
       position: 'relative',
-      top: '-15px',
+      top: '-18px',
       left: '380px',
-      color: '#dddddd',
-    }),
-    placeholder: () => ({
-      // background: 'black',
-      marginTop: '12px',
       color: '#999999',
-      // marginLeft: '6px',
     }),
-    option: (provided, state) => ({
+    indicatorSeparator: () => ({}),
+    placeholder: base => ({
+      ...base,
+      fontSize: '1em',
+      fontWeight: 400,
+      marginTop: '7px',
+      marginLeft: '8px',
+      color: '#999999',
+    }),
+    option: provided => ({
       ...provided,
-      borderBottom: '1px dotted purple',
-      // color: state.isSelected ? 'red' : 'blue',
+      borderBottom: '1px solid #dddddd',
       color: '#7d40e7',
-      padding: '20px',
-      // fontColor: 'white',
-      // zIndex: '5',
+      padding: '13px',
     }),
     singleValue: () => ({
       marginTop: '12px',
       marginLeft: '6px',
-      // background: 'grey',
     }),
     clearIndicator: () => ({
       background: 'purple',
