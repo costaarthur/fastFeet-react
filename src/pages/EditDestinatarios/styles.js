@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 import { Form } from '@rocketseat/unform';
 import Select from 'react-select';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: auto;
+  min-width: 1350px;
+  height: 100%;
 `;
 
 export const SelectForm = styled(Select)`
@@ -72,7 +73,6 @@ export const PropForm = styled(Form)`
 `;
 
 export const Content = styled.div`
-  /* max-width: 800px; */
   width: 900px;
   height: 400px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -81,7 +81,6 @@ export const Content = styled.div`
   font-size: 24;
 
   div.email {
-    /* margin: 0px 30px 16px; */
     width: 840px;
     display: flex;
     padding-top: 26px;
@@ -89,7 +88,6 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     margin: 0 30px;
-    /* margin: 0px 30px 9px; */
 
     strong {
       text-align: left;
@@ -111,17 +109,13 @@ export const Content = styled.div`
 
       &::placeholder {
         color: #dddddd;
-        /* text-align: left; */
-        /* font-size: 16px; */
       }
     }
   }
 
   div.nome {
-    /* margin: 0px 30px 16px; */
     width: 840px;
     display: flex;
-    /* padding-top: 26px; */
     width: 840px;
     display: flex;
     flex-direction: column;

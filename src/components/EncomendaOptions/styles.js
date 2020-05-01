@@ -25,7 +25,6 @@ export const OptionList = styled.div`
   width: 150px;
   left: calc(50% - 70px);
   top: 40px;
-  /* padding: 5px; */
   box-shadow: 0px 0px 2px #00000026;
   display: ${props => (props.visible ? 'block' : 'none')};
 `;
@@ -82,8 +81,6 @@ export const EncOptModal = styled(Modal)`
   border-radius: 4px;
 
   margin: auto auto;
-  /* display: inline-block;
-  vertical-align: middle; */
 
   div.modal-square {
     width: 450px;
@@ -103,8 +100,6 @@ export const EncOptModal = styled(Modal)`
         color: #444444;
         font-size: 14px;
         font-weight: bold;
-        /* margin-bottom: 4px; */
-        /* margin-top: 25px; */
       }
       h5 {
         color: #666666;
@@ -126,7 +121,6 @@ export const EncOptModal = styled(Modal)`
         font-size: 14px;
         font-weight: bold;
         margin-bottom: 4px;
-        /* margin-top: 21px; */
       }
       h4 {
         color: #666666;
@@ -152,7 +146,6 @@ export const EncOptModal = styled(Modal)`
         font-size: 14px;
         font-weight: bold;
         margin-bottom: 4px;
-        /* margin-top: 21px; */
       }
 
       & + strong {

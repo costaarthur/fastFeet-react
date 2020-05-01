@@ -8,7 +8,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: auto;
+  min-width: 1350px;
+  height: 100%;
 `;
 
 export const SelectForm = styled(Select)`
@@ -92,10 +93,8 @@ export const Content = styled.div`
       text-align: left;
 
       strong {
-        margin-bottom: 90px;
         margin-top: 100px;
         color: #444444;
-        /* z-index: 0; */
         font-weight: none;
       }
 
@@ -103,22 +102,17 @@ export const Content = styled.div`
         width: 840px;
         height: 45px;
         padding-left: 15px;
-        margin-top: 7px;
 
         background: #ffffff 0% 0% no-repeat padding-box;
         border: 1px solid #dddddd;
         border-radius: 4px;
 
+        margin-top: 7px;
+
         &::placeholder {
           color: #dddddd;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
   }
 `;
-
-// export const Form = styled.div``;
-
-// export const Input = styled.input``;

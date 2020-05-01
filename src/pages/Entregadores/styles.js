@@ -5,8 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* max-width: 1200px; */
-  width: auto;
+  min-width: 1350px;
 `;
 
 export const CadastroButton = styled.button`
@@ -36,23 +35,19 @@ export const CadastroButton = styled.button`
 `;
 
 export const Content = styled.div`
-    max-width: 1140px;
-    width: 1200px;
-    /* background: green; */
-    background: #f5f5f5;
-    margin: 34px auto;
-    font-size: 24;
-    /* padding: 0 120px; */
+  min-width: 1200px;
+  background: #f5f5f5;
+  margin: 34px auto;
 
-    header {
-      text-align: left;
-      font-size: 24px;
-      font-weight: bold;
-      color: #444444;
-      margin-bottom: 34px;
-    }
+  header {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+    margin-bottom: 34px;
+  }
 
-    div.find-cadastro {
+  div.find-cadastro {
     background: #f5f5f5;
     display: flex;
     justify-content: space-between;
@@ -63,7 +58,6 @@ export const Content = styled.div`
 
       display: flex;
       flex-direction: row;
-      /* margin-bottom: 22px; */
       border-radius: 4px;
       border: 1px solid #dddddd;
 
@@ -97,13 +91,12 @@ export const Content = styled.div`
       flex-direction: row;
 
       position: relative;
-      right: 300px;
+      right: 330px;
 
       svg {
         align-self: center;
         margin-right: 7px;
         margin-left: 32px;
-        /* height: 40px; */
       }
 
       h3 {
@@ -136,14 +129,13 @@ export const Content = styled.div`
     margin-bottom: 14px;
     grid-template-columns: 20% 22.5% 26% 26% 5.5%;
   }
-    strong {
-      color: #444444;
-      font-size: 16px;
-      text-align: left;
-      margin-left: 10px;
-    }
+  strong {
+    color: #444444;
+    font-size: 16px;
+    text-align: left;
+    margin-left: 10px;
   }
-  `;
+`;
 
 export const Entregador = styled.li`
   display: grid;

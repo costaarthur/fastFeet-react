@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 import { Form } from '@rocketseat/unform';
 import Select from 'react-select';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: auto;
+  min-width: 1350px;
+  height: 100%;
 `;
 
 export const SelectForm = styled(Select)`
@@ -72,7 +73,6 @@ export const PropForm = styled(Form)`
 `;
 
 export const Content = styled.div`
-  /* max-width: 800px; */
   width: 900px;
   height: 401px;
   background: #ffffff 0% 0% no-repeat padding-box;

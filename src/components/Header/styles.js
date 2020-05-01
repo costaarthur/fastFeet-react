@@ -5,7 +5,7 @@ export const Container = styled.div`
   background: #ffffff;
   border: solid 1px #dddddd;
   padding-left: 0 30px;
-  /* width: 100%; */
+  min-width: 1350px;
 `;
 
 export const PropLink = styled(Link)`
@@ -18,7 +18,9 @@ export const PropLink = styled(Link)`
 
 export const Content = styled.div`
   height: 64px;
-  /* max-width: 900px; */
+  width: auto;
+  max-width: 1800px;
+  /* min-width: 1200px; */
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

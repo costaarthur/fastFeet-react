@@ -5,8 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* max-width: 1200px; */
-  width: auto;
+  min-width: 1350px;
 `;
 
 export const CadastroButton = styled.button`
@@ -59,11 +58,9 @@ export const Status = styled.div`
 `;
 
 export const Content = styled.div`
-  max-width: 1140px;
-  width: 1200px;
+  min-width: 1200px;
   background: #f5f5f5;
   margin: 34px auto;
-  font-size: 24;
 
   header {
     text-align: left;
@@ -84,7 +81,6 @@ export const Content = styled.div`
 
       display: flex;
       flex-direction: row;
-      /* margin-bottom: 22px; */
       border-radius: 4px;
       border: 1px solid #dddddd;
 
@@ -118,13 +114,12 @@ export const Content = styled.div`
       flex-direction: row;
 
       position: relative;
-      right: 300px;
+      right: 330px;
 
       svg {
         align-self: center;
         margin-right: 7px;
         margin-left: 32px;
-        /* height: 40px; */
       }
 
       h3 {

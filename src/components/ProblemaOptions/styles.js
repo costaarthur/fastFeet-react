@@ -30,7 +30,6 @@ export const OptionList = styled.div`
 `;
 
 export const Option = styled.div`
-  /* margin-bottom: 25px; */
   margin-left: 10px;
   display: flex;
   flex-direction: column;

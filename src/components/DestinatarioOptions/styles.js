@@ -6,11 +6,6 @@ export const Container = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
-
-  /* height: 110px;
-  display: flex;
-  flex-direction: column; */
-  /* background: #fffb10; */
 `;
 
 export const ThreeDots = styled.button`
@@ -30,7 +25,6 @@ export const OptionList = styled.div`
   width: 150px;
   left: calc(50% - 70px);
   top: 40px;
-  /* padding: 5px; */
   box-shadow: 0px 0px 2px #00000026;
   display: ${props => (props.visible ? 'block' : 'none')};
 
@@ -46,12 +40,6 @@ export const OptionList = styled.div`
     border-right: 5px solid transparent;
     border-bottom: 5px solid #ffffff;
   }
-  /*position: relative;
-  flex-direction: column;
-
-  display: block;
-  height: 100px;
-  display: ${props => (props.visible ? 'block' : 'none')}; */
 `;
 
 export const Option = styled.div`
@@ -68,10 +56,7 @@ export const Option = styled.div`
     color: #999999;
     background-color: #ffffff;
     padding-top: 1px;
-
-
     margin: 6px 0px;
-
     text-align: left;
 
     svg {
@@ -104,9 +89,6 @@ export const EncOptModal = styled(Modal)`
   box-shadow: 0px 0px 10px #00000033;
   border-radius: 4px;
 
-  /* display: inline-block;
-  vertical-align: middle; */
-
   div.modal-square {
     width: 450px;
     height: 353px;
@@ -125,8 +107,6 @@ export const EncOptModal = styled(Modal)`
         color: #444444;
         font-size: 14px;
         font-weight: bold;
-        /* margin-bottom: 4px; */
-        /* margin-top: 25px; */
       }
       h5 {
         color: #666666;
@@ -148,7 +128,6 @@ export const EncOptModal = styled(Modal)`
         font-size: 14px;
         font-weight: bold;
         margin-bottom: 4px;
-        /* margin-top: 21px; */
       }
       h4 {
         color: #666666;

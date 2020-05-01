@@ -4,14 +4,11 @@ import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
-// import Select from '../../components/Select';
 import Select from 'react-select';
 
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
-
-// import AsyncSelect from '../../components/Form/select';
 
 import { Container, Content, PropForm } from './styles';
 
@@ -42,11 +39,9 @@ export default function EditEncomendas({ match }) {
       width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
+      marginLeft: '-80px',
     }),
-    menuList: () => ({
-      // zIndex: 3,
-      // background: 'blue',
-    }),
+    menuList: () => ({}),
     menuPortal: () => ({
       background: 'pink',
     }),

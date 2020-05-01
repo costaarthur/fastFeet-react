@@ -37,6 +37,7 @@ export default function EditEncomendas() {
       width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
+      marginLeft: '-80px',
     }),
     menuList: () => ({}),
     menuPortal: () => ({

@@ -1,36 +1,29 @@
 import styled from 'styled-components';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* max-width: 1200px; */
-  width: auto;
+  min-width: 1350px;
 `;
 
 export const Content = styled.div`
-    max-width: 1140px;
-    width: 1200px;
-    /* background: green; */
-    background: #f5f5f5;
-    margin: 34px auto;
-    font-size: 24;
-    /* padding: 0 120px; */
+  min-width: 1200px;
+  background: #f5f5f5;
+  margin: 34px auto;
 
-    header {
-      text-align: left;
-      font-size: 24px;
-      font-weight: bold;
-      color: #444444;
-      margin-bottom: 34px;
-    }
+  header {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: #444444;
+    margin-bottom: 34px;
+  }
 
-    button {
-      width: 40px;
-      height: 40px;
-    }
-
+  button {
+    width: 40px;
+    height: 40px;
   }
 
   div.ul-header {
@@ -40,14 +33,13 @@ export const Content = styled.div`
     margin-bottom: 14px;
     grid-template-columns: 10% 84.5% 5.5%;
   }
-    strong {
-      color: #444444;
-      font-size: 16px;
-      text-align: left;
-      margin-left: 10px;
-    }
+  strong {
+    color: #444444;
+    font-size: 16px;
+    text-align: left;
+    margin-left: 10px;
   }
-  `;
+`;
 
 export const Problema = styled.li`
   display: grid;
@@ -62,7 +54,6 @@ export const Problema = styled.li`
   h2 {
     color: #666666;
     font-size: 16px;
-    /* color: #ffffff; */
     margin-left: 10px;
 
     white-space: nowrap;
@@ -74,7 +65,6 @@ export const Problema = styled.li`
   h1 {
     color: #666666;
     font-size: 16px;
-    /* color: #ffffff; */
     margin-left: 10px;
   }
 `;

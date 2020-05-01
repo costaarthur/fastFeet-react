@@ -5,8 +5,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* max-width: 1200px; */
-  width: auto;
+  min-width: 1350px;
 `;
 
 export const CadastroButton = styled.button`
@@ -36,13 +35,9 @@ export const CadastroButton = styled.button`
 `;
 
 export const Content = styled.div`
-    max-width: 1140px;
-    width: 1200px;
-    /* background: green; */
+    min-width: 1200px;
     background: #f5f5f5;
     margin: 34px auto;
-    font-size: 24;
-    /* padding: 0 120px; */
 
     header {
       text-align: left;
@@ -60,7 +55,6 @@ export const Content = styled.div`
     div.search-input {
       width: 237px;
       height: 36px;
-
       display: flex;
       flex-direction: row;
       /* margin-bottom: 22px; */
@@ -97,7 +91,7 @@ export const Content = styled.div`
       flex-direction: row;
 
       position: relative;
-      right: 300px;
+      right: 330px;
 
       svg {
         align-self: center;
@@ -161,11 +155,9 @@ export const Content = styled.div`
         color: #666666;
         font-size: 16px;
         margin-left: 10px;
-        /* color: #ffffff; */
-
       }
     }
-  }
+
   `;
 
 export const Destinatario = styled.li`
@@ -177,17 +169,6 @@ export const Destinatario = styled.li`
   background: #ffffff;
   line-height: 57px;
   grid-template-columns: 20% 22.5% 26% 26% 5.5%;
-
-  /* img {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: #ffffff;
-    margin-left: 10px;
-    align-self: center;
-  } */
-
   h1 {
     color: #666666;
     font-size: 16px;

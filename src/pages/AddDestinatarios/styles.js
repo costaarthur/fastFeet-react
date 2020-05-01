@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 import { Form } from '@rocketseat/unform';
 import Select from 'react-select';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: auto;
+  min-width: 1350px;
+  height: 100%;
 `;
 
 export const SelectForm = styled(Select)`
@@ -111,17 +112,13 @@ export const Content = styled.div`
 
       &::placeholder {
         color: #999999;
-        /* text-align: left; */
-        /* font-size: 16px; */
       }
     }
   }
 
   div.nome {
-    /* margin: 0px 30px 16px; */
     width: 840px;
     display: flex;
-    /* padding-top: 26px; */
     width: 840px;
     display: flex;
     flex-direction: column;
@@ -147,8 +144,6 @@ export const Content = styled.div`
 
       &::placeholder {
         color: #999999;
-        /* text-align: left; */
-        /* font-size: 16px; */
       }
     }
   }
@@ -158,15 +153,11 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0px 30px 9px;
-    /* background: red; */
-    /* padding-top: 26px; */
-    /* margin: 0 30px; */
 
     div.rua {
       display: flex;
       flex-direction: column;
       margin-right: 13.67px;
-      /* margin-bottom: 9px; */
 
       strong {
         text-align: left;
@@ -187,8 +178,6 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
@@ -216,8 +205,6 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
@@ -244,8 +231,6 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
@@ -256,9 +241,6 @@ export const Content = styled.div`
     display: flex;
     flex-direction: row;
     margin: 0px 30px 9px;
-    /* background: red; */
-    /* padding-top: 5px; */
-    /* margin: 0 30px; */
 
     div.cidade {
       display: flex;
@@ -283,8 +265,6 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
@@ -312,8 +292,6 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
@@ -340,14 +318,8 @@ export const Content = styled.div`
 
         &::placeholder {
           color: #999999;
-          /* text-align: left; */
-          /* font-size: 16px; */
         }
       }
     }
   }
 `;
-
-// export const Form = styled.div``;
-
-// export const Input = styled.input``;

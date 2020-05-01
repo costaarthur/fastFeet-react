@@ -2,13 +2,14 @@ import styled from 'styled-components';
 
 import { Form } from '@rocketseat/unform';
 import Select from 'react-select';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
   flex-direction: column;
   text-align: center;
-  width: auto;
+  min-width: 1350px;
+  height: 100%;
 `;
 
 export const SelectForm = styled(Select)`
@@ -72,7 +73,6 @@ export const PropForm = styled(Form)`
 `;
 
 export const Content = styled.div`
-  /* max-width: 800px; */
   width: 900px;
   height: 224px;
   background: #ffffff 0% 0% no-repeat padding-box;
@@ -85,18 +85,9 @@ export const Content = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 0px 30px 16px;
-    /* background: red; */
     padding-top: 26px;
 
     div {
-      /* display: flex;
-      flex-direction: column;
-      margin-top: 26px; */
-
-      /* div {
-        width: 405px;
-        height: 45px;
-      } */
       label {
         position: relative;
         left: -160px;
@@ -104,20 +95,7 @@ export const Content = styled.div`
         margin-bottom: 90px;
         color: #444444;
         font-weight: bold;
-        /* background: red; */
-
-        /* width: 405px; */
       }
-
-      /* select {
-        width: 405px;
-        height: 45px;
-        padding-left: 15px;
-
-        background: #ffffff 0% 0% no-repeat padding-box;
-        border: 1px solid #dddddd;
-        border-radius: 4px;
-      } */
     }
   }
 
@@ -125,7 +103,7 @@ export const Content = styled.div`
     width: 840px;
     display: flex;
     flex-direction: column;
-    margin: 0 30px;
+    margin: 25px 30px;
 
     strong {
       text-align: left;
@@ -136,7 +114,7 @@ export const Content = styled.div`
     }
 
     input {
-      width: 840px;
+      width: 839px;
       height: 45px;
       padding-left: 15px;
 
@@ -146,13 +124,7 @@ export const Content = styled.div`
 
       &::placeholder {
         color: #999999;
-        /* text-align: left; */
-        /* font-size: 16px; */
       }
     }
   }
 `;
-
-// export const Form = styled.div``;
-
-// export const Input = styled.input``;
