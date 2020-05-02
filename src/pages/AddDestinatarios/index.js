@@ -91,7 +91,12 @@ export default function AddDestinatarios() {
 
             <div className="cep">
               <strong>CEP:</strong>
-              <Input name="cep" type="text" placeholder="29100-258" />
+              <Input
+                name="cep"
+                type="text"
+                placeholder="29100-258"
+                maxlength="9"
+              />
             </div>
           </div>
           {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
