@@ -92,19 +92,24 @@ export const EncOptModal = styled(Modal)`
     align-self: center;
 
     div.info-enc {
-      margin-bottom: 21px;
+      margin-bottom: 12px;
       border-bottom: 1px solid #eeeeee;
       padding-bottom: 12px;
+
+      display: flex;
+      flex-direction: column;
 
       strong {
         color: #444444;
         font-size: 14px;
         font-weight: bold;
+        margin-bottom: 4px;
       }
       h5 {
         color: #666666;
         font-size: 16px;
         margin-bottom: 4px;
+        font-weight: normal;
       }
     }
 
@@ -122,18 +127,23 @@ export const EncOptModal = styled(Modal)`
         font-weight: bold;
         margin-bottom: 4px;
       }
-      h4 {
-        color: #666666;
-        font-weight: bold;
-        font-size: 16px;
+
+      div.data-groups {
         display: flex;
         flex-direction: row;
-        margin-bottom: 4px;
-      }
+        h4 {
+          color: #666666;
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 4px;
+          margin-right: 4px;
+        }
 
-      h5 {
-        color: #666666;
-        font-size: 16px;
+        h5 {
+          color: #666666;
+          font-size: 16px;
+          font-weight: normal;
+        }
       }
     }
 

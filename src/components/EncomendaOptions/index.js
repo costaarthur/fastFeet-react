@@ -98,8 +98,15 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
 
           <div className="datas">
             <strong>Datas</strong>
-            <h4>retirada: {formattedStartDate}</h4>
-            <h4>entrega: {formattedEndDate}</h4>
+            <div className="data-groups">
+              <h4>retirada:</h4>
+              <h5>{formattedStartDate} </h5>
+            </div>
+
+            <div className="data-groups">
+              <h4>entrega:</h4>
+              <h5>{formattedEndDate}</h5>
+            </div>
           </div>
 
           <div className="sign-group">
