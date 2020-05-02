@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
+import InputMask from 'react-input-mask';
 import api from '../../services/api';
 import history from '../../services/history';
 
 import { Container, Content, PropForm } from './styles';
 
 export default function AddDestinatarios() {
+  const [zipCode, setZipCode] = useState('');
+
   async function handleAddDestinatario(data) {
     try {
-      await api.post(`recipients`, data);
+      const rigisterUserData = { ...data, cep: zipCode.split('-').join('') };
+      await api.post(`recipients`, rigisterUserData);
 
       toast.success('Destinatário adicionado com sucesso');
     } catch (err) {
@@ -42,25 +46,16 @@ export default function AddDestinatarios() {
           </div>
         </div>
         <Content>
-          {/* LINHA ZERO (EMAIL) */}
           <div className="email">
             <strong>Email</strong>
             <Input name="email" type="email" placeholder="joey@trib.com" />
           </div>
 
-          {/* PRIMEIRA LINHA */}
           <div className="nome">
             <strong>Nome</strong>
-            <Input
-              name="nome"
-              type="text"
-              placeholder="Joey van Pelt"
-            // placeholder={selectedDestinatario[0].nome)}
-            // placeholder={selectedDestinatario.nome}
-            />
+            <Input name="nome" type="text" placeholder="Joey van Pelt" />
           </div>
 
-          {/* SEGUNDA LINHA */}
           <div className="rua-num-comp">
             <div className="rua">
               <strong>Rua</strong>
@@ -77,7 +72,7 @@ export default function AddDestinatarios() {
               <Input name="complemento" type="text" placeholder="" />
             </div>
           </div>
-          {/* TERCEIRA LINHA */}
+
           <div className="cid-est-cep">
             <div className="cidade">
               <strong>Cidade:</strong>
@@ -91,15 +86,23 @@ export default function AddDestinatarios() {
 
             <div className="cep">
               <strong>CEP:</strong>
-              <Input
+              {/* <Input
                 name="cep"
                 type="text"
                 placeholder="29100-258"
                 maxlength="9"
+              /> */}
+              <InputMask
+                name="cep"
+                label="CEP"
+                mask="99999-999"
+                maskChar=""
+                placeholder="28204-510"
+                value={zipCode}
+                onChange={e => setZipCode(e.target.value)}
               />
             </div>
           </div>
-          {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
         </Content>
       </PropForm>
     </Container>

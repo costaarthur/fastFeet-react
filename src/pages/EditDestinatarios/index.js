@@ -1,23 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Form, useField, Input } from '@rocketseat/unform';
+import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
+import InputMask from 'react-input-mask';
 import api from '../../services/api';
 import history from '../../services/history';
 
-import { Container, Content, PropForm, SelectForm } from './styles';
+import { Container, Content, PropForm } from './styles';
 
 export default function EditDestinatarios({ match }) {
   const [destinatarios, setDestinatarios] = useState([]);
-  const [productName, setProductName] = useState('Carregando...');
-
-  const [destSelected, setDestSelected] = useState(null);
-
-  const destinatarioRef = useRef(null);
-  const entregadorRef = useRef(null);
+  const [zipCode, setZipCode] = useState('');
 
   // LOAD DESTINATARIOS from api
   useEffect(() => {
@@ -38,7 +34,8 @@ export default function EditDestinatarios({ match }) {
   // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
     try {
-      await api.put(`recipients`, data);
+      const updateUserData = { ...data, cep: zipCode.split('-').join('') };
+      await api.put(`recipients`, updateUserData);
 
       toast.success('Destinatário atualizado com sucesso');
     } catch (err) {
@@ -67,7 +64,6 @@ export default function EditDestinatarios({ match }) {
           </div>
         </div>
         <Content>
-          {/* LINHA ZERO (EMAIL) */}
           <div className="email">
             <strong>Email</strong>
             <Input
@@ -77,7 +73,6 @@ export default function EditDestinatarios({ match }) {
             />
           </div>
 
-          {/* PRIMEIRA LINHA */}
           <div className="nome">
             <strong>Nome</strong>
             <Input
@@ -87,7 +82,6 @@ export default function EditDestinatarios({ match }) {
             />
           </div>
 
-          {/* SEGUNDA LINHA */}
           <div className="rua-num-comp">
             <div className="rua">
               <strong>Rua</strong>
@@ -116,7 +110,7 @@ export default function EditDestinatarios({ match }) {
               />
             </div>
           </div>
-          {/* TERCEIRA LINHA */}
+
           <div className="cid-est-cep">
             <div className="cidade">
               <strong>Cidade:</strong>
@@ -138,10 +132,14 @@ export default function EditDestinatarios({ match }) {
 
             <div className="cep">
               <strong>CEP:</strong>
-              <Input
+              <InputMask
                 name="cep"
-                type="text"
+                label="CEP"
+                mask="99999-999"
+                maskChar=""
                 placeholder={selectedDestinatario?.cep}
+                value={zipCode}
+                onChange={e => setZipCode(e.target.value)}
               />
             </div>
           </div>

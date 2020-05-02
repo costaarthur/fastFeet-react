@@ -156,7 +156,6 @@ export default function EditEncomendas() {
                 onChange={setDestSelected}
                 isSearchable
                 placeholder="Jorge"
-                // placeholder={destPlaceholder}
                 autoFocus
               />
             </div>
