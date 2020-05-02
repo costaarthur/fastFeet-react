@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Modal from 'react-modal';
+
+import { parseISO, format } from 'date-fns';
 
 import {
   MdMoreHoriz,
@@ -25,6 +27,7 @@ Modal.setAppElement('#root');
 export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   function handleToggleVisible() {
     setVisible(!visible);
@@ -58,11 +61,26 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
     }
   }
 
+  const parsedStartDate = selectedEncomenda.start_date
+    ? parseISO(selectedEncomenda.start_date)
+    : '';
+  const parsedEndDate = selectedEncomenda.end_date
+    ? parseISO(selectedEncomenda.end_date)
+    : '';
+
+  const formattedStartDate =
+    parsedStartDate === '' ? '' : format(parsedStartDate, 'dd/MM/yyyy');
+
+  const formattedEndDate =
+    parsedEndDate === '' ? '' : format(parsedEndDate, 'dd/MM/yyyy');
+
   return (
     <Container>
       <EncOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
+        onAfterOpen={console.log(formattedStartDate)}
+      // onAfterOpen={console.log(parsedStartDate)}
       >
         <div className="modal-square">
           <div className="info-enc">
@@ -80,15 +98,15 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
 
           <div className="datas">
             <strong>Datas</strong>
-            <h4>retirada: {selectedEncomenda.start_date}</h4>
-            <h4>entrega: {selectedEncomenda.end_date}</h4>
+            <h4>retirada: {formattedStartDate}</h4>
+            <h4>entrega: {formattedEndDate}</h4>
           </div>
 
           <div className="sign-group">
             <strong>Assinatura do destinatário</strong>
             <img
               src={selectedEncomenda.Sign ? selectedEncomenda.Sign.url : ''}
-              alt="sign"
+              alt=""
             />
           </div>
         </div>
