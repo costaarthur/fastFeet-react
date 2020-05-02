@@ -23,15 +23,15 @@ export default function Entregadores() {
   const [entregadores, setEntregadores] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('');
+  const [textToFilter, setTextToFilter] = useState('');
   const [filterHasError, setFilterHasError] = useState(false);
 
   useEffect(() => {
-    const q = filter;
+    const filter = textToFilter;
 
     async function loadEntregadores() {
       const responseEntregadores = await api.get('ents', {
-        params: { page, q },
+        params: { page, filter },
       });
 
       if (responseEntregadores.data.length === 0) {
@@ -44,7 +44,7 @@ export default function Entregadores() {
       }
     }
     loadEntregadores();
-  }, [page, filter]);
+  }, [page, textToFilter]);
 
   // MEMO PAGE NEVER 0
   const pageNeverZero = useMemo(() => {
@@ -74,7 +74,7 @@ export default function Entregadores() {
   }
 
   function handleFilter() {
-    setFilter(search);
+    setTextToFilter(search);
   }
 
   return (

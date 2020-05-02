@@ -23,16 +23,16 @@ export default function Destinatarios() {
   const [destinatarios, setDestinatarios] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('');
+  const [textToFilter, setTextToFilter] = useState('');
   const [filterHasError, setFilterHasError] = useState(false);
 
   // LOAD DESTINATÁRIOS FROM API
   useEffect(() => {
-    const q = filter;
+    const filter = textToFilter;
 
     async function loadDestinatarios() {
       const responseDestinatarios = await api.get('recipients', {
-        params: { page, q },
+        params: { page, filter },
       });
 
       if (responseDestinatarios.data.length === 0) {
@@ -45,7 +45,7 @@ export default function Destinatarios() {
       }
     }
     loadDestinatarios();
-  }, [page, filter]);
+  }, [page, textToFilter]);
 
   // MEMO PAGE NEVER 0
   const pageNeverZero = useMemo(() => {
@@ -75,7 +75,7 @@ export default function Destinatarios() {
   }
 
   function handleFilter() {
-    setFilter(search);
+    setTextToFilter(search);
   }
   return (
     <Container>

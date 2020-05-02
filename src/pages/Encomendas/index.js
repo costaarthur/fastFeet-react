@@ -26,7 +26,7 @@ export default function Encomendas() {
   const [encomendas, setEncomendas] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('');
+  const [textToFilter, setTextToFilter] = useState('');
   const [filterHasError, setFilterHasError] = useState(false);
 
   function getStatus(encomenda) {
@@ -65,11 +65,11 @@ export default function Encomendas() {
   }
 
   useEffect(() => {
-    const q = filter;
+    const filter = textToFilter;
 
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
-        params: { page, q },
+        params: { page, filter },
       });
       const dataEncomendas = responseEncomendas.data.map(encomenda => {
         const status = getStatus(encomenda);
@@ -88,7 +88,7 @@ export default function Encomendas() {
       }
     }
     loadEncomendas();
-  }, [page, filter]);
+  }, [page, textToFilter]);
 
   // MEMO PAGE NEVER 0
   const pageNeverZero = useMemo(() => {
@@ -120,7 +120,7 @@ export default function Encomendas() {
   }
 
   function handleFilter() {
-    setFilter(search);
+    setTextToFilter(search);
   }
 
   return (

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// //
+
 export const Container = styled.div`
   background: #f5f5f5;
   display: flex;
@@ -37,7 +37,8 @@ export const CadastroButton = styled.button`
 export const Content = styled.div`
     min-width: 1200px;
     background: #f5f5f5;
-    margin: 34px auto;
+    margin: 34px auto 0;
+    min-height: 900px;
 
     header {
       text-align: left;

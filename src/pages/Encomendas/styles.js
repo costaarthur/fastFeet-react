@@ -61,6 +61,7 @@ export const Content = styled.div`
   min-width: 1200px;
   background: #f5f5f5;
   margin: 34px auto;
+  min-height: 900px;
 
   header {
     text-align: left;
