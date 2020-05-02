@@ -101,6 +101,7 @@ export const ProbOptModal = styled(Modal)`
         font-size: 16px;
         margin-bottom: 4px;
         margin-top: 8px;
+        font-weight: normal;
       }
     }
   }
