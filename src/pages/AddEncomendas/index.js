@@ -33,7 +33,7 @@ export default function EditEncomendas() {
     menu: () => ({
       background: '#ffffff',
       border: '1px solid #dddddd',
-      position: 'fixed !important',
+      position: 'relative !important',
       width: '406px',
       zIndex: 1001,
       marginTop: '-12px',

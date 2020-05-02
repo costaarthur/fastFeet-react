@@ -35,11 +35,11 @@ export default function EditEncomendas({ match }) {
     menu: () => ({
       background: '#ffffff',
       border: '1px solid #dddddd',
-      position: 'fixed !important',
+      position: 'relative !important',
       width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
-      marginLeft: '-80px',
+      marginLeft: '0px',
     }),
     menuList: () => ({}),
     menuPortal: () => ({
