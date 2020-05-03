@@ -106,6 +106,10 @@ export default function EditEncomendas() {
     label: entregador.nome,
   }));
 
+  function goBack() {
+    history.push('/encomendas');
+  }
+
   // POST ENCOMENDA NA API
   async function handleAddEncomenda({ product }) {
     try {
@@ -115,16 +119,13 @@ export default function EditEncomendas() {
         product,
       };
       await api.post(`encomendas`, allInputs);
-
       toast.success('Encomenda adicionada com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro não foi possível adicionada a encomenda');
     }
   }
 
-  function goBack() {
-    history.push('/encomendas');
-  }
   return (
     <Container>
       <PropForm onSubmit={handleAddEncomenda}>
@@ -146,11 +147,11 @@ export default function EditEncomendas() {
           <div className="dest-ent">
             <div>
               {/* SELECT DESTINATÁRIOS */}
-              <label htmlFor="recipient_id">Destinatário:</label>
+              <strong>Destinatário:</strong>
 
               <Select
-                // theme={customTheme}
                 styles={customStyles}
+                id="recipient_id"
                 name="recipient_id"
                 options={destArray}
                 onChange={setDestSelected}
@@ -162,7 +163,7 @@ export default function EditEncomendas() {
 
             <div>
               {/* SELECT ENTREGADORES */}
-              <label htmlFor="deliveryman_id">Entregador:</label>
+              <strong>Entregador:</strong>
 
               <Select
                 styles={customStyles}

@@ -21,9 +21,6 @@ export const Container = styled.div`
   opacity: 1;
 
   text-align: center;
-  /* margin: 0 auto; */
-
-  /* margin: auto auto; */
   img {
     height: 44px;
     width: 260px;
@@ -54,7 +51,6 @@ export const Container = styled.div`
       border-radius: 4px;
       opacity: 1;
 
-      /* margin-bottom: 15px; */
       align-self: center;
       padding-left: 15px;
 

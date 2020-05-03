@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Form, useField, Input } from '@rocketseat/unform';
+import { Input } from '@rocketseat/unform';
 
-import { MdDone, MdKeyboardArrowLeft, MdInsertPhoto } from 'react-icons/md';
+import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
 import api from '../../services/api';
@@ -13,55 +14,19 @@ import AvatarInput from './AvatarInput';
 import { Container, Content, PropForm } from './styles';
 
 export default function AddEntregadores({ match }) {
-  const [encomendas, setEncomendas] = useState([]);
-  const [entregadores, setEntregadores] = useState([]);
-  const [productName, setProductName] = useState('Carregando...');
-
-  // LOAD ENCOMENDAS from api
-  useEffect(() => {
-    async function loadEncomendas() {
-      const responseEncomendas = await api.get('encomendas');
-      setEncomendas(responseEncomendas.data);
-
-      const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id === Number(match.params.id)) {
-          setProductName(encomenda.product);
-        }
-      });
-    }
-    loadEncomendas();
-  }, []);
-  // LOAD ENTREGADORES from api
-  useEffect(() => {
-    async function loadEntregadores() {
-      const responseEntregadores = await api.get('ents');
-      setEntregadores(responseEntregadores.data);
-    }
-    loadEntregadores();
-  }, []);
-
-  // FIND PROFILE PIC PREVIEW
-  const profilePreview = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.avatar);
-  // .join();
+  function goBack() {
+    history.push('/entregadores');
+  }
 
   // ADD ENTREGADOR NA API
   async function handleAddEntregador(data) {
     try {
-      if (!data.nome) return toast.error('Você precisa informar um nome');
-      if (!data.email) return toast.error('Você precisa informar o email');
       await api.post(`ents`, data);
       toast.success('Entregador cadastrado com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro ao cadastrar o entregador');
     }
-  }
-
-  function goBack() {
-    history.push('/entregadores');
   }
 
   return (
@@ -83,14 +48,7 @@ export default function AddEntregadores({ match }) {
         </div>
 
         <Content>
-          <AvatarInput
-            name="avatar_id"
-            selectedEntregador={match}
-            avatar={
-              profilePreview ||
-              'https://api.adorable.io/avatars/51/abott@adorable.png'
-            }
-          />
+          <AvatarInput name="avatar_id" selectedEntregador={match} />
           <div className="nome-email">
             <div className="nome">
               <strong>Nome:</strong>
@@ -107,3 +65,11 @@ export default function AddEntregadores({ match }) {
     </Container>
   );
 }
+
+AddEntregadores.propTypes = {
+  match: PropTypes.node,
+};
+
+AddEntregadores.defaultProps = {
+  match: null,
+};

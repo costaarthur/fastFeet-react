@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { Input } from '@rocketseat/unform';
 
@@ -16,7 +17,6 @@ export default function EditEncomendas({ match }) {
   const [encomendas, setEncomendas] = useState([]);
   const [entregadores, setEntregadores] = useState([]);
   const [destinatarios, setDestinatarios] = useState([]);
-  const [productName, setProductName] = useState('Carregando...');
 
   const [destSelected, setDestSelected] = useState(null);
   const [entSelected, setEntSelected] = useState(null);
@@ -78,23 +78,16 @@ export default function EditEncomendas({ match }) {
     }),
   };
 
-  // LOAD ENCOMENDAS from api
   useEffect(() => {
     async function loadEncomendas() {
       const responseEncomendas = await api.get('encomendas', {
         params: { page: match.params.page },
       });
       setEncomendas(responseEncomendas.data);
-
-      const getProduct = responseEncomendas.data.map(encomenda => {
-        if (encomenda.id === Number(match.params.id)) {
-          setProductName(encomenda.product);
-        }
-      });
     }
     loadEncomendas();
   }, []);
-  // LOAD ENTREGADORES from api
+
   useEffect(() => {
     async function loadEntregadores() {
       const responseEntregadores = await api.get('ents');
@@ -103,7 +96,6 @@ export default function EditEncomendas({ match }) {
     loadEntregadores();
   }, []);
 
-  // LOAD DESTINATÁRIOS from api
   useEffect(() => {
     async function loadDestinatarios() {
       const responseDestinatarios = await api.get('recipients');
@@ -112,66 +104,39 @@ export default function EditEncomendas({ match }) {
     loadDestinatarios();
   }, []);
 
-  // CREATE SELECT DESTINATÁRIO ARRAY
   const destArray = destinatarios.map(destinatario => ({
     value: destinatario.id,
     label: destinatario.nome,
   }));
 
-  // CREATE SELECT ENTREGADORES ARRAY
   const entArray = entregadores.map(entregador => ({
     value: entregador.id,
     label: entregador.nome,
   }));
 
-  // FIND DESTINATÁRIO PLACEHOLDER
-  const destPlaceholder = encomendas
-    .filter(dest => {
-      if (dest.id === Number(match.params.id)) return true;
-    })
-    .map(dest => dest.Recipient.nome)
-    .join();
+  const findEncomendaData = encomendas.find(
+    enc => enc.id === Number(match.params.id)
+  );
 
-  // FIND ENTREGADOR PLACEHOLDER
-  const entPlaceholder = encomendas
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.Ent.nome)
-    .join();
+  function goBack() {
+    history.push('/encomendas');
+  }
 
-  // GET DESTINATÁRIO VALUE
-  const getDestValue = encomendas
-    .filter(
-      (v, i, a) => a.findIndex(t => t.Recipient.nome === v.Recipient.nome) === i
-    )
-    .map(encomenda => encomenda.Recipient.id)
-    .join();
-  // GET ENTREGADOR VALUE
-  const getEntValue = encomendas
-    .filter((v, i, a) => a.findIndex(t => t.Ent.nome === v.Ent.nome) === i)
-    .map(encomenda => encomenda.Ent.id)
-    .join();
-
-  // UPDATE ENCOMENDA NA API
-  async function handleEditEncomenda({ product }) {
+  async function handleEditEncomenda(data) {
     try {
       const allInputs = {
         id: Number(match.params.id),
         recipient_id: destSelected.value,
         deliveryman_id: entSelected.value,
-        product,
+        product: data.product,
       };
       await api.put(`encomendas`, allInputs);
 
       toast.success('Encomenda atualizada com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro ao atualizar a encomenda');
     }
-  }
-
-  function goBack() {
-    history.push('/encomendas');
   }
 
   return (
@@ -195,7 +160,7 @@ export default function EditEncomendas({ match }) {
           <div className="dest-ent">
             <div>
               {/* SELECT DESTINATÁRIOS */}
-              <label htmlFor="recipient_id">Destinatário:</label>
+              <strong>Destinatário:</strong>
 
               <Select
                 // theme={customTheme}
@@ -204,31 +169,43 @@ export default function EditEncomendas({ match }) {
                 options={destArray}
                 onChange={setDestSelected}
                 isSearchable
-                placeholder={destPlaceholder}
+                placeholder={findEncomendaData?.Recipient.nome}
                 autoFocus
               />
             </div>
 
             <div>
               {/* SELECT ENTREGADORES */}
-              <label htmlFor="deliveryman_id">Entregador:</label>
+              <strong>Entregador:</strong>
 
               <Select
                 styles={customStyles}
                 options={entArray}
                 onChange={setEntSelected}
                 isSearchable
-                placeholder={entPlaceholder}
+                placeholder={findEncomendaData?.Ent.nome}
               />
             </div>
           </div>
 
           <div className="prod">
             <strong>Nome do produto:</strong>
-            <Input name="product" type="text" placeholder={productName} />
+            <Input
+              name="product"
+              type="text"
+              placeholder={findEncomendaData?.product}
+            />
           </div>
         </Content>
       </PropForm>
     </Container>
   );
 }
+
+EditEncomendas.propTypes = {
+  match: PropTypes.node,
+};
+
+EditEncomendas.defaultProps = {
+  match: null,
+};

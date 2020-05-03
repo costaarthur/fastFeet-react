@@ -110,7 +110,7 @@ export const Content = styled.div`
         margin-top: 7px;
 
         &::placeholder {
-          color: #dddddd;
+          color: #666666;
         }
       }
     }

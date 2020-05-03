@@ -47,8 +47,7 @@ export default function Destinatarios() {
     loadDestinatarios();
   }, [page, textToFilter]);
 
-  // MEMO PAGE NEVER 0
-  const pageNeverZero = useMemo(() => {
+  useMemo(() => {
     if (page === 0) {
       setPage(1);
       setFilterHasError(true);
@@ -120,7 +119,6 @@ export default function Destinatarios() {
           <strong>Endereço</strong>
           <strong>Ações</strong>
         </div>
-        {/* **************lista de destinatários************* */}
         <ul>
           {destinatarios.map(destinatario => (
             <Destinatario key={destinatario.id}>

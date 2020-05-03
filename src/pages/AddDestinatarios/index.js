@@ -14,20 +14,22 @@ import { Container, Content, PropForm } from './styles';
 export default function AddDestinatarios() {
   const [zipCode, setZipCode] = useState('');
 
+  function goBack() {
+    history.push('/destinatarios');
+  }
+
   async function handleAddDestinatario(data) {
     try {
       const rigisterUserData = { ...data, cep: zipCode.split('-').join('') };
       await api.post(`recipients`, rigisterUserData);
 
       toast.success('Destinatário adicionado com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro ao adicionar o destinatário');
     }
   }
 
-  function goBack() {
-    history.push('/destinatarios');
-  }
   return (
     <Container>
       <PropForm onSubmit={handleAddDestinatario}>
@@ -86,12 +88,6 @@ export default function AddDestinatarios() {
 
             <div className="cep">
               <strong>CEP:</strong>
-              {/* <Input
-                name="cep"
-                type="text"
-                placeholder="29100-258"
-                maxlength="9"
-              /> */}
               <InputMask
                 name="cep"
                 label="CEP"

@@ -88,7 +88,7 @@ export const Content = styled.div`
     padding-top: 26px;
 
     div {
-      label {
+      strong {
         position: relative;
         left: -160px;
         text-align: left;

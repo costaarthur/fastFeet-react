@@ -89,7 +89,7 @@ export const Content = styled.div`
     padding-top: 26px;
 
     div {
-      label {
+      strong {
         position: relative;
         left: -160px;
         text-align: left;
@@ -111,7 +111,7 @@ export const Content = styled.div`
       margin-bottom: 9px;
       color: #444444;
       z-index: 0;
-      font-weight: none;
+      font-weight: bold;
     }
 
     input {

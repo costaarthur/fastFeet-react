@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import { Input } from '@rocketseat/unform';
 
@@ -31,6 +32,10 @@ export default function EditDestinatarios({ match }) {
     dest => dest.id === Number(match.params.id)
   );
 
+  function goBack() {
+    history.push('/destinatarios');
+  }
+
   // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
     try {
@@ -38,14 +43,12 @@ export default function EditDestinatarios({ match }) {
       await api.put(`recipients`, updateUserData);
 
       toast.success('Destinatário atualizado com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro ao atualizar o destinatário');
     }
   }
 
-  function goBack() {
-    history.push('/destinatarios');
-  }
   return (
     <Container>
       <PropForm onSubmit={handleEditDestinatario}>
@@ -148,3 +151,11 @@ export default function EditDestinatarios({ match }) {
     </Container>
   );
 }
+
+EditDestinatarios.propTypes = {
+  match: PropTypes.node,
+};
+
+EditDestinatarios.defaultProps = {
+  match: null,
+};
