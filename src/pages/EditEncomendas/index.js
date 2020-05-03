@@ -159,9 +159,7 @@ export default function EditEncomendas({ match }) {
         <Content>
           <div className="dest-ent">
             <div>
-              {/* SELECT DESTINATÁRIOS */}
               <strong>Destinatário:</strong>
-
               <Select
                 // theme={customTheme}
                 styles={customStyles}
@@ -175,9 +173,7 @@ export default function EditEncomendas({ match }) {
             </div>
 
             <div>
-              {/* SELECT ENTREGADORES */}
               <strong>Entregador:</strong>
-
               <Select
                 styles={customStyles}
                 options={entArray}

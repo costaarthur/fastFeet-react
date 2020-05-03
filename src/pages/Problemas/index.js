@@ -9,11 +9,7 @@ import api from '../../services/api';
 export default function Problemas() {
   const [problemas, setProblemas] = useState([]);
   const [page, setPage] = useState(1);
-  // const [search, setSearch] = useState('');
-  // const [filter, setFilter] = useState('');
-  // const [filterHasError, setFilterHasError] = useState(false);
 
-  // LOAD PROBLEMAS FROM API
   useEffect(() => {
     async function loadProblemas() {
       const responseProblemas = await api.get('encomendas/problems', {
@@ -26,17 +22,14 @@ export default function Problemas() {
 
       if (responseProblemas.data.length > 0) {
         setProblemas(responseProblemas.data);
-        // setFilterHasError(false);
       }
     }
     loadProblemas();
   }, [page]);
 
-  // MEMO PAGE NEVER 0
-  const pageNeverZero = useMemo(() => {
+  useMemo(() => {
     if (page === 0) {
       setPage(1);
-      // setFilterHasError(true);
       setProblemas([]);
     }
   }, [page]);
@@ -61,7 +54,6 @@ export default function Problemas() {
           <strong>Problema</strong>
           <strong>Ações</strong>
         </div>
-        {/* **************lista de destinatários************* */}
         <ul>
           {problemas.map(problema => (
             <Problema key={problema.id}>

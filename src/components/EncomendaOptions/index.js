@@ -1,6 +1,7 @@
-import React, { useState, useCallback } from 'react';
-import Modal from 'react-modal';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
+import Modal from 'react-modal';
 import { parseISO, format } from 'date-fns';
 
 import {
@@ -27,7 +28,6 @@ Modal.setAppElement('#root');
 export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
   const [visible, setVisible] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [date, setDate] = useState(new Date());
 
   function handleToggleVisible() {
     setVisible(!visible);
@@ -79,8 +79,6 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
       <EncOptModal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
-        onAfterOpen={console.log(formattedStartDate)}
-      // onAfterOpen={console.log(parsedStartDate)}
       >
         <div className="modal-square">
           <div className="info-enc">
@@ -142,3 +140,8 @@ export default function EncomendaOptions({ selectedEncomenda, selectedPage }) {
     </Container>
   );
 }
+
+EncomendaOptions.propTypes = {
+  selectedEncomenda: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  selectedPage: PropTypes.number.isRequired,
+};

@@ -46,8 +46,7 @@ export default function Entregadores() {
     loadEntregadores();
   }, [page, textToFilter]);
 
-  // MEMO PAGE NEVER 0
-  const pageNeverZero = useMemo(() => {
+  useMemo(() => {
     if (page === 0) {
       setPage(1);
       setFilterHasError(true);
@@ -120,7 +119,6 @@ export default function Entregadores() {
           <strong>Email</strong>
           <strong>Ações</strong>
         </div>
-        {/* **************lista de destinatários************* */}
         <ul>
           {entregadores.map(entregador => (
             <Entregador key={entregador.id}>

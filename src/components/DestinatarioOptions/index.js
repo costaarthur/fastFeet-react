@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
@@ -63,3 +63,8 @@ export default function DestinatarioOptions({
     </Container>
   );
 }
+
+DestinatarioOptions.propTypes = {
+  selectedDestinatario: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  selectedPage: PropTypes.number.isRequired,
+};

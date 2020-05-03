@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 import { Input } from '@rocketseat/unform';
 
@@ -15,7 +16,6 @@ import { Container, Content, PropForm } from './styles';
 export default function EditEntregadores({ match }) {
   const [entregadores, setEntregadores] = useState([]);
 
-  // LOAD ENTREGADORES from api
   useEffect(() => {
     async function loadEntregadores() {
       const responseEntregadores = await api.get('ents', {
@@ -26,45 +26,24 @@ export default function EditEntregadores({ match }) {
     loadEntregadores();
   }, []);
 
-  // FIND ENTREGADOR PLACEHOLDER
-  const entPlaceholder = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.nome)
-    .join();
+  const findEntregadorData = useMemo(
+    () => entregadores.find(ent => ent.id === Number(match.params.id)),
+    [entregadores]
+  );
 
-  // FIND EMAIL PLACEHOLDER
-  const emailPlaceholder = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.email)
-    .join();
-
-  // FIND PROFILE PIC PREVIEW
-  const profilePreview = entregadores
-    .filter(ent => {
-      if (ent.id === Number(match.params.id)) return true;
-    })
-    .map(ent => ent.avatar);
+  function goBack() {
+    history.push('/entregadores');
+  }
 
   // UPDATE ENTREGADOR NA API
   async function handleEditEntregador(data) {
     try {
-      if (!data.nome) return toast.error('Você precisa informar um nome');
-      if (!data.avatar_id)
-        return toast.error('Você precisa selecionar um avatar');
       await api.put(`ents`, data);
-
       toast.success('Entregador atualizado com sucesso');
+      goBack();
     } catch (err) {
       toast.error('Erro ao atualizar o entregador');
     }
-  }
-
-  function goBack() {
-    history.push('/entregadores');
   }
 
   return (
@@ -86,17 +65,15 @@ export default function EditEntregadores({ match }) {
         </div>
 
         <Content>
-          <AvatarInput
-            name="avatar_id"
-            avatar={
-              profilePreview ||
-              'https://api.adorable.io/avatars/51/abott@adorable.png'
-            }
-          />
+          <AvatarInput name="avatar_id" avatar={findEntregadorData?.avatar} />
           <div className="nome-email">
             <div className="nome">
               <strong>Nome:</strong>
-              <Input name="nome" type="text" placeholder={entPlaceholder} />
+              <Input
+                name="nome"
+                type="text"
+                placeholder={findEntregadorData?.nome}
+              />
             </div>
 
             <div className="email">
@@ -104,14 +81,21 @@ export default function EditEntregadores({ match }) {
               <Input
                 name="email"
                 type="text"
-                value={emailPlaceholder}
+                value={findEntregadorData?.email}
                 disabled
               />
             </div>
-            {/* <Input type="text" placeholder="Buscar por encomendas" id="" /> */}
           </div>
         </Content>
       </PropForm>
     </Container>
   );
 }
+
+EditEntregadores.propTypes = {
+  match: PropTypes.node,
+};
+
+EditEntregadores.defaultProps = {
+  match: null,
+};

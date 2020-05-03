@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { store } from '../../store';
 import { signOut } from '../../store/modules/auth/actions';
@@ -40,7 +39,9 @@ export default function Header() {
         <aside>
           <div>
             <strong>{name}</strong>
-            <Link onClick={handleSignOut}>sair do sistema</Link>
+            <button type="submit" onClick={handleSignOut}>
+              sair do sistema
+            </button>
           </div>
         </aside>
       </Content>

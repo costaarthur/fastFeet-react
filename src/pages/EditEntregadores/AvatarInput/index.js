@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
+import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
 import api from '../../../services/api';
 
 export default function AvatarInput({ avatar }) {
-  const { defaultValue, registerField } = useField('avatar_id');
+  const { registerField } = useField('avatar_id');
 
   const [file, setFile] = useState();
   const [preview, setPreview] = useState();
@@ -43,15 +44,8 @@ export default function AvatarInput({ avatar }) {
           // selectedDestinatario.map(dest => dest.email)
           src={
             preview ||
-            avatar.map(a => {
-              if (a) {
-                return a.url;
-              }
-              return 'https://api.adorable.io/avatars/51/abott@adorable.png';
-            })
-            // preview ||
-            // avatar ||
-            // 'https://api.adorable.io/avatars/51/abott@adorable.png'
+            avatar?.url ||
+            'https://api.adorable.io/avatars/51/abott@adorable.png'
           }
           alt="avatar"
         />
@@ -68,3 +62,11 @@ export default function AvatarInput({ avatar }) {
     </Container>
   );
 }
+
+AvatarInput.propTypes = {
+  avatar: PropTypes.node,
+};
+
+AvatarInput.defaultProps = {
+  avatar: null,
+};

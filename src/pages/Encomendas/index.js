@@ -91,7 +91,7 @@ export default function Encomendas() {
   }, [page, textToFilter]);
 
   // MEMO PAGE NEVER 0
-  const pageNeverZero = useMemo(() => {
+  useMemo(() => {
     if (page === 0) {
       setPage(1);
       setFilterHasError(true);

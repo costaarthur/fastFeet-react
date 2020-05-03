@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Modal from 'react-modal';
+import PropTypes from 'prop-types';
 
 import { MdMoreHoriz, MdCreate, MdDeleteForever } from 'react-icons/md';
 
@@ -14,7 +14,6 @@ export default function EntregadorOptions({
   selectedPage,
 }) {
   const [visible, setVisible] = useState(false);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function goEditEntregadores() {
     history.push(
@@ -66,3 +65,8 @@ export default function EntregadorOptions({
     </Container>
   );
 }
+
+EntregadorOptions.propTypes = {
+  selectedEntregador: PropTypes.oneOfType([PropTypes.object]).isRequired,
+  selectedPage: PropTypes.number.isRequired,
+};

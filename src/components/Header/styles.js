@@ -54,11 +54,14 @@ export const Content = styled.div`
         color: #666666;
       }
 
-      a {
+      button {
         display: block;
         margin-top: 2px;
         font-size: 14px;
         color: #de3b3b;
+        background: #fff;
+        border: none;
+        text-align: left;
       }
     }
   }
