@@ -5,6 +5,7 @@ import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
@@ -24,25 +25,32 @@ export default function EditEntregadores({ match }) {
       setEntregadores(responseEntregadores.data);
     }
     loadEntregadores();
-  }, []);
+  }, [match]);
 
   const findEntregadorData = useMemo(
     () => entregadores.find(ent => ent.id === Number(match.params.id)),
-    [entregadores]
+    [entregadores, match.params.id]
   );
 
   function goBack() {
     history.push('/entregadores');
   }
 
-  // UPDATE ENTREGADOR NA API
   async function handleEditEntregador(data) {
     try {
+      const schema = Yup.object().shape({
+        nome: Yup.string().required('Informe o nome do entregador'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
       await api.put(`ents`, data);
       toast.success('Entregador atualizado com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro ao atualizar o entregador');
+      toast.error(err.errors[0]);
     }
   }
 
@@ -93,9 +101,5 @@ export default function EditEntregadores({ match }) {
 }
 
 EditEntregadores.propTypes = {
-  match: PropTypes.node,
-};
-
-EditEntregadores.defaultProps = {
-  match: null,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };

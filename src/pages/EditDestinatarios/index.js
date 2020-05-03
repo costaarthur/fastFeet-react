@@ -5,6 +5,7 @@ import { Input } from '@rocketseat/unform';
 
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import InputMask from 'react-input-mask';
 import api from '../../services/api';
@@ -25,9 +26,8 @@ export default function EditDestinatarios({ match }) {
       setDestinatarios(responseDestinatarios.data);
     }
     loadDestinatarios();
-  }, []);
+  }, [match.params.page]);
 
-  // FIND SELECTED DESTINATÁRIO
   const selectedDestinatario = destinatarios.find(
     dest => dest.id === Number(match.params.id)
   );
@@ -36,16 +36,34 @@ export default function EditDestinatarios({ match }) {
     history.push('/destinatarios');
   }
 
-  // UPDATE ENCOMENDA NA API
   async function handleEditDestinatario(data) {
     try {
       const updateUserData = { ...data, cep: zipCode.split('-').join('') };
+
+      const schema = Yup.object().shape({
+        nome: Yup.string().required('O nome do destinatário é obrigatório'),
+        rua: Yup.string().required('A rua do destinatário é obrigatória'),
+        numero: Yup.number()
+          .typeError('Informe um número')
+          .required('O numero do destinatário é obrigatório'),
+        complemento: Yup.string(),
+        cidade: Yup.string().required('A cidade do destinatário é obrigatória'),
+        estado: Yup.string().required('O estado do destinatário é obrigatório'),
+        cep: Yup.string('Informe um número')
+          .required('O cep do destinatário é obrigatório')
+          .min(8, 'O CEP precisa de 8 dígitos'),
+      });
+
+      await schema.validate(updateUserData, {
+        abortEarly: false,
+      });
+
       await api.put(`recipients`, updateUserData);
 
       toast.success('Destinatário atualizado com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro ao atualizar o destinatário');
+      toast.error(err?.errors[0]);
     }
   }
 
@@ -153,9 +171,5 @@ export default function EditDestinatarios({ match }) {
 }
 
 EditDestinatarios.propTypes = {
-  match: PropTypes.node,
-};
-
-EditDestinatarios.defaultProps = {
-  match: null,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };

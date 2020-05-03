@@ -25,7 +25,7 @@ export default function AddEntregadores({ match }) {
       toast.success('Entregador cadastrado com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro ao cadastrar o entregador');
+      toast.error('Verifique se todos os dados foram informados');
     }
   }
 
@@ -67,9 +67,5 @@ export default function AddEntregadores({ match }) {
 }
 
 AddEntregadores.propTypes = {
-  match: PropTypes.node,
-};
-
-AddEntregadores.defaultProps = {
-  match: null,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };

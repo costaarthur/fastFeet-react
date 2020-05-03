@@ -64,7 +64,7 @@ export default function AvatarInput({ avatar }) {
 }
 
 AvatarInput.propTypes = {
-  avatar: PropTypes.node,
+  avatar: PropTypes.oneOfType([PropTypes.object]),
 };
 
 AvatarInput.defaultProps = {

@@ -7,6 +7,7 @@ import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import Select from 'react-select';
 
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 import history from '../../services/history';
@@ -86,7 +87,7 @@ export default function EditEncomendas({ match }) {
       setEncomendas(responseEncomendas.data);
     }
     loadEncomendas();
-  }, []);
+  }, [match.params.page]);
 
   useEffect(() => {
     async function loadEntregadores() {
@@ -124,18 +125,27 @@ export default function EditEncomendas({ match }) {
 
   async function handleEditEncomenda(data) {
     try {
-      const allInputs = {
+      const encomendaData = {
         id: Number(match.params.id),
         recipient_id: destSelected.value,
         deliveryman_id: entSelected.value,
         product: data.product,
       };
-      await api.put(`encomendas`, allInputs);
+
+      const schema = Yup.object().shape({
+        product: Yup.string().required(),
+      });
+
+      await schema.validate(encomendaData, {
+        abortEarly: false,
+      });
+
+      await api.put(`encomendas`, encomendaData);
 
       toast.success('Encomenda atualizada com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro ao atualizar a encomenda');
+      toast.error('Erro ao atualizar encomenda');
     }
   }
 
@@ -199,9 +209,9 @@ export default function EditEncomendas({ match }) {
 }
 
 EditEncomendas.propTypes = {
-  match: PropTypes.node,
+  match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
 
-EditEncomendas.defaultProps = {
-  match: null,
-};
+// EditEncomendas.defaultProps = {
+//   match: null,
+// };

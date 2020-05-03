@@ -122,7 +122,7 @@ export default function EditEncomendas() {
       toast.success('Encomenda adicionada com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro não foi possível adicionada a encomenda');
+      toast.error('Verifique se todos os dados foram informados');
     }
   }
 

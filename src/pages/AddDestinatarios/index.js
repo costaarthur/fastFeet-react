@@ -5,6 +5,7 @@ import { Input } from '@rocketseat/unform';
 import { MdDone, MdKeyboardArrowLeft } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
+import * as Yup from 'yup';
 import InputMask from 'react-input-mask';
 import api from '../../services/api';
 import history from '../../services/history';
@@ -20,13 +21,35 @@ export default function AddDestinatarios() {
 
   async function handleAddDestinatario(data) {
     try {
-      const rigisterUserData = { ...data, cep: zipCode.split('-').join('') };
-      await api.post(`recipients`, rigisterUserData);
+      const registerUserData = { ...data, cep: zipCode.split('-').join('') };
+
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .email('Digite um email válido')
+          .required('O email do destinatário é obrigatório'),
+        nome: Yup.string().required('O nome do destinatário é obrigatório'),
+        rua: Yup.string().required('A rua do destinatário é obrigatória'),
+        numero: Yup.number()
+          .typeError('Informe um número')
+          .required('O numero do destinatário é obrigatório'),
+        complemento: Yup.string(),
+        cidade: Yup.string().required('A cidade do destinatário é obrigatória'),
+        estado: Yup.string().required('O estado do destinatário é obrigatório'),
+        cep: Yup.string('Informe um número')
+          .required('O cep do destinatário é obrigatório')
+          .min(8, 'O CEP precisa de 8 dígitos'),
+      });
+
+      await schema.validate(registerUserData, {
+        abortEarly: false,
+      });
+
+      await api.post(`recipients`, registerUserData);
 
       toast.success('Destinatário adicionado com sucesso');
       goBack();
     } catch (err) {
-      toast.error('Erro ao adicionar o destinatário');
+      toast.error(err?.errors[0]);
     }
   }
 
