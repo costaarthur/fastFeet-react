@@ -87,7 +87,7 @@ export default function Entregadores() {
             </div>
             <input
               type="text"
-              placeholder="Buscar por entregadores"
+              placeholder="Buscar entregadores"
               id=""
               onChange={handleInputChange}
             />
@@ -104,7 +104,7 @@ export default function Entregadores() {
 
         {filterHasError === true ? (
           <div className="filter-error">
-            <span>Produto não existe</span>
+            <span>Entregador não encontrado</span>
           </div>
         ) : (
             <div className="filter-error">

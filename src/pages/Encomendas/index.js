@@ -151,7 +151,7 @@ export default function Encomendas() {
 
         {filterHasError === true ? (
           <div className="filter-error">
-            <span>Produto não existe</span>
+            <span>Produto não encontrado</span>
           </div>
         ) : (
             <div className="filter-error">

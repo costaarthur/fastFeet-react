@@ -88,7 +88,7 @@ export default function Destinatarios() {
             </div>
             <input
               type="text"
-              placeholder="Buscar por encomendas"
+              placeholder="Buscar destinatários"
               id=""
               onChange={handleInputChange}
             />
@@ -105,7 +105,7 @@ export default function Destinatarios() {
 
         {filterHasError === true ? (
           <div className="filter-error">
-            <span>Produto não existe</span>
+            <span>Destinatário não encontrado</span>
           </div>
         ) : (
             <div className="filter-error">
