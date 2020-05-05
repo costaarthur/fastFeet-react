@@ -171,7 +171,6 @@ export default function EditEncomendas({ match }) {
             <div>
               <strong>Destinatário:</strong>
               <Select
-                // theme={customTheme}
                 styles={customStyles}
                 name="recipient_id"
                 options={destArray}
@@ -211,7 +210,3 @@ export default function EditEncomendas({ match }) {
 EditEncomendas.propTypes = {
   match: PropTypes.oneOfType([PropTypes.object]).isRequired,
 };
-
-// EditEncomendas.defaultProps = {
-//   match: null,
-// };

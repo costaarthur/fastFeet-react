@@ -37,7 +37,7 @@ export default function EditEncomendas() {
       width: '406px',
       zIndex: 1001,
       marginTop: '-12px',
-      marginLeft: '-80px',
+      marginLeft: '0px',
     }),
     menuList: () => ({}),
     menuPortal: () => ({
@@ -76,7 +76,6 @@ export default function EditEncomendas() {
     }),
   };
 
-  // LOAD DESTINATÁRIOS from api
   useEffect(() => {
     async function loadDestinatarios() {
       const responseDestinatarios = await api.get('recipients');
@@ -85,7 +84,6 @@ export default function EditEncomendas() {
     loadDestinatarios();
   }, []);
 
-  // LOAD ENTREGADORES from api
   useEffect(() => {
     async function loadEntregadores() {
       const responseEntregadores = await api.get('ents');
@@ -94,13 +92,11 @@ export default function EditEncomendas() {
     loadEntregadores();
   }, []);
 
-  // CREATE SELECT DESTINATÁRIO ARRAY
   const destArray = destinatarios.map(destinatario => ({
     value: destinatario.id,
     label: destinatario.nome,
   }));
 
-  // CREATE SELECT ENTREGADORES ARRAY
   const entArray = entregadores.map(entregador => ({
     value: entregador.id,
     label: entregador.nome,
@@ -110,7 +106,6 @@ export default function EditEncomendas() {
     history.push('/encomendas');
   }
 
-  // POST ENCOMENDA NA API
   async function handleAddEncomenda({ product }) {
     try {
       const allInputs = {
@@ -146,9 +141,7 @@ export default function EditEncomendas() {
         <Content>
           <div className="dest-ent">
             <div>
-              {/* SELECT DESTINATÁRIOS */}
               <strong>Destinatário:</strong>
-
               <Select
                 styles={customStyles}
                 id="recipient_id"
@@ -162,9 +155,7 @@ export default function EditEncomendas() {
             </div>
 
             <div>
-              {/* SELECT ENTREGADORES */}
               <strong>Entregador:</strong>
-
               <Select
                 styles={customStyles}
                 options={entArray}
